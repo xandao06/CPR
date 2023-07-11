@@ -1,3 +1,9 @@
-.no-border {
-    border: none;
-}
+/* Classes para os ícones */
+/*.toggle-icon:before {
+    content: "\f303";*/ /* código do ícone do lápis */
+    /*font-family: "Font Awesome";*/ /* substitua pelo nome da fonte de ícones que você está usando */
+/*}
+
+.toggle-icon.active:before {
+    content: "\f06a";*/ /* código do ícone de exclamação */
+/*}*/
