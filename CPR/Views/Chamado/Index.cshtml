@@ -2,17 +2,10 @@
 @{
     ViewData["Title"] = "Chamados";
 }
-<link rel="stylesheet" href="css/style.css">
 <div style="padding:40px" id="container" class="justify-content-between">
     <h1 class="text-center mb-3">Chamados</h1>
-    <button type="button" id="open-button"class="btn btn-outline-dark mb-4">Criar um chamado</button>
-    <div id="overlay">
-        <div id="overlay-content">
-            <h1>Teste</h1>
-            <span id="close-button">&times;</span>
-        </div>
-    </div>
-    <button type="button" class="btn btn-outline-dark mb-4">Clientes</button>
+    <a type="button" class="btn btn-outline-dark mb-4">Criar um chamado</a>
+    <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark mb-4">Clientes</a>
     <table class="table">
         <tbody>
             <tr>
@@ -29,7 +22,7 @@
                     <a class="text-dark" type="submit"><i class="bi bi-exclamation-square-fill"></i></a>
                 </td>
                 <td style="width:1px">
-                    <a onclick="changeIcon(this)" value="Toggle Icon" type="submit" class="text-dark bi-pencil-square"></a>
+                    <a type="submit" class="text-dark bi-pencil-square"></a>
                 </td>
                 <td style="width:1px">
                     <a class="text-dark" type="submit"><i class="bi bi-trash3-fill"></i></a>
@@ -38,5 +31,3 @@
         </tbody>
     </table>
 </div>
-
-<script src="js/script.js"></script>

@@ -15,8 +15,7 @@ namespace CPR.Controllers
         }
         public IActionResult Index()
         {
-            var clientes = clienteService.GetAll();
-            return View(clientes);
+            return View();
         }
     }
 }
