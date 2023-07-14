@@ -23,7 +23,7 @@ namespace CPR.Models.Services
             return entity;
         }
 
-        public Chamado? Get(int id)
+        public Chamado Get(int id)
         {
             return dbContext.Set<Chamado>().Find(id);
         }

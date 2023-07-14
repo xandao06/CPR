@@ -23,7 +23,7 @@ namespace CPR.Models.Services
             return entity;
         }
 
-        public Cliente? Get(int id)
+        public Cliente Get(int id)
         {
             return dbContext.Set<Cliente>().Find(id);
         }

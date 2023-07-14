@@ -18,5 +18,9 @@ namespace CPR.Controllers
         {
             return View();
         }
+        public IActionResult Historico()
+        {
+            return View();
+        }
     }
 }
