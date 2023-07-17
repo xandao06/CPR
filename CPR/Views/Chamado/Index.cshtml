@@ -3,10 +3,16 @@
     ViewData["Title"] = "Chamados";
 }
 <div style="padding:40px" id="container" class="justify-content-between">
-    <h1 class="text-center mb-3">Chamados</h1>
-    <a class="btn btn-outline-dark mb-4">Criar um chamado</a>
-    <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark mb-4">Clientes</a>
-    <a type="button" asp-controller="Chamado" asp-action="Historico" class="btn btn-outline-dark mb-4">Histórico</a>
+    <div>
+        <h1 class="text-center mb-3">Chamados</h1>
+        <a class="btn btn-outline-dark mb-4">Criar um chamado</a>
+        <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark mb-4">Clientes</a>
+        <a type="button" asp-controller="Chamado" asp-action="Historico" class="btn btn-outline-dark mb-4">Histórico</a>
+           
+                <input type="search" id="Pesquisa" style="margin-inline-start:660px; " placeholder="Buscar"> 
+                <a> <i class="bi bi-search"> </i> </a>
+            
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -31,7 +37,7 @@
                 <td>Pendente</td>
                 <td style="width:1px">
                     <a><i class="bi bi-check-square"></i></a>
-                    <a data-bs-toggle="modal" data-bs-target="#modalEdit">
+                    <a data-bs-toggle="modal" data-bs-target="#modalEditChamado">
                         <i class="bi-pencil-square"></i>
                     </a>
                     <a data-bs-toggle="modal" data-bs-target="#modalDelete">
@@ -43,4 +49,4 @@
     </table>
 </div>
 <partial name="~/Views/Shared/Delete.cshtml" />
-<partial name="~/Views/Chamado/Modal/Edit.cshtml" />
+<partial name="~/Views/Chamado/Modal/EditChamado.cshtml" />
