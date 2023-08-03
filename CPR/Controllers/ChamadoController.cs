@@ -1,4 +1,5 @@
 ﻿using CPR.Models;
+using CPR.Models.Domain;
 using CPR.Models.Persistence;
 using CPR.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -22,5 +23,20 @@ namespace CPR.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CriarChamado(Chamado chamado)
+        {
+            chamadoService.Add(chamado);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult EditarChamado(Chamado chamado)
+        {
+            chamadoService.Update(chamado);
+            return RedirectToAction("Index");
+        }
+
     }
 }

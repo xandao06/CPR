@@ -10,5 +10,7 @@
        public string Descricao { get; set;}
        public string Urgencia { get; set; }
        public string Status { get; set; }
+       public string Contrato { get; set; }
+    
     }
 }

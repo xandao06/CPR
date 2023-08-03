@@ -23,6 +23,6 @@ namespace CPR.Models.Persistence
         }
 
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Cliente> Chamados { get; set; }
+        public DbSet<Chamado> Chamados { get; set; }
     }
 }

@@ -4,31 +4,59 @@
 }
 
 <div style="padding:40px" id="container" class="justify-content-between">
-    <h1 class="text-center mb-3">Clientes</h1>
-    <a class="btn btn-outline-dark mb-4">Cadastrar cliente</a>
-    <a type="button" asp-controller="Chamado" asp-action="Index" class="btn btn-outline-dark mb-4">Chamados</a>
+    <div>
+        <h1 class="text-center mb-3">Clientes</h1>
+        <div class="mb-4" style="display:flex;justify-content:space-between">
+            <div>
+                <a class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalCriarCliente">Cadastrar cliente</a>
+                <a type="button" asp-controller="Chamado" asp-action="Index" class="btn btn-outline-dark">Chamados</a>
+            </div>
+            <div style="display:flex">
+                <input type="text" id="Pesquisa" class="form-control" placeholder="Buscar">
+            </div>
+        </div>
+    </div>
     <table class="table">
-        <tbody>
+        <thead>
             <tr>
-                <td>1</td>
-                <td>Morbeh Supermercado</td>
-                <td>Uniao Alianca</td>
-                <td>05.110.949/0001-68</td>
-                <td>Rua São João, 7285</td>
-                <td>5464564564</td>
-                <td>(45)3378-3397</td>
-                <td>Sim</td>
-                <td style="width:55px">
-                    <a data-bs-toggle="modal" data-bs-target="#modalEditCliente">
-                        <i class="bi-pencil-square"></i>
-                    </a>
-                    <a data-bs-toggle="modal" data-bs-target="#modalDelete">
-                        <i class="bi bi-trash3-fill"></i>
-                    </a>
-                </td>
+                <th>ID</th>
+                <th>Razão Social</th>
+                <th>Fantasia</th>
+                <th>CNPJ</th>
+                <th>Endereço</th>
+                <th>CPF</th>
+                <th>Inscrição Estadual</th>
+                <th>Telefone</th>
+                <th>Contrato?</th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Id</td>
+                    <td>@cliente.RazaoSocial</td>
+                    <td>@cliente.Fantasia</td>
+                    <td>@cliente.CNPJ</td>
+                    <td>@cliente.Endereco</td>
+                    <td>@cliente.CPF</td>
+                    <td>@cliente.InscricaoEstadual</td>
+                    <td>@cliente.Telefone</td>
+                    <td>@cliente.Contrato</td>
+                    <td style="width:55px">
+                        <a data-bs-toggle="modal" data-bs-target="#modalEditarCliente">
+                            <i class="bi-pencil-square"></i>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalDelete">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+            
         </tbody>
     </table>
 </div>
-<partial name="~/Views/Shared/Delete.cshtml" />
-<partial name="~/Views/Cliente/Modal/EditCliente.cshtml" />
+@*<partial name="~/Views/Shared/Delete.cshtml" />
+<partial name="~/Views/Cliente/Modal/EditarCliente.cshtml" />
+<partial name="~/Views/Cliente/Modal/CriarCliente.cshtml" />*@

@@ -1,0 +1,29 @@
+﻿@model CPR.Models.Domain.Chamado
+
+<div id="modalCriarChamado" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" controller="Chamado" action="CriarChamado">
+                <div class="modal-header">
+                    <h5 class="modal-title">Criar um chamado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
+                        <input asp-for="Hora" type="time" class="form-control mb-2" id="Horário" placeholder="Horário">
+                        <input asp-for="Cliente" type ="text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
+                        <input asp-for="Descricao" type ="text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
+                        <input asp-for="Urgencia" type ="text" class="form-control mb-2" id="Urgência" placeholder="Urgência">
+                        <input asp-for="Status" type="text" class="form-control mb-2" id="Status" placeholder="Status">
+                        <input asp-for="Contrato" type ="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Salvar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

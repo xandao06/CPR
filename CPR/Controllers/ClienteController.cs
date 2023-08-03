@@ -1,4 +1,5 @@
 ﻿using CPR.Models;
+using CPR.Models.Domain;
 using CPR.Models.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -15,7 +16,22 @@ namespace CPR.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var clientes = clienteService.GetAll();
+            return View(clientes);
+        }
+
+        [HttpPost]
+        public IActionResult EditarCliente(Cliente cliente)
+        {
+            clienteService.Update(cliente);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult CriarCliente(Cliente cliente)
+        {
+            clienteService.Add(cliente);
+            return RedirectToAction("Index");
         }
     }
 }

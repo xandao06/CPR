@@ -1,0 +1,30 @@
+﻿@model CPR.Models.Domain.Cliente
+
+<div id="modalEditarCliente" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" controller="Cliente" action="EditarCliente">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input asp-for="Fantasia" type="text" class="form-control mb-2" id="Fantasia" placeholder="Fantasia">
+                        <input asp-for="RazaoSocial" type="text" class="form-control mb-2" id="Razão Social" placeholder="Razão Social">
+                        <input asp-for="Contrato" type="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
+                        <input asp-for="CNPJ" type="text" class="form-control mb-2" id="CNPJ" placeholder="CNPJ">
+                        <input asp-for="CPF" type="text" class="form-control mb-2" id="CPF" placeholder="CPF">
+                        <input asp-for="Endereco" type="text" class="form-control mb-2" id="Endereco" placeholder="Endereço">
+                        <input asp-for="InscricaoEstadual" type="text" class="form-control mb-2" id="InscricaoEstadual" placeholder="Inscrição Estadual">
+                        <input asp-for="Telefone" type="tel" class="form-control mb-2" id="Telefone" placeholder="Telefone">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
