@@ -17,13 +17,19 @@ namespace CPR.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var model = chamadoService.GetAll();
+            return View(model);
         }
         public IActionResult Historico()
         {
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CriarChamado()
+        {
+            return View("Modal/CriarChamado", new Chamado());
+        }
         [HttpPost]
         public IActionResult CriarChamado(Chamado chamado)
         {
