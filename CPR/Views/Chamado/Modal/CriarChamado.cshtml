@@ -1,5 +1,9 @@
 ﻿@model CPR.Models.Domain.Chamado
 
+@{
+    Layout = null;
+}
+
 <div id="modalCriarChamado" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -21,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary">Salvar</button>
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </form>
         </div>

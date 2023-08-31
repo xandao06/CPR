@@ -33,8 +33,8 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Data</td>
-                    <td>@item.Hora</td>
+                    <td>@item.Data.ToShortDateString()</td>
+                    <td>@string.Format("{0:00}:{1:00}",item.Hora.Hours,item.Hora.Minutes)</td>
                     <td>@item.Cliente</td>
                     <td>@item.Descricao</td>
                     <td>@item.Contrato</td>
@@ -42,10 +42,10 @@
                     <td>@item.Status</td>
                     <td style="width:1px">
                         <a><i class="bi bi-check-square"></i></a>
-                        <a data-bs-toggle="modal" data-bs-target="#modalEditarChamado">
+                        <a onClick="ModalEditarChamado(@item.Id)">
                             <i class="bi-pencil-square"></i>
                         </a>
-                        <a data-bs-toggle="modal" data-bs-target="#modalDelete">
+                        <a onClick="DeletarChamado(@item.Id)">
                             <i class="bi bi-trash3-fill"></i>
                         </a>
                     </td>
@@ -67,4 +67,25 @@
             });
         });
     });
+
+    function ModalEditarChamado(idChamado) {
+        event.preventDefault();
+
+        $.get("/Chamado/EditarChamado?id=" + idChamado, function (data) {
+            $("#modalCPR").html(data);
+            $("#modalEditarChamado").modal("show");
+        });
+    }
+
+    function DeletarChamado(idChamado) {
+        event.preventDefault();
+
+        if(confirm("Tem certeza que deseja remover esse chamado?"))
+        {
+            $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
+                location.reload();
+            });
+        };
+    }
+
 </script>

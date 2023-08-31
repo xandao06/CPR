@@ -37,6 +37,13 @@ namespace CPR.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult EditarChamado(int id)
+        {
+            Chamado chamado = chamadoService.Get(id);
+            return View("Modal/EditarChamado", chamado);
+        }
+
         [HttpPost]
         public IActionResult EditarChamado(Chamado chamado)
         {
@@ -44,5 +51,11 @@ namespace CPR.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpDelete]
+        public IActionResult DeletarChamado(int id)
+        {
+            chamadoService.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

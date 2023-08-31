@@ -1,15 +1,20 @@
 ﻿@model CPR.Models.Domain.Chamado
 
+@{
+    Layout = null;
+}
+
 <div id="modalEditarChamado" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" controller="Chamado" action="EditarChamado">
+            <form method="post" asp-action="EditarChamado">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
+                        <input asp-for="Id" type="hidden" />
                         <input asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
                         <input asp-for="Hora" type=" time" class="form-control mb-2" id="Horário" placeholder="Horário">
                         <input asp-for="Cliente" text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
