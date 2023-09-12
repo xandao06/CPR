@@ -1,0 +1,55 @@
+﻿@model CPR.Models.Domain.Chamado
+
+@{
+    Layout = null;
+}
+
+<div id="modalDeletar" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="DeletarChamado">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input asp-for="Id" type="hidden" />
+                        <input asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
+                        <input asp-for="Hora" type=" time" class="form-control mb-2" id="Horário" placeholder="Horário">
+                        <input asp-for="Cliente" text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
+                        <input asp-for="Descricao" type=" text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
+                        <input asp-for="Urgencia" type=" text" class="form-control mb-2" id="Urgência" placeholder="Urgência">
+                        <input asp-for="Status" type=" text" class="form-control mb-2" id="Status" placeholder="Status">
+                        <input asp-for="Contrato" type=" text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="modalDeletar" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="DeletarChamado">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir</h5>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" id="Sim">Sim</button>
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>*@

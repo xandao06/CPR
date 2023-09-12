@@ -45,7 +45,7 @@
                         <a onClick="ModalEditarChamado(@item.Id)">
                             <i class="bi-pencil-square"></i>
                         </a>
-                        <a onClick="DeletarChamado(@item.Id)">
+                        <a onClick="ModalDeletar(@item.Id)">
                             <i class="bi bi-trash3-fill"></i>
                         </a>
                     </td>
@@ -77,15 +77,12 @@
         });
     }
 
-    function DeletarChamado(idChamado) {
+    function ModalDeletar(idChamado) {
         event.preventDefault();
 
-        if(confirm("Tem certeza que deseja remover esse chamado?"))
-        {
-            $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
-                location.reload();
-            });
-        };
+        $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
+            $("#modalCPR").html(data);
+            $("#modalDeletar").modal("show");
+        });
     }
-
 </script>
