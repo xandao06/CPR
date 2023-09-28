@@ -38,7 +38,6 @@ namespace CPR.Models.Services
             dbContext.Entry(entity).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
-
         public void Delete(int id)
         {
             Chamado chamado = Get(id);

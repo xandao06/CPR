@@ -6,24 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CPR.Migrations
 {
     /// <inheritdoc />
-    public partial class chamado : Migration
+    public partial class CPR : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente");
-
-            migrationBuilder.RenameTable(
-                name: "Cliente",
-                newName: "Clientes");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Clientes",
-                table: "Clientes",
-                column: "Id");
-
             migrationBuilder.CreateTable(
                 name: "Chamados",
                 columns: table => new
@@ -31,7 +18,7 @@ namespace CPR.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Hora = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Hora = table.Column<TimeSpan>(type: "time", nullable: false),
                     Cliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Urgencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -42,6 +29,26 @@ namespace CPR.Migrations
                 {
                     table.PrimaryKey("PK_Chamados", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Clientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fantasia = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contrato = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CNPJ = table.Column<int>(type: "int", nullable: false),
+                    CPF = table.Column<int>(type: "int", nullable: false),
+                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InscricaoEstadual = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefone = table.Column<int>(type: "int", nullable: false),
+                    RazaoSocial = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -50,18 +57,8 @@ namespace CPR.Migrations
             migrationBuilder.DropTable(
                 name: "Chamados");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Clientes",
-                table: "Clientes");
-
-            migrationBuilder.RenameTable(
-                name: "Clientes",
-                newName: "Cliente");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Cliente",
-                table: "Cliente",
-                column: "Id");
+            migrationBuilder.DropTable(
+                name: "Clientes");
         }
     }
 }

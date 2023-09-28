@@ -34,7 +34,7 @@
             {
                 <tr>
                     <td>@item.Data.ToShortDateString()</td>
-                    <td>@string.Format("{0:00}:{1:00}",item.Hora.Hours,item.Hora.Minutes)</td>
+                    <td>@item.Hora</td>
                     <td>@item.Cliente</td>
                     <td>@item.Descricao</td>
                     <td>@item.Contrato</td>
@@ -78,7 +78,6 @@
     }
 
     function ModalDeletar(idChamado) {
-        event.preventDefault();
 
         $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
             $("#modalCPR").html(data);
@@ -86,3 +85,7 @@
         });
     }
 </script>
+
+
+
+    @*string.Format("{0:00}:{1:00}",item.Hora.Hours,item.Hora.Minutes)*@

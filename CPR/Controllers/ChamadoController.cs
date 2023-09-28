@@ -51,7 +51,7 @@ namespace CPR.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult DeletarChamado(int id)
         {
             chamadoService.Delete(id);

@@ -7,8 +7,8 @@ namespace CPR.Models.Domain
     public class Chamado
     {
         public int Id { get; set; }
-        public DateTime Data { get; set; } = DateTime.Now;
-        public TimeSpan Hora { get; set; } = DateTime.Now.TimeOfDay;
+        public DateTime Data { get; set; }
+        public TimeSpan Hora { get; set; }
         public string Cliente { get; set; }
         public string Descricao { get; set; }
         public string Urgencia { get; set; }
@@ -17,3 +17,5 @@ namespace CPR.Models.Domain
 
     }
 }
+
+ //= DateTime.Now.TimeOfDay;
