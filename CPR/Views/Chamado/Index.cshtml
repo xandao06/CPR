@@ -80,7 +80,7 @@
     function ModalDeletar(idChamado) {
         event.preventDefault();
 
-        $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
+        $.get("/Chamado/ModalDeletarChamado?id=" + idChamado, function (data) {
             $("#modalCPR").html(data);
             $("#modalDeletar").modal("show");
         });

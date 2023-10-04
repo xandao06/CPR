@@ -52,16 +52,17 @@ namespace CPR.Controllers
         }
 
         [HttpGet]
-        public IActionResult DeletarChamado()
+        public IActionResult ModalDeletarChamado(int id)
         {
+            Chamado chamado = chamadoService.Get(id);
             return View("Modal/DeletarChamado");
         }
 
         [HttpPost]
-        public IActionResult DeletarChamado(int id)
+        public IActionResult DeletarChamado(Chamado chamado)
         {
-            Chamado chamado = chamadoService.Get(id);
-            chamadoService.Delete(chamado);
+            Chamado retornoChamado = chamadoService.Get(chamado.Id);
+            chamadoService.Delete(retornoChamado);
             return RedirectToAction("Index");
         }
     }
