@@ -78,6 +78,7 @@
     }
 
     function ModalDeletar(idChamado) {
+        event.preventDefault();
 
         $.get("/Chamado/DeletarChamado?id=" + idChamado, function (data) {
             $("#modalCPR").html(data);
@@ -89,3 +90,10 @@
 
 
     @*string.Format("{0:00}:{1:00}",item.Hora.Hours,item.Hora.Minutes)*@
+
+        @*event.preventDefault();
+
+            $.get("/Chamado/CriarChamado", function(data) {
+                $("#modalCPR").html(data);
+                $("#modalCriarChamado").modal("show");
+            });*@

@@ -38,12 +38,14 @@ namespace CPR.Models.Services
             dbContext.Entry(entity).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
-        public void Delete(int id)
+        public void Delete(Chamado entity)
         {
-            Chamado chamado = Get(id);
-            dbContext.Set<Chamado>().Remove(chamado);
+            dbContext.Entry(entity).State = EntityState.Deleted;
             dbContext.SaveChanges();
         }
     }
 }
-   
+
+//Chamado chamado = Get(id);
+//dbContext.Set<Chamado>().Remove(chamado);
+//dbContext.SaveChanges();
