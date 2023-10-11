@@ -59,10 +59,9 @@ namespace CPR.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeletarChamado(Chamado chamado)
+        public IActionResult DeletarChamado(int id)
         {
-            Chamado retornoChamado = chamadoService.Get(chamado.Id);
-            chamadoService.Delete(retornoChamado);
+            chamadoService.Delete(id);
             return RedirectToAction("Index");
         }
     }

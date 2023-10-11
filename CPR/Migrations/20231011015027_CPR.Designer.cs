@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20230928011340_CPR")]
+    [Migration("20231011015027_CPR")]
     partial class CPR
     {
         /// <inheritdoc />
@@ -45,8 +45,8 @@ namespace CPR.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("Hora")
-                        .HasColumnType("time");
+                    b.Property<string>("Hora")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
