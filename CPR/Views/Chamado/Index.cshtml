@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<CPR.Models.Domain.Chamado>
 @{
     ViewData["Title"] = "Chamados";
+    var chamadosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
 }
 <div style="padding:40px" id="container" class="justify-content-between">
     <div>
@@ -30,9 +31,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in chamadosOrdenados)
             {
-                <tr>
+                <tr class="chamado-row">
                     <td>@item.Data.ToShortDateString()</td>
                     <td>@item.Hora</td>
                     <td>@item.Cliente</td>
@@ -41,7 +42,9 @@
                     <td>@item.Urgencia</td>
                     <td>@item.Status</td>
                     <td style="width:1px">
-                        <a><i class="bi bi-check-square"></i></a>
+                        <a onClick="ChamadoConcluido(this)" class="toggle-completed">
+                            <i class="bi bi-check-square"></i>
+                        </a>
                         <a onClick="ModalEditarChamado(@item.Id)">
                             <i class="bi-pencil-square"></i>
                         </a>
@@ -85,4 +88,13 @@
             $("#modalDeletar").modal("show");
         });
     }
+
+    function ChamadoConcluido() {
+        $(".bi-check-square").click(function () {
+            var row = $(this).closest("tr");
+            row.addClass("completed");
+            row.appendTo("table tbody");
+        });
+    }
+
 </script>
