@@ -14,6 +14,10 @@ namespace CPR.Models.Domain
         public string Urgencia { get; set; }
         public string Status { get; set; }
         public string Contrato { get; set; }
-       
+
+        public Chamado()
+        {
+            Status = "Pendente";
+        }
     }
 }

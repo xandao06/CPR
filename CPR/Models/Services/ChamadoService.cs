@@ -44,5 +44,12 @@ namespace CPR.Models.Services
             dbContext.Set<Chamado>().Remove(chamado);
             dbContext.SaveChanges();
         }
+        public void Concluir(int id)
+        {
+            Chamado chamado = Get(id);
+            chamado.Status = "Concluido";
+            dbContext.Entry(chamado).State = EntityState.Modified;
+            dbContext.SaveChanges();
+        }
     }
 }

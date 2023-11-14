@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20231011015027_CPR")]
-    partial class CPR
+    [Migration("20231106235047_cpr")]
+    partial class cpr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

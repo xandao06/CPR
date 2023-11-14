@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CPR.Migrations
 {
     /// <inheritdoc />
-    public partial class CPR : Migration
+    public partial class cpr : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

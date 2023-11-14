@@ -64,5 +64,12 @@ namespace CPR.Controllers
             chamadoService.Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult ConcluirChamado(int id)
+        {
+            chamadoService.Concluir(id);
+            return Json(Url.Action("Index", "Chamado"));
+        }
     }
 }
