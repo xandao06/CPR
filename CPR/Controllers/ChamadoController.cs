@@ -22,7 +22,8 @@ namespace CPR.Controllers
         }
         public IActionResult Historico()
         {
-            return View();
+            var model = chamadoService.GetAll();
+            return View(model);
         }
 
         [HttpGet]
@@ -63,6 +64,13 @@ namespace CPR.Controllers
         {
             chamadoService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult ModalConcluirChamado(int id)
+        {
+            Chamado chamado = chamadoService.Get(id);
+            return View("Modal/ConcluirChamado");
         }
 
         [HttpPost]

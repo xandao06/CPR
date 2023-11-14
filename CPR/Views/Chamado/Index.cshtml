@@ -89,7 +89,25 @@
         });
     }
 
-    function ChamadoConcluido(id) {
+    function ChamadoConcluido(idChamado) {
+        $.get("/Chamado/ModalConcluirChamado?id=" + idChamado, function (data) {
+            $("#modalCPR").html(data);
+            $("#modalConcluir").modal("show");
+
+                $.ajax({
+                    url: 'Chamado/ConcluirChamado',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (response) {
+                        window.location.href = response;
+                    },
+                });
+            });
+    }
+
+</script>
+
+@*function ChamadoConcluido(id) {
         if (confirm("Tem certeza que deseja concluir esse chamado?") == true) {
             $.ajax({
                 url: 'Chamado/ConcluirChamado',
@@ -101,5 +119,4 @@
             });
         }
     }
-
-</script>
+*@
