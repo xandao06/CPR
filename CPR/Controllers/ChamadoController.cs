@@ -77,7 +77,7 @@ namespace CPR.Controllers
         public IActionResult ConcluirChamado(int id)
         {
             chamadoService.Concluir(id);
-            return Json(Url.Action("Index", "Chamado"));
+            return RedirectToAction("Index");
         }
     }
 }
