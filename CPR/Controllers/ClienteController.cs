@@ -27,6 +27,12 @@ namespace CPR.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult ModalCriarCliente()
+        {
+            return View("Modal/CriarCliente", new Cliente());
+        }
+
         [HttpPost]
         public IActionResult CriarCliente(Cliente cliente)
         {

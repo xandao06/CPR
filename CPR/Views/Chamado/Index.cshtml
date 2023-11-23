@@ -64,7 +64,7 @@
         $("#btn-CriarChamado").click(function (event) {
             event.preventDefault();
 
-            $.get("/Chamado/CriarChamado", function (data) {
+            $.get("/Chamado/ModalCriarChamado", function (data) {
                 $("#modalCPR").html(data);
                 $("#modalCriarChamado").modal("show");
             });
@@ -74,7 +74,7 @@
     function ModalEditarChamado(idChamado) {
         event.preventDefault();
 
-        $.get("/Chamado/EditarChamado?id=" + idChamado, function (data) {
+        $.get("/Chamado/ModalEditarChamado?id=" + idChamado, function (data) {
             $("#modalCPR").html(data);
             $("#modalEditarChamado").modal("show");
         });

@@ -1,4 +1,6 @@
-﻿namespace CPR.Models.Domain
+﻿using Microsoft.AspNetCore.Components.Web.Virtualization;
+
+namespace CPR.Models.Domain
 {
     public class Cliente
     {

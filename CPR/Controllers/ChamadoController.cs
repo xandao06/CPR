@@ -27,7 +27,7 @@ namespace CPR.Controllers
         }
 
         [HttpGet]
-        public IActionResult CriarChamado()
+        public IActionResult ModalCriarChamado()
         {
             return View("Modal/CriarChamado", new Chamado());
         }
@@ -39,7 +39,7 @@ namespace CPR.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditarChamado(int id)
+        public IActionResult ModalEditarChamado(int id)
         {
             Chamado chamado = chamadoService.Get(id);
             return View("Modal/EditarChamado", chamado);
