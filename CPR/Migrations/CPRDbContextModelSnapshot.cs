@@ -64,10 +64,7 @@ namespace CPR.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CNPJ")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CPF")
+                    b.Property<int>("CPFouCNPJ")
                         .HasColumnType("int");
 
                     b.Property<string>("Contrato")

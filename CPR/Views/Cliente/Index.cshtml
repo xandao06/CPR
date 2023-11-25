@@ -19,30 +19,26 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Razão Social</th>
                 <th>Fantasia</th>
-                <th>CNPJ</th>
+                <th>RazaoSocial</th>
+                <th>Contrato</th>
+                <th>CPF ou CNPJ</th>
                 <th>Endereço</th>
-                <th>CPF</th>
                 <th>Inscrição Estadual</th>
                 <th>Telefone</th>
-                <th>Contrato?</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var cliente in Model)
             {
                 <tr>
-                    <td>@cliente.Id</td>
-                    <td>@cliente.RazaoSocial</td>
                     <td>@cliente.Fantasia</td>
-                    <td>@cliente.CNPJ</td>
+                    <td>@cliente.RazaoSocial</td>
+                    <td>@cliente.Contrato</td>
+                    <td>@cliente.CPFouCNPJ</td>
                     <td>@cliente.Endereco</td>
-                    <td>@cliente.CPF</td>
                     <td>@cliente.InscricaoEstadual</td>
                     <td>@cliente.Telefone</td>
-                    <td>@cliente.Contrato</td>
                     <td style="width:55px">
                         <a data-bs-toggle="modal" data-bs-target="#modalEditarCliente">
                             <i class="bi-pencil-square"></i>
@@ -74,7 +70,7 @@
     function ModalEditarCliente(idCliente) {
         event.preventDefault();
 
-        $.get("/Cliente/EditarCliente?id=" + idCliente, function (data) {
+        $.get("/Cliente/ModalEditarCliente?id=" + idCliente, function (data) {
             $("#modalCPR").html(data);
             $("#modalEditarCliente").modal("show");
         });

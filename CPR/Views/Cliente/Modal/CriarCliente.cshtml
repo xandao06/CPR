@@ -18,10 +18,10 @@
                         <input required asp-for="Fantasia" type="text" class="form-control mb-2" id="Fantasia" placeholder="Fantasia">
                         <input required asp-for="RazaoSocial" type="text" class="form-control mb-2" id="Razão Social" placeholder="Razão Social">
                         <input required asp-for="Contrato" type="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
-                        <input required asp-for="CNPJ" type="text" name='cpfcnpj' onkeypress='mascaraMutuario(this,cpfCnpj)' onblur='clearTimeout()' maxlength="18" class="form-control mb-2"  placeholder="CPF ou CNPJ">
+                        <input required asp-for="CPFouCNPJ" type="text" id="cpfcnpj" class="form-control mb-2" placeholder="CPF ou CNPJ" value="">
                         <input required asp-for="Endereco" type="text" class="form-control mb-2" id="Endereco" placeholder="Endereço">
                         <input required asp-for="InscricaoEstadual" type="text" class="form-control mb-2" id="InscricaoEstadual" placeholder="Inscrição Estadual">
-                        <input required asp-for="Telefone" type="tel" class="form-control mb-2" id="Telefone" placeholder="Telefone">
+                        <input required asp-for="Telefone" type="tel" id="telefone" class="form-control mb-2" placeholder="Telefone" value="">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -33,6 +33,40 @@
     </div>
 </div>
 
-<script>
 
+<script>
+    function formatarDocumento(documento) {
+        const numeroLimpo = documento.replace(/\D/g, '');
+
+        if (numeroLimpo.length === 11) {
+            return numeroLimpo.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        } else if (numeroLimpo.length === 14) {
+            return numeroLimpo.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+        } else {
+            return documento;
+        }
+    }
+
+    const cpfcnpjInput = document.getElementById('cpfcnpj');
+    cpfcnpjInput.addEventListener('input', function () {
+        cpfcnpjInput.value = formatarDocumento(cpfcnpjInput.value);
+    });
+
+    function formatarTelefone(telefone) {
+        const numeroLimpo = telefone.replace(/\D/g, ''); 
+
+        if (numeroLimpo.length === 10) {
+            return numeroLimpo.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+        } else if (numeroLimpo.length === 11) {
+            return numeroLimpo.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); 
+        } else {
+            return telefone; 
+        }
+    }
+
+    const telefoneInput = document.getElementById('telefone');
+    telefoneInput.addEventListener('input', function () {
+        telefoneInput.value = formatarTelefone(telefoneInput.value);
+    });
 </script>
+

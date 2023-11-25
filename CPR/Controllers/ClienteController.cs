@@ -28,6 +28,13 @@ namespace CPR.Controllers
         }
 
         [HttpGet]
+        public IActionResult ModalEditarCliente(int id)
+        {
+            Cliente cliente = clienteService.Get(id);
+            return View("Modal/EditarCliente");
+        }
+
+        [HttpGet]
         public IActionResult ModalCriarCliente()
         {
             return View("Modal/CriarCliente", new Cliente());

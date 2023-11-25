@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20231123003911_CPR")]
+    [Migration("20231124224305_CPR")]
     partial class CPR
     {
         /// <inheritdoc />
@@ -67,10 +67,7 @@ namespace CPR.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CNPJ")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CPF")
+                    b.Property<int>("CPFouCNPJ")
                         .HasColumnType("int");
 
                     b.Property<string>("Contrato")
