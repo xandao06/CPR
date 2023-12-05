@@ -17,10 +17,14 @@
                         <input asp-for="Id" type="hidden">
                         <input required asp-for="Fantasia" type="text" class="form-control mb-2" id="Fantasia" placeholder="Fantasia">
                         <input required asp-for="RazaoSocial" type="text" class="form-control mb-2" id="Razão Social" placeholder="Razão Social">
-                        <input required asp-for="Contrato" type="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
-                        <input required asp-for="CPFouCNPJ" type="text" id="cpfcnpj" class="form-control mb-2" placeholder="CPF ou CNPJ" value="">
-                        <input required asp-for="Endereco" type="text" class="form-control mb-2" id="Endereco" placeholder="Endereço">
-                        <input required asp-for="InscricaoEstadual" type="text" class="form-control mb-2" id="InscricaoEstadual" placeholder="Inscrição Estadual">
+                        <select required id="contrato" type="text" class="form-control mb-2">
+                            <option value="" selected disabled>Contrato</option>
+                            <option value="opcao1">Sim</option>
+                            <option value="opcao2">Não</option>
+                        </select>
+                        <input asp-for="CPFouCNPJ" type="text" id="cpfcnpj" class="form-control mb-2" placeholder="CPF ou CNPJ">
+                        <input asp-for="Endereco" type="text" class="form-control mb-2" id="Endereco" placeholder="Endereço">
+                        <input asp-for="InscricaoEstadual" type="text" class="form-control mb-2" id="InscricaoEstadual" placeholder="Inscrição Estadual">
                         <input required asp-for="Telefone" type="tel" id="telefone" class="form-control mb-2" placeholder="Telefone" value="">
                     </div>
                 </div>

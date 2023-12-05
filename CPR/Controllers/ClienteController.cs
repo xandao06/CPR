@@ -31,7 +31,7 @@ namespace CPR.Controllers
         public IActionResult ModalEditarCliente(int id)
         {
             Cliente cliente = clienteService.Get(id);
-            return View("Modal/EditarCliente");
+            return View("Modal/EditarCliente", cliente);
         }
 
         [HttpGet]
@@ -44,6 +44,20 @@ namespace CPR.Controllers
         public IActionResult CriarCliente(Cliente cliente)
         {
             clienteService.Add(cliente);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult ModalDeletarCliente(int id)
+        {
+            Cliente cliente = clienteService.Get(id);
+            return View("Modal/DeletarCliente");
+        }
+
+        [HttpPost]
+        public IActionResult DeletarCliente(int id)
+        {
+            clienteService.Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -1,5 +1,9 @@
 ﻿@model CPR.Models.Domain.Cliente
 
+@{
+    Layout = null;
+}
+
 <div id="modalEditarCliente" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,8 +17,12 @@
                         <input asp-for="Id" type="hidden">
                         <input asp-for="Fantasia" type="text" class="form-control mb-2" id="Fantasia" placeholder="Fantasia">
                         <input asp-for="RazaoSocial" type="text" class="form-control mb-2" id="Razão Social" placeholder="Razão Social">
-                        <input asp-for="Contrato" type="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
-                        <input asp-for="CPFouCNPJ" type="text" class="form-control mb-2" id="cpfcnpj" placeholder="CPF">
+                        <select required id="contrato" type="text" class="form-control mb-2">
+                            <option value="" selected disabled>Contrato</option>
+                            <option value="opcao1">Sim</option>
+                            <option value="opcao2">Não</option>
+                        </select>
+                        <input asp-for="CPFouCNPJ" type="text" class="form-control mb-2" id="cpfcnpj" placeholder="CPF ou CNPJ">
                         <input asp-for="Endereco" type="text" class="form-control mb-2" id="Endereco" placeholder="Endereço">
                         <input asp-for="InscricaoEstadual" type="text" class="form-control mb-2" id="InscricaoEstadual" placeholder="Inscrição Estadual">
                         <input asp-for="Telefone" type="tel" class="form-control mb-2" id="telefone" placeholder="Telefone">
@@ -28,3 +36,39 @@
         </div>
     </div>
 </div>
+
+<script>
+    function formatarDocumento(documento) {
+        const numeroLimpo = documento.replace(/\D/g, '');
+
+        if (numeroLimpo.length === 11) {
+            return numeroLimpo.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        } else if (numeroLimpo.length === 14) {
+            return numeroLimpo.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+        } else {
+            return documento;
+        }
+    }
+
+    const cpfcnpjInput = document.getElementById('cpfcnpj');
+    cpfcnpjInput.addEventListener('input', function () {
+        cpfcnpjInput.value = formatarDocumento(cpfcnpjInput.value);
+    });
+
+    function formatarTelefone(telefone) {
+        const numeroLimpo = telefone.replace(/\D/g, '');
+
+        if (numeroLimpo.length === 10) {
+            return numeroLimpo.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+        } else if (numeroLimpo.length === 11) {
+            return numeroLimpo.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        } else {
+            return telefone;
+        }
+    }
+
+    const telefoneInput = document.getElementById('telefone');
+    telefoneInput.addEventListener('input', function () {
+        telefoneInput.value = formatarTelefone(telefoneInput.value);
+    });
+</script>

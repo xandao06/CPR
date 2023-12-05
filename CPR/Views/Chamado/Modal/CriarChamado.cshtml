@@ -20,7 +20,11 @@
                         <input required asp-for="Cliente" type ="text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
                         <input required asp-for="Descricao" type="text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
                         <input required asp-for="Urgencia" type="text" class="form-control mb-2" id="Urgência" placeholder="Urgência">
-                        <input required asp-for="Contrato" type="text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
+                        <select required id="contrato" type="text" class="form-control mb-2">
+                            <option value="" selected disabled>Contrato</option>
+                            <option value="opcao1">Sim</option>
+                            <option value="opcao2">Não</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

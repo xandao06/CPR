@@ -48,7 +48,7 @@
                         <a onClick="ModalEditarChamado(@item.Id)">
                             <i class="bi-pencil-square"></i>
                         </a>
-                        <a onClick="ModalDeletar(@item.Id)">
+                        <a onClick="ModalDeletarChamado(@item.Id)">
                             <i class="bi bi-trash3-fill"></i>
                         </a>
                     </td>
@@ -80,12 +80,12 @@
         });
     }
 
-    function ModalDeletar(idChamado) {
+    function ModalDeletarChamado(idChamado) {
         event.preventDefault();
 
         $.get("/Chamado/ModalDeletarChamado?id=" + idChamado, function (data) {
             $("#modalCPR").html(data);
-            $("#modalDeletar").modal("show");
+            $("#modalDeletarChamado").modal("show");
         });
     }
 

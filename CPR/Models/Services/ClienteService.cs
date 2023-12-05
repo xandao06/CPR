@@ -39,9 +39,10 @@ namespace CPR.Models.Services
             dbContext.SaveChanges();
         }
 
-        public void Delete(Cliente entity)
+        public void Delete(int id)
         {
-            dbContext.Set<Cliente>().Remove(entity);
+            Cliente cliente = Get(id);
+            dbContext.Set<Cliente>().Remove(cliente);
             dbContext.SaveChanges();
         }
     }
