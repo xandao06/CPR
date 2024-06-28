@@ -33,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Chamado}/{action=Index}/{id?}");
+    pattern: "{controller=Chamado}/{action=ChamadoIndex}/{id?}");
 
 app.Run();

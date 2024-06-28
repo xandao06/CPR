@@ -51,5 +51,35 @@ namespace CPR.Models.Services
             dbContext.Entry(chamado).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
+
+        // Faz a filtragem de pecas na barra de pesquisa e por data
+        public IReadOnlyList<Chamado> SearchChamados(string query, DateTime? startDate, DateTime? endDate)
+        {
+            var chamados = dbContext.Set<Chamado>().AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                query = query.ToLower();
+                chamados = chamados.Where(p => (p.Cliente ?? "").ToLower().Contains(query)
+                                                || (p.Descricao ?? "").ToLower().Contains(query)
+                                                || (p.Contrato ?? "").ToLower().Contains(query)
+                                                || (p.Urgencia ?? "").ToLower().Contains(query)
+                                                || (p.Status ?? "").ToLower().Contains(query));
+            }
+
+            if (startDate.HasValue)
+            {
+                chamados = chamados.Where(p => p.Data >= startDate.Value);
+            }
+
+            if (endDate.HasValue)
+            {
+                chamados = chamados.Where(p => p.Data <= endDate.Value);
+            }
+
+            return chamados.ToList();
+
+
+        }
     }
 }

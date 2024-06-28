@@ -15,12 +15,7 @@ namespace CPR.Controllers
         {
             this.chamadoService = chamadoService;
         }
-        public IActionResult Index()
-        {
-            var model = chamadoService.GetAll();
-            return View(model);
-        }
-        public IActionResult Historico()
+        public IActionResult ChamadoIndex()
         {
             var model = chamadoService.GetAll();
             return View(model);
@@ -35,7 +30,7 @@ namespace CPR.Controllers
         public IActionResult CriarChamado(Chamado chamado)
         {
             chamadoService.Add(chamado);
-            return RedirectToAction("Index");
+            return RedirectToAction("ChamadoIndex");
         }
 
         [HttpGet]
@@ -49,7 +44,7 @@ namespace CPR.Controllers
         public IActionResult EditarChamado(Chamado chamado)
         {
             chamadoService.Update(chamado);
-            return RedirectToAction("Index");
+            return RedirectToAction("ChamadoIndex");
         }
 
         [HttpGet]
@@ -63,7 +58,7 @@ namespace CPR.Controllers
         public IActionResult DeletarChamado(int id)
         {
             chamadoService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("ChamadoIndex");
         }
 
         [HttpGet]
@@ -77,7 +72,15 @@ namespace CPR.Controllers
         public IActionResult ConcluirChamado(int id)
         {
             chamadoService.Concluir(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("ChamadoIndex");
+        }
+
+        // Método que busca o serviço de filtragem de peças
+        [HttpGet]
+        public IActionResult SearchCham(string query, DateTime? startDate, DateTime? endDate)
+        {
+            var chamados = chamadoService.SearchChamados(query, startDate, endDate);
+            return Json(chamados);
         }
     }
 }

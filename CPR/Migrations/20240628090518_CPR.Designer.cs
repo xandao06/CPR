@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20231124224305_CPR")]
+    [Migration("20240628090518_CPR")]
     partial class CPR
     {
         /// <inheritdoc />

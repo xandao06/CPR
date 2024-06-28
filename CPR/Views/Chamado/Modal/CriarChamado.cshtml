@@ -17,30 +17,24 @@
                         <input asp-for="Id" type="hidden">
                         <input required asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
                         <input required asp-for="Hora" type="time" class="form-control mb-2" id="Horário" placeholder="Horário">
-
-                        <div class="form-control mb-2" id="openModalBtn" onclick="abrirModalClientes()">Clientes</div>
-
-                        <div id="modalClientes" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;">
-                            <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); text-align: center;">
-                                <h2>Lista de Clientes</h2>
-                                <ul id="listaClientes"></ul>
-                                <button style="cursor: pointer; border: none; padding: 10px 20px; border-radius: 5px; background-color: #e74c3c; color: #fff; font-size: 16px; margin-top: 20px;" onclick="fecharModalClientes()">Fechar</button>
-                            </div>
+                        <input required asp-for="Cliente" type="text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
+                        <div class=" ml-1 mb-2 custom-radio">
+                            <label>Contrato?</label>
+                            <input required asp-for="Contrato" value="Sim" type="radio" class="form-check-input" style="margin-left:5px" name="Contrato" id="option1">
+                            <label class="form-check-label" style="margin-left:25px" for="option1">Sim</label>
+                            <input required asp-for="Contrato" value="Nao" type="radio" class="form-check-input" style="margin-left:1px" name="Contrato" id="option2">
+                            <label class="form-check-label" style="margin-left:19px" for="option2">Não</label>
                         </div>
-                        @* <a class="form-control mb-2" onClick="abrirModalClientes">Cliente</a> *@
-                        @* <input required asp-for="Cliente" type ="text" class="form-control mb-2" id="Cliente" placeholder="Cliente"> *@
-                        @* <select>
-                            <option value="" selected disabled>Cliente</option>
-                            <option value="clientes" ></option>
-                        </select> *@
-
                         <input required asp-for="Descricao" type="text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
-                        <input required asp-for="Urgencia" type="text" class="form-control mb-2" id="Urgência" placeholder="Urgência">
-                        <select required id="contrato" type="text" class="form-control mb-2">
-                            <option value="" selected disabled>Contrato</option>
-                            <option value="opcao1">Sim</option>
-                            <option value="opcao2">Não</option>
-                        </select>
+                        <div class="ml-1 mb-2 custom-radio">
+                            <label>Urgência:</label>
+                            <input required asp-for="Urgencia" value="Baixa" type="radio" class="form-check-input" style="margin-left:8px" name="Urgencia" id="option1">
+                            <label class="form-check-label" style="margin-left:28px" for="option1">Baixa</label>
+                            <input required asp-for="Urgencia" value="Media" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option2">
+                            <label class="form-check-label" style="margin-left:21px" for="option2">Media</label>
+                            <input required asp-for="Urgencia" value="Alta" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option2" onclick="updateUrgencia(this.value)">
+                            <label class="form-check-label" style="margin-left:19px" for="option2">Alta</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -52,36 +46,4 @@
     </div>
 </div>
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
- <script>
-    // Função para abrir o modal de clientes
-    function abrirModalClientes() {
-        // Aqui você pode fazer uma requisição AJAX para buscar a lista de clientes
-        // Vou fornecer um exemplo simples sem AJAX para ilustração
-
-        // Substitua isso com sua lógica de requisição AJAX
-        var listaClientes = ["Cliente 1", "Cliente 2", "Cliente 3"];
-
-        // Preencher a lista de clientes no modal
-        var listaClientesElement = document.getElementById("listaClientes");
-        listaClientesElement.innerHTML = "";
-        for (var i = 0; i < listaClientes.length; i++) {
-            var li = document.createElement("li");
-            li.textContent = listaClientes[i];
-            listaClientesElement.appendChild(li);
-        }
-
-        // Abrir o modal
-        document.getElementById("modalClientes").style.display = "flex";
-    }
-
-    // Função para fechar o modal de clientes
-    function fecharModalClientes() {
-        document.getElementById("modalClientes").style.display = "none";
-    }
-</script> 
-
+<script src="~/js/ChamadoScript.js"></script>

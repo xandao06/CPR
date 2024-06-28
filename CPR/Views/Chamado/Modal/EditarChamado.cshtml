@@ -18,16 +18,29 @@
                         <input required asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
                         <input required asp-for="Hora" type="time" class="form-control mb-2" id="Horário" placeholder="Horário">
                         <input required asp-for="Cliente" type="text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
-                        <input required asp-for="Descricao" type=" text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
-                        <input required asp-for="Urgencia" type=" text" class="form-control mb-2" id="Urgência" placeholder="Urgência">
-                        <input required asp-for="Contrato" type=" text" class="form-control mb-2" id="Contrato" placeholder="Contrato?">
+                        <div class="ml-4 mb-2 custom-radio">
+                            <input required asp-for="Contrato" value="Sim" type="radio" class="form-check-input" name="Contrato" id="option1">
+                            <label class="form-check-label" for="option1">Sim</label>
+                            <input required asp-for="Contrato" value="Nao" type="radio" class="form-check-input ml-1" name="Contrato" id="option2">
+                            <label class="form-check-label ml-4" for="option2">Não</label>
+                        </div>
+                        <input required asp-for="Descricao" type="text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
+                        <div class="ml-4 mb-2 custom-radio">
+                            <input required asp-for="Urgencia" value="Alta" type="radio" class="form-check-input" name="Urgencia" id="option1">
+                            <label class="form-check-label" for="option1">Alta</label>
+                            <input required asp-for="Urgencia" value="Media" type="radio" class="form-check-input ml-1" name="Urgencia" id="option2">
+                            <label class="form-check-label ml-4" for="option2">Media</label>
+                            <input required asp-for="Urgencia" value="Baixa" type="radio" class="form-check-input ml-1" name="Urgencia" id="option2">
+                            <label class="form-check-label ml-4" for="option2">Baixa</label>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Salvar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Salvar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="~/js/ChamadoScript.js"></script>

@@ -1,17 +1,15 @@
 ﻿@model IEnumerable<CPR.Models.Domain.Chamado>
 @{
-    ViewData["Title"] = "Historico";
-    var chamadosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
+    ViewData["Title"] = "Chamados";
+    var registrosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
 }
-
-
 <div style="padding:40px" id="container" class="justify-content-between">
     <div>
         <h1 class="text-center mb-3">Chamados</h1>
         <div class="mb-4" style="display:flex;justify-content:space-between">
             <div>
-                <a type="button" asp-controller="Chamado" asp-action="Index" class="btn btn-outline-dark">Chamados</a>
-                <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark">Clientes</a>
+                @* <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark">Clientes</a> *@
+                <a type="button" asp-controller="Chamado" asp-action="ChamadoIndex" class="btn btn-outline-dark">Chamados</a>
             </div>
             <div style="display:flex">
                 <input type="text" id="Pesquisa" class="form-control" placeholder="Buscar">
@@ -32,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in chamadosOrdenados.Where(x => x.Status == "Concluido"))
+            @foreach (var item in registrosOrdenados)
             {
                 <tr class="chamado-row">
                     <td>@item.Data.ToShortDateString()</td>
@@ -43,7 +41,7 @@
                     <td>@item.Urgencia</td>
                     <td>@item.Status</td>
                     <td style="width:1px">
-                        <a onClick="ModalDeletar(@item.Id)">
+                        <a onClick="ModalDeletarChamado(@item.Id)">
                             <i class="bi bi-trash3-fill"></i>
                         </a>
                     </td>
@@ -52,3 +50,5 @@
         </tbody>
     </table>
 </div>
+
+<script src="~/js/RegistroScript.js"></script>
