@@ -87,11 +87,23 @@ function displayPecaResults(chamados) {
         tr.className = 'chamado-row';
         tr.innerHTML = `
                 <td>${new Date(chamado.data).toLocaleDateString()}</td>
+                <td>${chamado.hora}</td>
                 <td>${chamado.cliente}</td>
                 <td>${chamado.descricao}</td>
                 <td>${chamado.contrato}</td>
                 <td>${chamado.urgencia}</td>
                 <td>${chamado.status}</td>
+                <td>
+                        <a onClick="ChamadoConcluido(${chamado.Id})">
+                           <img src = "/img/concluir.png" style = "width:20px" />
+                        </a>
+                        <a onClick="ModalEditarChamado(${chamado.Id})">
+                            <img src="/img/editar.png" style="width:20px" />
+                        </a>
+                        <a onClick="ModalDeletarChamado(${chamado.Id})">
+                            <img src="/img/excluir.png" style="width:20px" />
+                        </a>
+                    </td>
             `;
         resultsList.appendChild(tr);
     })

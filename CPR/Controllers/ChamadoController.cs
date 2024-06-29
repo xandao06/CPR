@@ -75,7 +75,7 @@ namespace CPR.Controllers
             return RedirectToAction("ChamadoIndex");
         }
 
-        // Método que busca o serviço de filtragem de peças
+        // Método que busca o serviço de filtragem de chamados
         [HttpGet]
         public IActionResult SearchCham(string query, DateTime? startDate, DateTime? endDate)
         {

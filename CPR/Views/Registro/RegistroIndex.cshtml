@@ -12,7 +12,12 @@
                 <a type="button" asp-controller="Chamado" asp-action="ChamadoIndex" class="btn btn-outline-dark">Chamados</a>
             </div>
             <div style="display:flex">
-                <input type="text" id="Pesquisa" class="form-control" placeholder="Buscar">
+                <input type="text" id="searchBarRegistro" style="height:40px;width:200px" class="form-control search" placeholder="Buscar" onkeydown="EnterRegistro(event)">
+                <input type="date" id="start-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Inicial">
+                <input type="date" id="end-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Final">
+                <a id="searchIconRegistros" onclick="searchIconRegistros()">
+                    <img src="~/img/Pesquisa.png" style="width:25px;margin-top:5px;margin-left:5px" />
+                </a>
             </div>
         </div>
     </div>
@@ -29,10 +34,10 @@
                 <th style="width:75px">Opções</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="registros-list">
             @foreach (var item in registrosOrdenados)
             {
-                <tr class="chamado-row">
+                <tr class="registro-row">
                     <td>@item.Data.ToShortDateString()</td>
                     <td>@item.Hora</td>
                     <td>@item.Cliente</td>
@@ -41,8 +46,8 @@
                     <td>@item.Urgencia</td>
                     <td>@item.Status</td>
                     <td style="width:1px">
-                        <a onClick="ModalDeletarChamado(@item.Id)">
-                            <i class="bi bi-trash3-fill"></i>
+                        <a onClick="ModalDeletarRegistro(@item.Id)">
+                            <img src="~/img/excluir.png" style="width:20px" />
                         </a>
                     </td>
                 </tr>

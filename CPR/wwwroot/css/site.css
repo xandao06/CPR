@@ -4,7 +4,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
@@ -38,3 +38,4 @@ a{
     background-color: #e0e0e0; /* Adiciona um fundo cinza para destacar como concluído */
     color: #777; /* Altera a cor do texto para um cinza mais suave */
 }
+
