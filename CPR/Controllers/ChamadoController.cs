@@ -21,6 +21,12 @@ namespace CPR.Controllers
             return View(model);
         }
 
+        public IActionResult RegistroIndex()
+        {
+            var model = chamadoService.GetAll();
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult ModalCriarChamado()
         {
@@ -81,6 +87,22 @@ namespace CPR.Controllers
         {
             var chamados = chamadoService.SearchChamados(query, startDate, endDate);
             return Json(chamados);
+        }
+
+        // Método que busca o serviço de filtragem de registros
+        [HttpGet]
+        public IActionResult SearchReg(string query, DateTime? startDate, DateTime? endDate)
+        {
+            var registros = chamadoService.SearchRegistros(query, startDate, endDate);
+            return Json(registros);
+        }
+
+        // Relatorio
+        [HttpGet]
+        public IActionResult Report(DateTime? startDate, DateTime? endDate, string cliente, string status)
+        {
+            var model = chamadoService.GetReportData(startDate, endDate, cliente, status);
+            return View(model);
         }
     }
 }

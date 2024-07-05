@@ -13,27 +13,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="">
                         <input asp-for="Id" type="hidden">
                         <input required asp-for="Data" type="date" class="form-control mb-2" id="Data" placeholder="Data">
                         <input required asp-for="Hora" type="time" class="form-control mb-2" id="Horário" placeholder="Horário">
                         <input required asp-for="Cliente" type="text" class="form-control mb-2" id="Cliente" placeholder="Cliente">
-                        <div class=" ml-1 mb-2 custom-radio">
+                        <div class=" ml-1 custom-radio">
                             <label>Contrato?</label>
-                            <input required asp-for="Contrato" value="Sim" type="radio" class="form-check-input" style="margin-left:5px" name="Contrato" id="option1">
-                            <label class="form-check-label" style="margin-left:25px" for="option1">Sim</label>
-                            <input required asp-for="Contrato" value="Nao" type="radio" class="form-check-input" style="margin-left:1px" name="Contrato" id="option2">
-                            <label class="form-check-label" style="margin-left:19px" for="option2">Não</label>
+                            <input required asp-for="Contrato" value="Sim" type="radio" class="form-check-input" style="margin-left:5px" name="Contrato" id="opt-1">
+                            <label class="form-check-label" style="margin-left:25px" for="opt-1">Sim</label>
+                            <input required asp-for="Contrato" value="Não" type="radio" class="form-check-input" style="margin-left:1px" name="Contrato" id="opt-2">
+                            <label class="form-check-label" style="margin-left:19px" for="opt-2">Não</label>
                         </div>
                         <input required asp-for="Descricao" type="text" class="form-control mb-2" id="Descrição" placeholder="Descrição">
-                        <div class="ml-1 mb-2 custom-radio">
+                        <div class="ml-1 custom-radio">
                             <label>Urgência:</label>
                             <input required asp-for="Urgencia" value="Baixa" type="radio" class="form-check-input" style="margin-left:8px" name="Urgencia" id="option1">
                             <label class="form-check-label" style="margin-left:28px" for="option1">Baixa</label>
-                            <input required asp-for="Urgencia" value="Media" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option2">
-                            <label class="form-check-label" style="margin-left:21px" for="option2">Media</label>
-                            <input required asp-for="Urgencia" value="Alta" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option2"  onclick="updateUrgencia(this.value)">
-                            <label class="form-check-label" style="margin-left:19px" for="option2">Alta</label>
+                            <input required asp-for="Urgencia" value="Média" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option2">
+                            <label class="form-check-label" style="margin-left:21px" for="option2">Média</label>
+                            <input required asp-for="Urgencia" value="Alta" type="radio" class="form-check-input" style="margin-left:1px" name="Urgencia" id="option3"  onclick="updateUrgencia(this.value)">
+                            <label class="form-check-label" style="margin-left:19px" for="option3">Alta</label>
                         </div>
                     </div>
                 </div>
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<script src="~/js/ChamadoScript.js"></script>
+<script src="~/js/Script.js"></script>

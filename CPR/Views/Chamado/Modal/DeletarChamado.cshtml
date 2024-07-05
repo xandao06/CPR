@@ -7,7 +7,7 @@
 <div id="modalDeletarChamado" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" asp-action="DeletarChamado">
+            <form method="post" asp-action="DeletarChamado" onsubmit="saveScrollPosition()">
                 <input asp-for="Id" type="hidden">
                 <div class="modal-header">
                     <h5 class="modal-title">Excluir</h5>
@@ -24,4 +24,4 @@
     </div>
 </div>
 
-<script src="~/js/ChamadoScript.js"></script>
+<script src="~/js/Script.js"></script>

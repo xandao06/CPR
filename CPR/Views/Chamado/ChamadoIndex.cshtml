@@ -3,15 +3,10 @@
     ViewData["Title"] = "Chamados";
     var chamadosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
 }
-<div style="padding:40px" id="container" class="justify-content-between">
+<div id="container" class="container">
     <div>
-        <h1 class="text-center mb-5">Chamados</h1>
         <div class="mb-4" style="display:flex;justify-content:space-between">
-            <div>
-                <a class="btn btn-outline-dark" id="btn-CriarChamado" onclick="ModalCriarChamado()">Criar um chamado</a>
-                @* <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark">Clientes</a> *@
-                <a type="button" asp-controller="Registro" asp-action="RegistroIndex" class="btn btn-outline-dark">Registros</a>
-            </div>
+            <div></div>
             <div style="display:flex">
                 <input type="text" id="searchBarChamado" style="height:40px;width:200px" class="form-control search" placeholder="Buscar" onkeydown="EnterChamado(event)">
                 <input type="date" id="start-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Inicial">
@@ -22,20 +17,20 @@
             </div>
         </div>
     </div>
-    <table class="table">
+    <table class="table" id="chamadosTable">
         <thead>
             <tr>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Cliente</th>
-                <th>Descrição</th>
-                <th>Contrato</th>
-                <th>Urgência</th>
-                <th>Status</th>
+                <th onclick="sortTableChamados(0)">Data</th>
+                <th onclick="sortTableChamados(1)">Hora</th>
+                <th onclick="sortTableChamados(2)">Cliente</th>
+                <th onclick="sortTableChamados(3)">Descrição</th>
+                <th onclick="sortTableChamados(4)">Contrato</th>
+                <th onclick="sortTableChamados(5)">Urgência</th>
+                <th onclick="sortTableChamados(6)">Status</th>
                 <th style="width:75px">Opções</th>
             </tr>
         </thead>
-        <tbody  id="chamados-list">
+        <tbody id="chamados-list" onload="sortTableChamados(0);">
             @foreach (var item in chamadosOrdenados.Where(x => x.Status == "Pendente"))
             {
                 <tr class="chamado-row">
@@ -43,8 +38,13 @@
                     <td>@item.Hora</td>
                     <td>@item.Cliente</td>
                     <td>@item.Descricao</td>
-                    <td>@item.Contrato</td>
-                    <td>@item.Urgencia</td>
+                    <td class="@(item.Contrato == "Sim" ? "text-primary" : "")">
+                        @item.Contrato
+                    </td>
+                    <td 
+                        class="@(item.Urgencia  == "Alta" ? "text-danger" : item.Urgencia == "Média" ? "text-warning" : item.Urgencia == "Baixa" ? "text-success" : "")">
+                        @item.Urgencia  
+                    </td>
                     <td>@item.Status</td>
                     <td >
                         <a onClick="ChamadoConcluido(@item.Id)">
@@ -63,4 +63,4 @@
     </table>
 </div>
 
-<script src="~/js/ChamadoScript.js"></script>
+<script src="~/js/Script.js"></script>

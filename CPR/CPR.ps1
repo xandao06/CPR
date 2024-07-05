@@ -1,0 +1,1 @@
+Get-ChildItem "C:\Users\Admin\source\repos\CPR\CPR" -Recurse -Filter *.cs | ForEach-Object { $_.LastWriteTime = Get-Date }
