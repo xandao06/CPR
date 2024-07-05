@@ -3,9 +3,8 @@
     ViewData["Title"] = "Chamados";
     var registrosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
 }
-<div style="padding:40px" id="container" class="justify-content-between">
+<div id="container" class="container">
     <div>
-        <h1 class="text-center mb-3">Chamados</h1>
         <div class="mb-4" style="display:flex;justify-content:space-between">
             <div>
                 @* <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark">Clientes</a> *@

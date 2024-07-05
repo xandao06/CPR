@@ -6,7 +6,13 @@
 <div id="container" class="container">
     <div>
         <div class="mb-4" style="display:flex;justify-content:space-between">
-            <div></div>
+            <div>
+                <a class="btn btn-outline-dark" id="btn-CriarChamado" onclick="ModalCriarChamado()">Criar um chamado</a>
+                <a type="button" asp-controller="Chamado" asp-action="RegistroIndex" class="btn btn-outline-dark">Registros</a>
+                <a id="refresh" onclick="refreshPage()">
+                    <img src="~/img/refresh.png" style="width:45px" />
+                </a>
+            </div>
             <div style="display:flex">
                 <input type="text" id="searchBarChamado" style="height:40px;width:200px" class="form-control search" placeholder="Buscar" onkeydown="EnterChamado(event)">
                 <input type="date" id="start-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Inicial">

@@ -61,3 +61,7 @@ input::placeholder{
     left: 3px;
     mix-blend-mode: multiply;
 }
+
+.header {
+    margin-bottom:50px;
+}
