@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CPR.Models.Domain.Chamado>
 @{
-    ViewData["Title"] = "Chamados";
+    ViewData["Title"] = "Registros";
     var registrosOrdenados = Model.OrderByDescending(c => c.Data.Date + c.Hora).ToList();
 }
 <div id="container" class="container">
@@ -9,18 +9,21 @@
             <div>
                 @* <a type="button" asp-controller="Cliente" asp-action="Index" class="btn btn-outline-dark">Clientes</a> *@
                 <a type="button" asp-controller="Chamado" asp-action="ChamadoIndex" class="btn btn-outline-dark">Chamados</a>
+                <a id="refresh" onclick="refreshPage()">
+                    <img src="~/img/refresh.png" style="width:45px" />
+                </a>
             </div>
             <div style="display:flex">
                 <input type="text" id="searchBarRegistro" style="height:40px;width:200px" class="form-control search" placeholder="Buscar" onkeydown="EnterRegistro(event)">
-                <input type="date" id="start-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Inicial">
-                <input type="date" id="end-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Final">
+                <input type="date" id="start-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Inicial" onkeydown="EnterRegistro(event)">
+                <input type="date" id="end-date" style="height:40px;width:150px" class="form-control search" placeholder="Data Final" onkeydown="EnterRegistro(event)">
                 <a id="searchIconRegistros" onclick="searchIconRegistros()">
                     <img src="~/img/Pesquisa.png" style="width:25px;margin-top:5px;margin-left:5px" />
                 </a>
             </div>
         </div>
     </div>
-    <table class="table" id="registrosTable">
+    <table class="table registrosTable" id="registrosTable">
         <thead>
             <tr>
                 <th onclick="sortTableRegistros(0)">Data</th>
@@ -33,7 +36,7 @@
                 <th style="width:75px">Opções</th>
             </tr>
         </thead>
-        <tbody id="registros-list" onload="sortTableRegistros(0);">
+        <tbody class="registros-list" id="registros-list" onload="sortTableRegistros(0)">
             @foreach (var item in registrosOrdenados.Where(x => x.Status == "Concluído"))
             {
                 <tr class="registro-row">
@@ -61,4 +64,4 @@
     </table>
 </div>
 
-<script src="~/js/Script.js"></script>
+<script src="~/js/RegistroScript.js"></script>

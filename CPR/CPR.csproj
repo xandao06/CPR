@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageProjectUrl>https://192.168.10.171</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,9 +17,17 @@
 
   <ItemGroup>
     <None Remove="Views\script.js" />
+    <None Remove="WebSocketHandler" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="WebSocketHandler" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="EPPlus" Version="7.2.2" />
+	  <PackageReference Include="iTextSharp.LGPLv2.Core" Version="3.4.21" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.4" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.8">
@@ -26,6 +35,7 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+	  <PackageReference Include="Microsoft.Identity.Web.Certificate" Version="3.0.0" />
 	  <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.5.3">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

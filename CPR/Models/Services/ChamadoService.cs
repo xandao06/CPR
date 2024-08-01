@@ -1,6 +1,8 @@
 ﻿using CPR.Models.Domain;
 using CPR.Models.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.WebSockets;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CPR.Models.Services
 
@@ -114,9 +116,19 @@ namespace CPR.Models.Services
         }
 
         // Relatorio
-        public IReadOnlyList<Chamado> GetReportData(DateTime? startDate, DateTime? endDate, string cliente, string status)
+        public IReadOnlyList<Chamado> GetReportData(string query, DateTime? startDate, DateTime? endDate)
         {
             var chamados = dbContext.Set<Chamado>().AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                query = query.ToLower();
+                chamados = chamados.Where(c => (c.Cliente ?? "").ToLower().Contains(query)
+                || (c.Descricao ?? "").ToLower().Contains(query)
+                                                || (c.Contrato ?? "").ToLower().Contains(query)
+                                                || (c.Urgencia ?? "").ToLower().Contains(query)
+                                                || (c.Status ?? "").ToLower().Contains(query));
+            }
 
             if (startDate.HasValue)
             {
@@ -126,16 +138,6 @@ namespace CPR.Models.Services
             if (endDate.HasValue)
             {
                 chamados = chamados.Where(c => c.Data <= endDate.Value);
-            }
-
-            if (!string.IsNullOrEmpty(cliente))
-            {
-                chamados = chamados.Where(c => c.Cliente.Contains(cliente));
-            }
-
-            if (!string.IsNullOrEmpty(status))
-            {
-                chamados = chamados.Where(c => c.Status == status);
             }
 
             return chamados.ToList();

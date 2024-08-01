@@ -9,7 +9,36 @@
             <div>
                 <a class="btn btn-outline-dark" id="btn-CriarChamado" onclick="ModalCriarChamado()">Criar um chamado</a>
                 <a type="button" asp-controller="Chamado" asp-action="RegistroIndex" class="btn btn-outline-dark">Registros</a>
-                <a id="refresh" onclick="refreshPage()">
+            </div>
+            <div>
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="mainDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relatórios
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="mainDropdown">
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Relatório em PDF</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" onclick="generateReportPDF('data')">Relatório por Data</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportPDF('status')">Relatório por Status</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportPDF('contrato')">Relatório por Contratos</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportPDF('urgencia')">Relatório por Urgência</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Relatório em Excel</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" onclick="generateReportExcel('data')">Relatório por Data</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportExcel('status')">Relatório por Status</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportExcel('contrato')">Relatório por Contratos</a>
+                                <a class="dropdown-item" href="#" onclick="generateReportExcel('urgencia')">Relatório por Urgência</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="refresh" id="refresh" onclick="refreshPage()">
                     <img src="~/img/refresh.png" style="width:45px" />
                 </a>
             </div>
@@ -23,7 +52,7 @@
             </div>
         </div>
     </div>
-    <table class="table" id="chamadosTable">
+    <table class="table chamadosTable table-hover" id="chamadosTable">
         <thead>
             <tr>
                 <th onclick="sortTableChamados(0)">Data</th>
@@ -36,7 +65,7 @@
                 <th style="width:75px">Opções</th>
             </tr>
         </thead>
-        <tbody id="chamados-list" onload="sortTableChamados(0);">
+        <tbody id="chamados-list" class="chamados-list" onload="sortTableChamados(0)">
             @foreach (var item in chamadosOrdenados.Where(x => x.Status == "Pendente"))
             {
                 <tr class="chamado-row">
@@ -47,14 +76,13 @@
                     <td class="@(item.Contrato == "Sim" ? "text-primary" : "")">
                         @item.Contrato
                     </td>
-                    <td 
-                        class="@(item.Urgencia  == "Alta" ? "text-danger" : item.Urgencia == "Média" ? "text-warning" : item.Urgencia == "Baixa" ? "text-success" : "")">
-                        @item.Urgencia  
+                    <td class="@(item.Urgencia  == "Alta" ? "text-danger" : item.Urgencia == "Média" ? "text-warning" : item.Urgencia == "Baixa" ? "text-success" : "")">
+                        @item.Urgencia
                     </td>
                     <td>@item.Status</td>
-                    <td >
+                    <td>
                         <a onClick="ChamadoConcluido(@item.Id)">
-                           <img src="~/img/concluir.png" style="width:20px"/>
+                            <img src="~/img/concluir.png" style="width:20px" />
                         </a>
                         <a onClick="ModalEditarChamado(@item.Id)">
                             <img src="~/img/editar.png" style="width:20px" />
@@ -69,4 +97,5 @@
     </table>
 </div>
 
-<script src="~/js/Script.js"></script>
+<script src="~/js/ChamadoScript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
