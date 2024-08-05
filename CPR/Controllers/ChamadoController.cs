@@ -236,5 +236,11 @@ namespace CPR.Controllers
                 return File(memoryStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "RelatorioChamados.xlsx");
             }
         }
+
+        //public IActionResult GetData()
+        //{
+        //    return Content(DateTime.Now.ToString());
+        //}
+
     }
 }

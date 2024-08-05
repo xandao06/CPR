@@ -275,6 +275,33 @@ $(document).ready(function () {
 
 /////
 
+//function updateData() {
+//    $.ajax({
+//        url: '/Chamado/GetData',
+//        type: 'GET',
+//        dataType: 'text', // Espera uma resposta de texto simples
+//        success: function (data) {
+//            console.log('Dados recebidos:', data); // Adicionado para depuração
+//            $('#modalCPR').html();
+//        },
+//        error: function (xhr, status, error) {
+//            console.error('Erro:', error);
+//            $('#modalCPR').html();
+//        }
+//    });
+//}
+
+//// Atualiza a cada 5 segundos (5000 milissegundos)
+//setInterval(updateData, 5000);
+
+//// Chamada inicial para exibir os dados imediatamente
+//updateData();
+
+
+
+
+
+
 // atualização em tempo real
 
 //var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();

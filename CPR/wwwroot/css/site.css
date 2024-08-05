@@ -1,13 +1,13 @@
 @media (min-width: 768px) {
-    html {
+    .html {
         font-size: 16px;
-        
     }
 }
 
 .container {
     font-weight: 750;
     padding: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 
