@@ -1,0 +1,6 @@
+@CPR.Server_HostAddress = http://localhost:5268
+
+GET {{CPR.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
