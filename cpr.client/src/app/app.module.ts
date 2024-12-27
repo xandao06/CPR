@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ChamadoComponent } from './chamado/chamado.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChamadoComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

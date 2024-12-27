@@ -1,3 +1,17 @@
+using CPR.Application.Clients;
+using CPR.Application.Features.ChamadoSync.Handlers;
+using CPR.Application.Features.ChamadoSync.Queries;
+using CPR.Domain;
+using CPR.Server;
+using CPR.Domain.Contracts.Client;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using AutoMapper;
+using CPR.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -14,6 +28,13 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddHttpClient();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiChamadosRequestHandler).Assembly));
+builder.Services.AddScoped<IMockApiClient, MockApiClient>();
+
+builder.Services.AddDbContext<CPRDbContext>(options =>
+options.UseSqlServer("name=ConnectionStrings:CPRConnectionString"));
 
 var app = builder.Build();
 
