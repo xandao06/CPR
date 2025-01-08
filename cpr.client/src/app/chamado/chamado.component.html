@@ -1,27 +1,40 @@
 
+<button (click)="openCreateModal()">Novo Chamado</button>
 
+<create-modal [showModal]="showModal"
+              (close)="closeCreateModal()"
+              (create)="createChamado($event)">
+</create-modal>
 
-<table *ngIf="chamados">
-    <thead>
-        <tr>
-            <th>Data</th>
-            <th>Hora</th>
-            <th>Cliente</th>
-            <th>Descrição</th>
-            <th>Contrato</th>
-            <th>Urgência</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let chamado of chamados">
-            <td>{{ chamado.data }}</td>
-            <td>{{ chamado.hora }}</td>
-            <td>{{ chamado.cliente }}</td>
-            <td>{{ chamado.descricao }}</td>
-            <td>{{ chamado.contrato }}</td>
-            <td>{{ chamado.urgencia }}</td>
-            <td>{{ chamado.status }}</td>
-        </tr>
-    </tbody>
-</table>
+<ng-container *ngIf="chamados">
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Cliente</th>
+                <th>Descrição</th>
+                <th>Contrato</th>
+                <th>Urgência</th>
+                <th>Status</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let chamado of chamados">
+                <td>{{ chamado.data }}</td>
+                <td>{{ chamado.hora }}</td>
+                <td>{{ chamado.cliente }}</td>
+                <td>{{ chamado.descricao }}</td>
+                <td>{{ chamado.contrato }}</td>
+                <td>{{ chamado.urgencia }}</td>
+                <td>{{ chamado.status }}</td>
+                <td>{{ chamado.opcoes }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+
+<ng-template #noChamados>
+    {{ chamados | json }}
+</ng-template>

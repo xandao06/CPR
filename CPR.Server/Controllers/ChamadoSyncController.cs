@@ -1,4 +1,5 @@
 ﻿using CPR.Application;
+using CPR.Application.Features.ChamadoSync.Commands;
 using CPR.Application.Features.ChamadoSync.Queries;
 using CPR.Domain;
 using MediatR;
@@ -13,11 +14,18 @@ namespace CPR.Server.Controllers
     {
         private readonly IMediator _mediator = mediator;
 
-        [HttpGet]
+        [HttpGet("getChamados")]
         public async Task<IActionResult> SyncChamados()
         {
             ChamadoSyncResult chamadoSyncResult = await _mediator.Send(new SyncMockApiChamadosRequest());
             return Ok(chamadoSyncResult);
+        }
+
+        [HttpPost("createChamados")]
+        public async Task<IActionResult> CreateChamado([FromBody] Chamado chamado)
+        {
+            var chamadoSyncResult = await _mediator.Send(new SyncCreateMockApiChamadosRequest(chamado));
+            return CreatedAtAction(nameof(CreateChamado), new { id = chamadoSyncResult.Chamados.FirstOrDefault()?.Id }, chamadoSyncResult);
         }
 
     }

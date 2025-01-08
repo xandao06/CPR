@@ -1,24 +1,30 @@
 ﻿using CPR.Domain;
 using CPR.Domain.Contracts.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CPR.Domain.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace CPR.Application.Clients
 {
     public class MockApiClient : IMockApiClient
     {
-        public Task<List<Chamado>> GetAsync()
-        {
-            var chamados = new List<Chamado>
-        {
-            new Chamado { Id = 1, Cliente = "Cliente A", Descricao = "Teste A", Status = "Aberto" },
-            new Chamado { Id = 2, Cliente = "Cliente B", Descricao = "Teste B", Status = "Fechado" }
-        };
 
-            return  Task.FromResult(chamados);
+        private readonly CPRDbContext _dbContext;
+
+        public MockApiClient(CPRDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
+
+        public async Task<List<Chamado>> GetAsync()
+        {
+            return await _dbContext.Chamados.ToListAsync();
+        }
+        public async Task<Chamado> CreateAsync(Chamado chamado)
+        {
+            _dbContext.Chamados.Add(chamado);
+            await _dbContext.SaveChangesAsync();
+            return chamado;
+        }
+
     }
 }

@@ -3,13 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPR.Server", "CPR.Server\CPR.Server.csproj", "{4B13FB82-538A-47D5-B33F-25088B99105D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPR.Server", "CPR.Server\CPR.Server.csproj", "{4B13FB82-538A-47D5-B33F-25088B99105D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF} = {D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF}
+	EndProjectSection
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "cpr.client", "cpr.client\cpr.client.esproj", "{4A859D58-1AAB-42DF-9DD0-0ACD1FA59991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPR.Application", "CPR.Application\CPR.Application.csproj", "{BC1FA08C-CA12-4AAF-8DF5-DD83D63DD1D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPR.Application", "CPR.Application\CPR.Application.csproj", "{BC1FA08C-CA12-4AAF-8DF5-DD83D63DD1D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPR.Domain", "CPR.Domain\CPR.Domain.csproj", "{D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPR.Domain", "CPR.Domain\CPR.Domain.csproj", "{D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPR.Application.UnitTests", "CPR.Application.UnitTests\CPR.Application.UnitTests.csproj", "{D7FF673E-E8FB-44A1-9BE7-303A3EE7B67F}"
 EndProject
@@ -38,7 +41,6 @@ Global
 		{D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D54E697F-5277-4DBC-AFBB-E8AF4A76E9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7FF673E-E8FB-44A1-9BE7-303A3EE7B67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7FF673E-E8FB-44A1-9BE7-303A3EE7B67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7FF673E-E8FB-44A1-9BE7-303A3EE7B67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7FF673E-E8FB-44A1-9BE7-303A3EE7B67F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

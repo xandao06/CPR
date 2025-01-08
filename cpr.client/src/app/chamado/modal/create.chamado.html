@@ -1,0 +1,47 @@
+<div class="modal" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criar Novo Chamado</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="chamadoForm" (ngSubmit)="submitChamado()">
+          <div class="form-group">
+            <label for="data">Data</label>
+            <input id="data" formControlName="data" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora</label>
+            <input id="hora" formControlName="hora" type="time" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <input id="cliente" formControlName="cliente" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input id="descricao" formControlName="descricao" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="contrato">Contrato</label>
+            <input id="contrato" formControlName="contrato" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="urgencia">Urgência</label>
+            <input id="urgencia" formControlName="urgencia" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input id="status" formControlName="status" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="opcoes">Opções</label>
+            <input id="opcoes" formControlName="opcoes" type="text" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="chamadoForm.invalid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,9 @@
 using CPR.Application.Clients;
 using CPR.Application.Features.ChamadoSync.Handlers;
-using CPR.Application.Features.ChamadoSync.Queries;
-using CPR.Domain;
-using CPR.Server;
 using CPR.Domain.Contracts.Client;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using AutoMapper;
-using CPR.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using CPR.Domain.Persistence;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,13 +14,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowAllOrigins", builder =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
     });
 });
+
 builder.Services.AddHttpClient();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -34,12 +29,16 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncM
 builder.Services.AddScoped<IMockApiClient, MockApiClient>();
 
 builder.Services.AddDbContext<CPRDbContext>(options =>
-options.UseSqlServer("name=ConnectionStrings:CPRConnectionString"));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("CPRConnectionString"),
+        b => b.MigrationsAssembly("CPR.Server")
+    ));
 
 var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
+app.UseCors("AllowAllOrigins");
 
 if (app.Environment.IsDevelopment())
 {
