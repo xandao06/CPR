@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom, map } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 export interface Chamado {
@@ -23,46 +23,72 @@ export interface Chamado {
 })
 export class ChamadoComponent implements OnInit {
   public chamados: Chamado[] = [];
-  //public chamadoForm: FormGroup;
-  public showModal: boolean = false;
+  public chamadoForm: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) {
+    this.chamadoForm = this.fb.group({
+      data: [''],
+      hora: [''],
+      cliente: [''],
+      descricao: [''],
+      contrato: [''],
+      urgencia: [''],
+      status: ['Pendente'],
+      opcoes: ['']
+    });
+  }
 
   async ngOnInit() {
     await this.getChamados();
   }
 
   async getChamados() {
-      const result = await lastValueFrom(
-        this.http.get<{ syncedChamados: number; chamados: Chamado[] }>('/chamados/sync/getChamados').pipe(
-          map(response => response.chamados) // Extrai apenas a propriedade 'chamados'
-        )
-      );
-      this.chamados = result;
-    }
-
+    const result = await lastValueFrom(
+      this.http.get<{ syncedChamados: number; chamados: Chamado[] }>('https://localhost:7048/chamados/sync/getChamados').pipe(
+        map(response => response.chamados)
+      )
+    );
+    this.chamados = result;
+  }
 
   async createChamado(chamado: Chamado) {
-    try {
-      const newChamado = await lastValueFrom(this.http.post<Chamado>('/chamados/sync/createChamados', chamado));
-      if (newChamado) {
-        this.chamados.push(newChamado);
-        console.log('Novo chamado criado:', newChamado);
-      }
-    } catch (error) {
-      console.error('Erro ao criar chamado:', error);
+    const newChamado = await lastValueFrom(this.http.post<Chamado>('https://localhost:7048/chamados/sync/createChamados', chamado));
+    if (newChamado) {
+      this.chamados.push(newChamado);
+      await this.getChamados();
     }
   }
 
-
-
-  openCreateModal() {
-    this.showModal = true;
+  async editChamado(chamado: Chamado) {
+    const updatedChamado = await lastValueFrom(
+      this.http.put<Chamado>('https://localhost:7048/chamados/sync/editChamado', chamado)
+    );
+    if (updatedChamado) {
+      await this.getChamados(); 
+    }
   }
 
-  closeCreateModal() {
-    this.showModal = false;
+  async deleteChamado(id: number) {
+      const deleted = await lastValueFrom(
+        this.http.delete<boolean>(`https://localhost:7048/chamados/sync/deleteChamado/${id}`)
+      );
+      if (deleted) {
+        await this.getChamados(); 
+      }
   }
+
+  async concluirChamado(id: number) {
+    const concludedChamado = await lastValueFrom(
+      this.http.put<Chamado>(`https://localhost:7048/chamados/sync/concluirChamado/${id}`, {})
+    );
+    if (concludedChamado) {
+      const index = this.chamados.findIndex(c => c.id === concludedChamado.id);
+      if (index !== -1) {
+        this.chamados[index] = concludedChamado;
+      }
+    }
+  }
+
 
 }
 

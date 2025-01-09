@@ -1,41 +1,67 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { Chamado } from '../chamado.component';
 
 @Component({
   selector: 'create-modal',
   templateUrl: './create.chamado.html',
   styleUrls: ['./modal.css']
 })
-export class ChamadoModalComponent implements OnInit {
-  @Input() showModal: boolean = false; // Recebe o estado do modal do componente pai
-  @Output() close = new EventEmitter<void>(); // Emite um evento para fechar o modal
-  @Output() create = new EventEmitter<any>(); // Emite o chamado criado para o componente pai
-
+export class CreateChamadoModalComponent implements OnInit {
+  @Output() close = new EventEmitter<void>();
+  @Output() create = new EventEmitter<any>(); 
   public chamadoForm: FormGroup;
+  public showModal: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.chamadoForm = this.fb.group({
-      data: ['', Validators.required],
-      hora: ['', Validators.required],
-      cliente: ['', Validators.required],
-      descricao: ['', Validators.required],
-      contrato: ['', Validators.required],
-      urgencia: ['', Validators.required],
-      status: ['', Validators.required],
-      opcoes: ['', Validators.required]
+      data: [''],
+      hora: [''],
+      cliente: [''],
+      descricao: [''],
+      contrato: [''],
+      urgencia: [''],
+      status: ['Pendente'],
+      opcoes: ['']
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.resetForm();
+  }
+
+  openCreateModal() {
+    this.resetForm();
+    this.showModal = true;
+  }
 
   closeModal() {
-    this.close.emit(); // Emite o evento para fechar o modal
+    this.showModal = false;
+    this.close.emit();
   }
 
-  submitChamado() {
-    if (this.chamadoForm.valid) {
-      this.create.emit(this.chamadoForm.value); // Emite o chamado criado para o componente pai
-      this.closeModal(); // Fecha o modal após a criação
-    }
+  async submitChamado() {
+      const chamadoData = this.chamadoForm.value;
+      this.create.emit(chamadoData); 
+      this.closeModal(); 
   }
-}
+
+  private resetForm() {
+    const now = new Date();
+    const formattedDate = now.toISOString().split('T')[0];
+    const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
+    this.chamadoForm.reset({
+      data: formattedDate,
+      hora: formattedTime,
+      cliente: '',
+      descricao: '',
+      contrato: '',
+      urgencia: '',
+      status: 'Pendente',
+      opcoes: ''
+    });
+  }
+
+  }
+

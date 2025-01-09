@@ -26,5 +26,29 @@ namespace CPR.Application.Clients
             return chamado;
         }
 
+        public async Task<Chamado> EditAsync(Chamado chamado)
+        {
+            _dbContext.Chamados.Update(chamado);
+            await _dbContext.SaveChangesAsync();
+            return chamado;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var chamado = await _dbContext.Chamados.FindAsync(id);
+            if (chamado != null)
+            {
+                _dbContext.Chamados.Remove(chamado);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<Chamado> GetByIdAsync(int id)
+        {
+            return await _dbContext.Chamados.FindAsync(id);
+        }
+
     }
 }

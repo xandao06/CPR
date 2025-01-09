@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChamadoComponent } from './chamado/chamado.component';
-import { ChamadoModalComponent } from '../app/chamado/modal/create.chamado'
+import { CreateChamadoModalComponent } from '../app/chamado/modal/create.chamado'
+import { EditChamadoModalComponent } from '../app/chamado/modal/edit.chamado'
+import { DeleteChamadoModalComponent } from '../app/chamado/modal/delete.chamado'
+import { ConcluirChamadoModalComponent } from '../app/chamado/modal/concluir.chamado'
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 
@@ -11,7 +14,10 @@ import { provideHttpClient } from '@angular/common/http';
   declarations: [
     AppComponent,
     ChamadoComponent,
-    ChamadoModalComponent
+    CreateChamadoModalComponent,
+    EditChamadoModalComponent,
+    DeleteChamadoModalComponent,
+    ConcluirChamadoModalComponent
   ],
   imports: [
     BrowserModule,

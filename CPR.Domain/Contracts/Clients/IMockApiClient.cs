@@ -5,6 +5,9 @@ namespace CPR.Domain.Contracts.Client
     {
         Task<List<Chamado>> GetAsync();
         Task<Chamado> CreateAsync(Chamado chamado);
+        Task<Chamado> EditAsync(Chamado chamado);
+        Task<bool> DeleteAsync(int id);
+        Task<Chamado> GetByIdAsync(int id);
 
     }
 }

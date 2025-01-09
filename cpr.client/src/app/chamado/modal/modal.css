@@ -9,17 +9,40 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   padding-top: 60px;
+  font-weight:400;
 }
 
   .modal.show {
     display: block;
   }
 
-.modal-dialog {
-  margin: 5% auto;
-  padding: 20px;
-  width: 80%;
-  max-width: 600px;
+#sim {
+  margin-left: 58px;
+  margin-top: 7px;
+}
+
+#nao {
+  margin-left: 65px;
+  margin-top: 7px;
+}
+
+#baixa{
+    margin-left: 68px;
+    margin-top: 7px;
+}
+
+#media{
+    margin-left: 75px;
+    margin-top: 7px;
+}
+
+#alta{
+    margin-left: 58px;
+    margin-top: 7px;
+}
+
+#contrato_label, #urgencia_label{
+    margin-left:25px;
 }
 
 .modal-content {
@@ -41,4 +64,12 @@
   .close:focus {
     color: red;
     cursor: pointer;
+  }
+
+  .concluir_btn{
+      margin-right:4px;
+  }
+
+  .delete_btn{
+      margin-right:4px;
   }

@@ -28,5 +28,30 @@ namespace CPR.Server.Controllers
             return CreatedAtAction(nameof(CreateChamado), new { id = chamadoSyncResult.Chamados.FirstOrDefault()?.Id }, chamadoSyncResult);
         }
 
+        [HttpPut("editChamado")]
+        public async Task<IActionResult> EditChamado([FromBody] Chamado chamado)
+        {
+            var chamadoSyncResult = await _mediator.Send(new SyncEditMockApiChamadoRequest(chamado));
+            return Ok(chamadoSyncResult);
+        }
+
+        [HttpDelete("deleteChamado/{id}")]
+        public async Task<IActionResult> DeleteChamado(int id)
+        {
+            var result = await _mediator.Send(new SyncDeleteMockApiChamadoRequest(id));
+            if (result)
+                return Ok(result);
+            return NotFound();
+        }
+
+        [HttpPut("concluirChamado/{id}")]
+        public async Task<IActionResult> ConcluirChamado(int id)
+        {
+            var result = await _mediator.Send(new SyncConcluirMockApiChamadoRequest(id));
+            if (result != null)
+                return Ok(result);
+            return NotFound();
+        }
+
     }
 }

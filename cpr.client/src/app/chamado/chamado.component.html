@@ -1,40 +1,45 @@
 
-<button (click)="openCreateModal()">Novo Chamado</button>
 
-<create-modal [showModal]="showModal"
-              (close)="closeCreateModal()"
-              (create)="createChamado($event)">
-</create-modal>
+
+<create-modal (create)="createChamado($event)" #createModal></create-modal>
+<edit-modal (edit)="editChamado($event)" #editModal></edit-modal>
+<delete-modal (delete)="deleteChamado($event)" #deleteModal></delete-modal>
+<concluir-modal (concluir)="concluirChamado($event)" #concluirModal></concluir-modal>
+
 
 <ng-container *ngIf="chamados">
-    <table>
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Cliente</th>
-                <th>Descrição</th>
-                <th>Contrato</th>
-                <th>Urgência</th>
-                <th>Status</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let chamado of chamados">
-                <td>{{ chamado.data }}</td>
-                <td>{{ chamado.hora }}</td>
-                <td>{{ chamado.cliente }}</td>
-                <td>{{ chamado.descricao }}</td>
-                <td>{{ chamado.contrato }}</td>
-                <td>{{ chamado.urgencia }}</td>
-                <td>{{ chamado.status }}</td>
-                <td>{{ chamado.opcoes }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Chamados</h1>
+        <button class="new_chamado btn btn-dark" (click)="createModal.openCreateModal()">Novo Chamado</button>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Cliente</th>
+                    <th>Descrição</th>
+                    <th>Contrato</th>
+                    <th>Urgência</th>
+                    <th>Status</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chamado of chamados">
+                    <td>{{ chamado.data | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ chamado.hora }}</td>
+                    <td>{{ chamado.cliente }}</td>
+                    <td>{{ chamado.descricao }}</td>
+                    <td>{{ chamado.contrato }}</td>
+                    <td>{{ chamado.urgencia }}</td>
+                    <td>{{ chamado.status }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="editModal.openEditModal(chamado)">Editar</button>
+                        <button class="btn btn-success btn-sm" (click)="concluirModal.openConcluirModal(chamado.id)" [disabled]="chamado.status === 'Concluido'">Concluir</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteModal.openDeleteModal(chamado.id)">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </ng-container>
-
-<ng-template #noChamados>
-    {{ chamados | json }}
-</ng-template>

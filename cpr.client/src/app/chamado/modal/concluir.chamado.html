@@ -1,0 +1,17 @@
+
+
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Concluir Chamado</h5>
+        <button type="button" class="close" (click)="closeConcluirModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja concluir este chamado?</p>
+        <button class="btn btn-dark concluir_btn" (click)="confirmConcluir()">Concluir</button>
+        <button class="btn btn-dark" (click)="closeConcluirModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
