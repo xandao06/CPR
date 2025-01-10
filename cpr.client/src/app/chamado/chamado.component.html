@@ -14,12 +14,12 @@
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>Data</th>
+                    <th (click)="sortChamados('data')">Data</th>
                     <th>Hora</th>
                     <th>Cliente</th>
                     <th>Descrição</th>
-                    <th>Contrato</th>
-                    <th>Urgência</th>
+                    <th (click)="sortChamados('contrato')">Contrato</th>
+                    <th (click)="sortChamados('urgencia')">Urgência</th>
                     <th>Status</th>
                     <th>Opções</th>
                 </tr>
@@ -30,13 +30,29 @@
                     <td>{{ chamado.hora }}</td>
                     <td>{{ chamado.cliente }}</td>
                     <td>{{ chamado.descricao }}</td>
-                    <td>{{ chamado.contrato }}</td>
-                    <td>{{ chamado.urgencia }}</td>
-                    <td>{{ chamado.status }}</td>
+                    <td [ngClass]="chamado.contrato === 'Sim' ? 'text-primary' : ''">{{ chamado.contrato }}</td>
+                    <td [ngClass]="{
+                'text-danger': chamado.urgencia === 'Alta',
+                'text-warning': chamado.urgencia === 'Média',
+                'text-success': chamado.urgencia === 'Baixa'
+              }">
+                        {{ chamado.urgencia }}
+                    </td>
+                    <td [ngClass]="{
+                'text-warning': chamado.status === 'Pendente',
+                'text-success': chamado.status === 'Concluido'}">
+                        {{ chamado.status }}
+                    </td>
                     <td>
-                        <button class="btn btn-primary btn-sm" (click)="editModal.openEditModal(chamado)">Editar</button>
-                        <button class="btn btn-success btn-sm" (click)="concluirModal.openConcluirModal(chamado.id)" [disabled]="chamado.status === 'Concluido'">Concluir</button>
-                        <button class="btn btn-danger btn-sm" (click)="deleteModal.openDeleteModal(chamado.id)">Excluir</button>
+                        <a class="btn" (click)="editModal.openEditModal(chamado)">
+                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn" (click)="concluirModal.openConcluirModal(chamado.id)">
+                            <i id="icon_opcoes" class="fa-regular fa-square-check"></i>
+                        </a>
+                        <a class="btn" (click)="deleteModal.openDeleteModal(chamado.id)">
+                            <i id="icon_opcoes" class="fa-solid fa-trash" ></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

@@ -53,5 +53,13 @@ namespace CPR.Server.Controllers
             return NotFound();
         }
 
+        [HttpGet("getChamadosConcluidos")]
+        public async Task<IActionResult> GetChamadosConcluidos()
+        {
+            var historicoChamados = await _mediator.Send(new GetChamadosConcluidosRequest());
+            if (historicoChamados != null && historicoChamados.Any())
+                return Ok(historicoChamados);
+            return NoContent();
+        }
     }
 }

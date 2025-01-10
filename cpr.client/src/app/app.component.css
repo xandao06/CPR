@@ -11,4 +11,13 @@
 .container{
     padding:40px;
     text-align:center;
+    font-weight:700;
+}
+
+#chamados_btn{
+    margin-left: 20px;
+}
+
+#historico_btn {
+    margin-left: 5px;
 }

@@ -5,7 +5,9 @@ using MediatR;
 
 namespace CPR.Application.Features.ChamadoSync.Handlers
 {
-    public class SyncConcluirMockApiChamadoRequestHandler(IMediator mediator, IMockApiClient mockApiClient) : IRequestHandler<SyncConcluirMockApiChamadoRequest, Chamado>
+
+    public class SyncConcluirMockApiChamadoRequestHandler(IMediator mediator, IMockApiClient mockApiClient)
+    : IRequestHandler<SyncConcluirMockApiChamadoRequest, Chamado>
     {
         private readonly IMediator _mediator = mediator;
         private readonly IMockApiClient _mockApiClient = mockApiClient;
@@ -16,6 +18,7 @@ namespace CPR.Application.Features.ChamadoSync.Handlers
             if (chamado != null)
             {
                 chamado.Status = "Concluido";
+                chamado.IsHistorico = true;
                 await _mockApiClient.EditAsync(chamado);
             }
             return chamado;

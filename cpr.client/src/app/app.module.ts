@@ -9,6 +9,7 @@ import { DeleteChamadoModalComponent } from '../app/chamado/modal/delete.chamado
 import { ConcluirChamadoModalComponent } from '../app/chamado/modal/concluir.chamado'
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { HistoricoComponent } from './chamado/historico.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { provideHttpClient } from '@angular/common/http';
     CreateChamadoModalComponent,
     EditChamadoModalComponent,
     DeleteChamadoModalComponent,
-    ConcluirChamadoModalComponent
+    ConcluirChamadoModalComponent,
+    HistoricoComponent
   ],
   imports: [
     BrowserModule,
@@ -27,4 +29,5 @@ import { provideHttpClient } from '@angular/common/http';
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

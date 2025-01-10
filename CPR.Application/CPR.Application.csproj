@@ -36,9 +36,4 @@
     <ProjectReference Include="..\CPR.Domain\CPR.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-    <Folder Include="Constants\" />
-  </ItemGroup>
-
 </Project>

@@ -11,5 +11,6 @@
         public string Urgencia { get; set; }
         public string Status { get; set; }
         public string Opcoes { get; set; }
+        public bool IsHistorico { get; set; } = false;
     }
 }

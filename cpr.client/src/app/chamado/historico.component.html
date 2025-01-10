@@ -1,0 +1,51 @@
+
+<delete-modal (delete)="deleteChamado($event)" #deleteModal></delete-modal>
+
+
+
+<ng-container *ngIf="chamadosConcluidos">
+  <div class="container">
+    <h1>Histórico de Chamados</h1>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Cliente</th>
+          <th>Descrição</th>
+          <th>Contrato</th>
+          <th>Urgência</th>
+          <th>Status</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let chamado of chamadosConcluidos">
+          <td>{{ chamado.data | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ chamado.hora }}</td>
+          <td>{{ chamado.cliente }}</td>
+          <td>{{ chamado.descricao }}</td>
+          <td [ngClass]="chamado.contrato === 'Sim' ? 'text-primary' : ''">{{ chamado.contrato }}</td>
+          <td [ngClass]="{
+                'text-danger': chamado.urgencia === 'Alta',
+                'text-warning': chamado.urgencia === 'Média',
+                'text-success': chamado.urgencia === 'Baixa'
+              }">
+            {{ chamado.urgencia }}
+          </td>
+          <td class="text-success">{{ chamado.status }}</td>
+          <a class="btn" (click)="deleteModal.openDeleteModal(chamado.id)">
+                            <i id="icon_opcoes" class="fa-solid fa-trash" ></i>
+          </a>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="chamadosConcluidos.length === 0">
+  <div class="container">
+    <h2>Não há chamados concluídos no momento.</h2>
+  </div>
+</ng-container>

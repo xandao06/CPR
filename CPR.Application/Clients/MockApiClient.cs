@@ -17,7 +17,9 @@ namespace CPR.Application.Clients
 
         public async Task<List<Chamado>> GetAsync()
         {
-            return await _dbContext.Chamados.ToListAsync();
+            return await _dbContext.Chamados
+        .Where(c => !c.IsHistorico) 
+        .ToListAsync();
         }
         public async Task<Chamado> CreateAsync(Chamado chamado)
         {
@@ -48,6 +50,12 @@ namespace CPR.Application.Clients
         public async Task<Chamado> GetByIdAsync(int id)
         {
             return await _dbContext.Chamados.FindAsync(id);
+        }
+        public async Task<List<Chamado>> GetHistoricoAsync()
+        {
+            return await _dbContext.Chamados
+                .Where(c => c.IsHistorico)
+                .ToListAsync();
         }
 
     }

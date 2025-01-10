@@ -1,4 +1,5 @@
 ﻿
+
 namespace CPR.Domain.Contracts.Client
 {
     public interface IMockApiClient
@@ -8,6 +9,7 @@ namespace CPR.Domain.Contracts.Client
         Task<Chamado> EditAsync(Chamado chamado);
         Task<bool> DeleteAsync(int id);
         Task<Chamado> GetByIdAsync(int id);
+        Task<List<Chamado>> GetHistoricoAsync();
 
     }
 }
