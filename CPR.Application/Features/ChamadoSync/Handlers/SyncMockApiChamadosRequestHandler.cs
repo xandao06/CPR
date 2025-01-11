@@ -14,7 +14,7 @@ namespace CPR.Application.Features.ChamadoSync.Handlers
 
         public async Task<ChamadoSyncResult> Handle(SyncMockApiChamadosRequest request, CancellationToken cancellationToken)
         {
-            var chamados = await _mockApiClient.GetAsync();
+            var chamados = await _mockApiClient.GetAsyncChamado();
             return new ChamadoSyncResult(chamados.Count, chamados);
         }
     }

@@ -15,7 +15,7 @@ namespace CPR.Application.Clients
             _dbContext = dbContext;
         }
 
-        public async Task<List<Chamado>> GetAsync()
+        public async Task<List<Chamado>> GetAsyncChamado()
         {
             return await _dbContext.Chamados
         .Where(c => !c.IsHistorico) 
@@ -56,6 +56,17 @@ namespace CPR.Application.Clients
             return await _dbContext.Chamados
                 .Where(c => c.IsHistorico)
                 .ToListAsync();
+        }
+
+
+
+        /// //////////////
+
+
+        public async Task<List<Nobreak>> GetAsyncNobreak()
+        {
+            return await _dbContext.Nobreaks
+            .ToListAsync();
         }
 
     }

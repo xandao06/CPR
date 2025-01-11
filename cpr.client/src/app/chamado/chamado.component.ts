@@ -50,6 +50,7 @@ export class ChamadoComponent implements OnInit {
       )
     );
     this.chamados = result;
+    this.sortChamados(this.sortColumn || 'data');
   }
 
   async createChamado(chamado: Chamado) {
