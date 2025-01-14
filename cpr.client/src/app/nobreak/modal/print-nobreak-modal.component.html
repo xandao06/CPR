@@ -1,0 +1,25 @@
+
+
+
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content" id="modal_content_print">
+      <div class="modal-header" id="modal_header_print">
+        <h5 class="modal-title">Impressão do Nobreak</h5>
+        <button type="button" class="close" (click)="closePrintModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal_body_print">
+        <div class="print-layout">
+          <div class="print-section">
+            <p><strong>Data da Troca:</strong> {{ nobreak.dataTroca | date: 'dd/MM/yyyy' }}</p>
+            <p><strong>Próxima Troca:</strong> {{ nobreak.dataProximaTroca | date: 'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" id="modal_footer_print">
+        <button type="button" class="btn btn-dark" (click)="print()">Imprimir</button>
+        <button type="button" class="btn btn-secondary" (click)="closePrintModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

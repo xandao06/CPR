@@ -68,6 +68,29 @@ namespace CPR.Application.Clients
             return await _dbContext.Nobreaks
             .ToListAsync();
         }
+        public async Task<Nobreak> CreateAsyncNobreak(Nobreak nobreak)
+        {
+            _dbContext.Nobreaks.Add(nobreak);
+            await _dbContext.SaveChangesAsync();
+            return nobreak;
+        }
+        public async Task<Nobreak> EditAsyncNobreak(Nobreak nobreak)
+        {
+            _dbContext.Nobreaks.Update(nobreak);
+            await _dbContext.SaveChangesAsync();
+            return nobreak;
+        }
+        public async Task<bool> DeleteAsyncNobreak(int id)
+        {
+            var nobreak = await _dbContext.Nobreaks.FindAsync(id);
+            if (nobreak != null)
+            {
+                _dbContext.Nobreaks.Remove(nobreak);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
     }
 }

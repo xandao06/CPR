@@ -12,6 +12,9 @@ namespace CPR.Domain.Contracts.Client
         Task<List<Chamado>> GetHistoricoAsync();
 
         Task<List<Nobreak>> GetAsyncNobreak();
+        Task<Nobreak> CreateAsyncNobreak(Nobreak nobreak);
+        Task<Nobreak> EditAsyncNobreak(Nobreak nobreak);
+        Task<bool> DeleteAsyncNobreak(int id);
 
     }
 }

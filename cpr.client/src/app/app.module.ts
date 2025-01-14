@@ -10,6 +10,11 @@ import { ConcluirChamadoModalComponent } from '../app/chamado/modal/concluir.cha
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { HistoricoComponent } from './chamado/historico.component';
+import { NobreakComponent } from './nobreak/nobreak.component';
+import { CreateNobreakModalComponent } from './nobreak/modal/create.nobreak';
+import { EditNobreakModalComponent } from './nobreak/modal/edit.nobreak';
+import { DeleteNobreakModalComponent } from './nobreak/modal/delete.nobreak';
+import { PrintNobreakModalComponent } from './nobreak/modal/print-nobreak-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { HistoricoComponent } from './chamado/historico.component';
     EditChamadoModalComponent,
     DeleteChamadoModalComponent,
     ConcluirChamadoModalComponent,
-    HistoricoComponent
+    HistoricoComponent,
+    NobreakComponent,
+    CreateNobreakModalComponent,
+    EditNobreakModalComponent,
+    DeleteNobreakModalComponent,
+    PrintNobreakModalComponent
   ],
   imports: [
     BrowserModule,

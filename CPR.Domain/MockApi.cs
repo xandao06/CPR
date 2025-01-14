@@ -28,7 +28,8 @@
         public string Descricao { get; set; }
         public string Bateria { get; set; }
         public int QuantidadeBateria { get; set; }
-        public string Voltagem { get; set; }
+        public string VoltagemEntrada { get; set; }
+        public string VoltagemSaida { get; set; }
         public string Capacidade { get; set; }
         public string Funcao { get; set; }
         public string OrdemServico { get; set; }

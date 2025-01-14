@@ -8,10 +8,23 @@
     margin-bottom:4px;
 }
 
-.container{
-    padding:40px;
+.new_nobreak{
+    display:flex;
+    margin-bottom:4px;
+}
+
+.container_chamados{
     text-align:center;
     font-weight:700;
+    font-size:15px;
+    white-space:nowrap;
+}
+
+.container_nobreaks{
+    text-align:center;
+    font-weight:700;
+    margin-left:5px;
+    font-size:17px;
 }
 
 #chamados_btn{
@@ -22,6 +35,11 @@
     margin-left: 5px;
 }
 
+#nobreaks_btn {
+    margin-left: 5px;
+}
+
 #icon_opcoes{
     margin-left:4px;
+    cursor:pointer;
 }

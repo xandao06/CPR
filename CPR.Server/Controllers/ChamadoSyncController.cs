@@ -1,5 +1,4 @@
 ﻿using CPR.Application;
-using CPR.Application.Features.ChamadoSync.Commands;
 using CPR.Application.Features.ChamadoSync.Queries;
 using CPR.Domain;
 using MediatR;

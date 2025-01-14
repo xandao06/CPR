@@ -1,7 +1,7 @@
 ﻿using CPR.Domain;
 using MediatR;
 
-namespace CPR.Application.Features.ChamadoSync.Commands
+namespace CPR.Application.Features.ChamadoSync.Queries
 {
     public class SyncConcluirMockApiChamadoRequest : IRequest<Chamado>
     {

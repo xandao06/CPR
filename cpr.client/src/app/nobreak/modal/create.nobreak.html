@@ -1,0 +1,74 @@
+
+
+
+
+
+<div class="modal fade" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criar Novo Nobreak</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="nobreakForm" (ngSubmit)="submitNobreak()">
+          <div class="form-group">
+            <input id="dataTroca" formControlName="dataTroca" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataProximaTroca" formControlName="dataProximaTroca" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="numeroSerie" formControlName="numeroSerie" placeholder="Número de Série" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="marca" formControlName="marca" placeholder="Marca" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="modelo" formControlName="modelo" placeholder="Modelo" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="cliente" formControlName="cliente" placeholder="Cliente" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="descricao" formControlName="descricao" placeholder="Descrição" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="bateria" formControlName="bateria" placeholder="Bateria" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="quantidadeBateria" formControlName="quantidadeBateria" placeholder="Quantidade de Baterias" type="number" class="form-control" />
+          </div>
+          <div>
+            <label>Voltagem Entrada:</label>
+            <input id="voltagem_input_110v" formControlName="voltagemEntrada" value="110v" type="radio" class="form-check-input" />
+            <label id="voltagem_label_110v">110v:</label>
+            <input id="voltagem_input_220v" formControlName="voltagemEntrada" value="220v" type="radio" class="form-check-input" />
+            <label id="voltagem_label_220v">220v:</label>
+            <input id="voltagem_input_bivolt" formControlName="voltagemEntrada" value="Bivolt" type="radio" class="form-check-input" />
+            <label id="voltagem_label_bivolt">Bivolt:</label>
+          </div>
+          <div>
+            <label>Voltagem Saída:</label>
+            <input id="voltagem_input_110v" formControlName="voltagemSaida" value="110v" type="radio" class="form-check-input" />
+            <label id="voltagem_label_110v">110v:</label>
+            <input id="voltagem_input_220v" formControlName="voltagemSaida" value="220v" type="radio" class="form-check-input" />
+            <label id="voltagem_label_220v">220v:</label>
+            <input id="voltagem_input_bivolt" formControlName="voltagemSaida" value="Bivolt" type="radio" class="form-check-input" />
+            <label id="voltagem_label_bivolt">Bivolt:</label>
+          </div>
+          <div class="form-group">
+            <input id="capacidade" formControlName="capacidade" placeholder="Capacidade" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="funcao" formControlName="funcao" placeholder="Função" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="ordemServico" formControlName="ordemServico" placeholder="Ordem de Serviço" type="text" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-dark" [disabled]="nobreakForm.invalid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

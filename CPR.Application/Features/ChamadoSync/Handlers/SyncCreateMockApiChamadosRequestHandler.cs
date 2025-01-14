@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CPR.Application.Features.ChamadoSync.Commands;
+using CPR.Application.Features.ChamadoSync.Queries;
 using CPR.Domain;
 using CPR.Domain.Contracts.Client;
 using MediatR;

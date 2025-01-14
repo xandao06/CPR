@@ -1,0 +1,63 @@
+
+
+
+<create-nobreak-modal [nobreaks]="nobreaks" (create)="createNobreak($event)" #createModal></create-nobreak-modal>
+<edit-nobreak-modal (edit)="editNobreak($event)" #editModal></edit-nobreak-modal>
+<delete-nobreak-modal (delete)="deleteNobreak($event)" #deleteModal></delete-nobreak-modal>
+<!-- <print-nobreak-modal #printModal (close)="onModalClose()"></print-nobreak-modal>
+ -->
+
+<ng-container *ngIf="nobreaks">
+    <div class="container_nobreaks">
+        <h1>Nobreaks</h1>
+        <button class="new_nobreak btn btn-dark" (click)="createModal.openCreateModal()">Novo Nobreak</button>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Data da troca</th>
+                    <th>Data da próxima troca</th>
+                    <th>Cliente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Numero de série</th>
+                    <th>Voltagem Entrada/Saída</th>
+                    <th>Capacidade</th>
+                    <th>Modelo da Bateria</th>
+                    <th>Quantidade de baterias</th>
+                    <th>Função</th>
+                    <th>Ordem de serviço</th>
+                    <th>Descrição</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let nobreak of nobreaks">
+                    <td>{{ nobreak.dataTroca | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ nobreak.dataProximaTroca | date:'dd/MM/yyyy'}}</td>
+                    <td>{{ nobreak.cliente }}</td>
+                    <td>{{ nobreak.marca }}</td>
+                    <td>{{ nobreak.modelo }}</td>
+                    <td>{{ nobreak.numeroSerie }}</td>
+                    <td>{{ nobreak.voltagemEntrada }} / {{ nobreak.voltagemSaida }}</td>
+                    <td>{{ nobreak.capacidade }}</td>
+                    <td>{{ nobreak.bateria }}</td>
+                    <td>{{ nobreak.quantidadeBateria }}</td>
+                    <td>{{ nobreak.funcao }}</td>
+                    <td>{{ nobreak.ordemServico }}</td>
+                    <td>{{ nobreak.descricao }}</td>
+                    <td>
+                        <a (click)="editModal.openEditModal(nobreak)">
+                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a (click)="deleteModal.openDeleteModal(nobreak.id)">
+                            <i id="icon_opcoes" class="fa-solid fa-trash" ></i>
+                        </a>
+                        <!-- <a (click)="printNobreak(nobreak)">
+                            Imprimir
+                        </a> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
