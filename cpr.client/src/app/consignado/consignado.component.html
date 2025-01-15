@@ -1,0 +1,65 @@
+
+
+
+<create-consignado-modal (create)="createConsignado($event)" #createModal></create-consignado-modal>
+<edit-consignado-modal (edit)="editConsignado($event)" #editModal></edit-consignado-modal>
+<delete-consignado-modal (delete)="deleteConsignado($event)" #deleteModal></delete-consignado-modal>
+<concluir-consignado-modal (concluir)="concluirConsignado($event)" #concluirModal></concluir-consignado-modal>
+
+
+<ng-container *ngIf="equipamentos">
+    <div class="container_consignados">
+        <h1>Consignados</h1>
+        <button class="new_chamado btn btn-dark" (click)="createModal.openCreateModal()">Novo Consignado</button>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Cliente</th>
+                    <th>Contrato</th>
+                    <th>Numero de Série</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let equipamento of equipamentos">
+                    <td>{{ equipamento.data | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ equipamento.hora }}</td>
+                    <td>{{ equipamento.cliente }}</td>
+                    <td [ngClass]="equipamento.contrato === 'Sim' ? 'text-primary' : ''">{{ equipamento.contrato }}</td>
+                    <td>{{ equipamento.numeroSerie }}</td>
+                    <td>{{ equipamento.tipo }}</td>
+                    <td>{{ equipamento.marca }}</td>
+                    <td>{{ equipamento.modelo }}</td>
+                    <td>{{ equipamento.quantidade }}</td>
+                    <td>{{ equipamento.preco }}</td>
+                    <td>{{ equipamento.descricao }}</td>
+                    <td [ngClass]="{
+                'text-warning': equipamento.status === 'Emprestado',
+                'text-success': equipamento.status === 'Concluido'}">
+                        {{ equipamento.status }}
+                    </td>
+                    <td>
+                        <a (click)="editModal.openEditModal(equipamento)">
+                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a (click)="equipamento.status !== 'Concluido' && concluirModal.openConcluirModal(equipamento.id)">
+                            <i id="icon_opcoes" class="fa-regular fa-square-check" [ngClass]="{'disabled': equipamento.status === 'Concluido'}"></i>
+                        </a>
+                        <a (click)="deleteModal.openDeleteModal(equipamento.id)">
+                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>

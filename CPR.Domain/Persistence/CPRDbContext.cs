@@ -20,6 +20,7 @@ namespace CPR.Domain.Persistence
 
         public DbSet<Chamado> Chamados { get; set; }
         public DbSet<Nobreak> Nobreaks { get; set; }
+        public DbSet<Equipamento> Equipamentos { get; set; }
     }
 }
 

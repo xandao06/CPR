@@ -92,5 +92,42 @@ namespace CPR.Application.Clients
             return false;
         }
 
+
+        /////////////////
+
+
+        public async Task<List<Equipamento>> GetAsyncConsignado()
+        {
+            return await _dbContext.Equipamentos
+            .ToListAsync();
+        }
+        public async Task<Equipamento> CreateAsyncConsignado(Equipamento equipamento)
+        {
+            _dbContext.Equipamentos.Add(equipamento);
+            await _dbContext.SaveChangesAsync();
+            return equipamento;
+        }
+        public async Task<Equipamento> EditAsyncConsignado(Equipamento equipamento)
+        {
+            _dbContext.Equipamentos.Update(equipamento);
+            await _dbContext.SaveChangesAsync();
+            return equipamento;
+        }
+        public async Task<bool> DeleteAsyncConsignado(int id)
+        {
+            var equipamento = await _dbContext.Equipamentos.FindAsync(id);
+            if (equipamento != null)
+            {
+                _dbContext.Equipamentos.Remove(equipamento);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<Equipamento> GetByIdAsyncConsignado(int id)
+        {
+            return await _dbContext.Equipamentos.FindAsync(id);
+        }
     }
 }

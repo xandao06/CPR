@@ -5,6 +5,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using CPR.Domain.Persistence;
 using CPR.Application.Features.NobreakSync.Handlers;
+using CPR.Application.Features.ConsignadoSync.Handlers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiChamadosRequestHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiNobreaksRequestHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiConsignadosRequestHandler).Assembly));
 builder.Services.AddScoped<IMockApiClient, MockApiClient>();
 
 builder.Services.AddDbContext<CPRDbContext>(options =>

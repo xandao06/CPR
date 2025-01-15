@@ -20,7 +20,21 @@
     white-space:nowrap;
 }
 
+.container_consignados {
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
 .container_nobreaks{
+    text-align:center;
+    font-weight:700;
+    margin-left:5px;
+    font-size:17px;
+}
+
+.container_historico{
     text-align:center;
     font-weight:700;
     margin-left:5px;
@@ -42,4 +56,9 @@
 #icon_opcoes{
     margin-left:4px;
     cursor:pointer;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }

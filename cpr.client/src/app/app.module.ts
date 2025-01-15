@@ -15,6 +15,11 @@ import { CreateNobreakModalComponent } from './nobreak/modal/create.nobreak';
 import { EditNobreakModalComponent } from './nobreak/modal/edit.nobreak';
 import { DeleteNobreakModalComponent } from './nobreak/modal/delete.nobreak';
 import { PrintNobreakModalComponent } from './nobreak/modal/print-nobreak-modal.component';
+import { ConsignadoComponent } from './consignado/consignado.component';
+import { ConcluirConsignadoModalComponent } from './consignado/modal/concluir.consignado';
+import { CreateConsignadoModalComponent } from './consignado/modal/create.consignado';
+import { DeleteConsignadoModalComponent } from './consignado/modal/delete.consignado';
+import { EditConsignadoModalComponent } from './consignado/modal/edit.consignado';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,12 @@ import { PrintNobreakModalComponent } from './nobreak/modal/print-nobreak-modal.
     CreateNobreakModalComponent,
     EditNobreakModalComponent,
     DeleteNobreakModalComponent,
-    PrintNobreakModalComponent
+    PrintNobreakModalComponent,
+    ConsignadoComponent,
+    CreateConsignadoModalComponent,
+    EditConsignadoModalComponent,
+    DeleteConsignadoModalComponent,
+    ConcluirConsignadoModalComponent,
   ],
   imports: [
     BrowserModule,

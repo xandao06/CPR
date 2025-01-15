@@ -1,0 +1,57 @@
+
+
+
+
+
+<div class="modal fade" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criar Novo Consignado</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="consignadoForm" (ngSubmit)="submitConsignado()">
+          <div class="form-group">
+            <input id="data" formControlName="data" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="hora" formControlName="hora" type="time" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="cliente" formControlName="cliente" placeholder="Cliente" type="text" class="form-control" />
+          </div>
+          <div>
+            <label>Contrato:</label>
+            <input id="sim" formControlName="contrato" value="Sim" type="radio" class="form-check-input" />
+            <label id="contrato_label">Sim</label>
+            <input id="nao" formControlName="contrato" value="Não" type="radio" class="form-check-input" />
+            <label id="contrato_label">Não:</label>
+          </div>
+          <div class="form-group">
+            <input id="numeroSerie" formControlName="numeroSerie" placeholder="Numero de Série" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="tipo" formControlName="tipo" placeholder="Tipo" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="marca" formControlName="marca" placeholder="Marca" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="modelo" formControlName="modelo" placeholder="Modelo" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="quantidade" formControlName="quantidade" placeholder="Quantidade" type="number" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="preco" formControlName="preco" placeholder="Preço" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="descricao" formControlName="descricao" placeholder="Descrição" type="text" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-dark" [disabled]="consignadoForm.invalid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

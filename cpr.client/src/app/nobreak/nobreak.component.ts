@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { PrintNobreakModalComponent } from './modal/print-nobreak-modal.component';
+//import { PrintNobreakModalComponent } from './modal/print-nobreak-modal.component';
 
 
 export interface Nobreak {
@@ -56,7 +56,6 @@ export class NobreakComponent implements OnInit {
 
   async ngOnInit() {
     await this.getNobreaks();
-  //  this.sortChamados('data');
   }
 
   async getNobreaks() {
@@ -66,7 +65,6 @@ export class NobreakComponent implements OnInit {
       )
     );
     this.nobreaks = result;
-  //  this.sortChamados(this.sortColumn || 'data');
   }
 
   async createNobreak(nobreak: Nobreak) {
@@ -74,7 +72,6 @@ export class NobreakComponent implements OnInit {
     if (newNobreak) {
       this.nobreaks.push(newNobreak);
       await this.getNobreaks();
-    //  this.sortChamados(this.sortColumn || 'data');
     }
   }
 
@@ -84,7 +81,6 @@ export class NobreakComponent implements OnInit {
     );
     if (updatedNobreak) {
       await this.getNobreaks();
-    //  this.sortChamados(this.sortColumn || 'data');
     }
   }
 
@@ -94,63 +90,17 @@ export class NobreakComponent implements OnInit {
       );
       if (deleted) {
         await this.getNobreaks();
-      //  this.sortChamados(this.sortColumn || 'data');
       }
   }
 
-  @ViewChild('printModal') printModal!: PrintNobreakModalComponent;
+  //@ViewChild('printModal') printModal!: PrintNobreakModalComponent;
 
-  printNobreak(nobreak: Nobreak) {
-    this.printModal.openPrintModal(nobreak);
-  }
-
-  onModalClose() {
-    console.log('Modal fechado');
-  }
-
-
-  //sortColumn: keyof Chamado | '' = ''; 
-  //sortDirection: 'asc' | 'desc' = 'asc'; 
-
-  //sortChamados(column: keyof Chamado) {
-  //  if (this.sortColumn === column) {
-  //    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-  //  } else {
-  //    this.sortColumn = column;
-  //    this.sortDirection = 'asc';
-  //  }
-
-  //  this.chamados.sort((a, b) => {
-  //    if (a.status === 'Pendente' && b.status !== 'Pendente') return -1;
-  //    if (a.status !== 'Pendente' && b.status === 'Pendente') return 1;
-
-  //    let valueA = a[column];
-  //    let valueB = b[column];
-
-  //    if (column === 'data') {
-  //      valueA = new Date(valueA).getTime();
-  //      valueB = new Date(valueB).getTime();
-  //    }
-
-  //    if (column === 'urgencia') {
-  //      const prioridade = ['Alta', 'Média', 'Baixa'];
-  //      valueA = prioridade.indexOf(valueA as string);
-  //      valueB = prioridade.indexOf(valueB as string);
-  //    }
-
-  //    if (typeof valueA === 'string' && typeof valueB === 'string') {
-  //      return this.sortDirection === 'asc'
-  //        ? valueA.localeCompare(valueB)
-  //        : valueB.localeCompare(valueA);
-  //    }
-
-  //    if (typeof valueA === 'number' && typeof valueB === 'number') {
-  //      return this.sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
-  //    }
-
-  //    return 0;
-  //  });
+  //printNobreak(nobreak: Nobreak) {
+  //  this.printModal.openPrintModal(nobreak);
   //}
 
+  //onModalClose() {
+  //  console.log('Modal fechado');
+  //}
 }
 

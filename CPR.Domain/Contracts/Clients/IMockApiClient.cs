@@ -15,6 +15,13 @@ namespace CPR.Domain.Contracts.Client
         Task<Nobreak> CreateAsyncNobreak(Nobreak nobreak);
         Task<Nobreak> EditAsyncNobreak(Nobreak nobreak);
         Task<bool> DeleteAsyncNobreak(int id);
+        
+        
+        Task<List<Equipamento>> GetAsyncConsignado();
+        Task<Equipamento> CreateAsyncConsignado(Equipamento equipamento);
+        Task<Equipamento> EditAsyncConsignado(Equipamento equipamento);
+        Task<bool> DeleteAsyncConsignado(int id);
+        Task<Equipamento> GetByIdAsyncConsignado(int id);
 
     }
 }

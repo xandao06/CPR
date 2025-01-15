@@ -1,0 +1,75 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  padding-top: 60px;
+  font-weight:400;
+}
+
+  .modal.show {
+    display: block;
+  }
+
+#sim {
+  margin-left: 58px;
+  margin-top: 7px;
+}
+
+#nao {
+  margin-left: 65px;
+  margin-top: 7px;
+}
+
+#baixa{
+    margin-left: 68px;
+    margin-top: 7px;
+}
+
+#media{
+    margin-left: 75px;
+    margin-top: 7px;
+}
+
+#alta{
+    margin-left: 58px;
+    margin-top: 7px;
+}
+
+#contrato_label, #urgencia_label{
+    margin-left:25px;
+}
+
+.modal-content {
+  background-color: #fff;
+  border: 1px solid #888;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background: none;
+}
+
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+
+  .concluir_btn{
+      margin-right:4px;
+  }
+
+  .delete_btn{
+      margin-right:4px;
+  }
