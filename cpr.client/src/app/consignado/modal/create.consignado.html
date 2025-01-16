@@ -24,9 +24,9 @@
           <div>
             <label>Contrato:</label>
             <input id="sim" formControlName="contrato" value="Sim" type="radio" class="form-check-input" />
-            <label id="contrato_label">Sim</label>
+            <label id="contrato_label_sim">Sim:</label>
             <input id="nao" formControlName="contrato" value="Não" type="radio" class="form-check-input" />
-            <label id="contrato_label">Não:</label>
+            <label id="contrato_label_nao">Não:</label>
           </div>
           <div class="form-group">
             <input id="numeroSerie" formControlName="numeroSerie" placeholder="Numero de Série" type="text" class="form-control" />
@@ -44,7 +44,8 @@
             <input id="quantidade" formControlName="quantidade" placeholder="Quantidade" type="number" class="form-control" />
           </div>
           <div class="form-group">
-            <input id="preco" formControlName="preco" placeholder="Preço" type="text" class="form-control" />
+            <input id="preco" formControlName="preco" placeholder="Preço" type="text" class="form-control" (blur)="formatCurrency()" 
+         (input)="onPriceInput()" />
           </div>
           <div class="form-group">
             <input id="descricao" formControlName="descricao" placeholder="Descrição" type="text" class="form-control" />

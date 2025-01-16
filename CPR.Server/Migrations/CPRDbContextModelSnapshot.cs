@@ -94,11 +94,11 @@ namespace CPR.Server.Migrations
                     b.Property<string>("NumeroSerie")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Quantidade")
+                    b.Property<string>("Preco")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");

@@ -12,7 +12,7 @@ namespace CPR.Server.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Chamados",
+                name: "Equipamentos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -22,13 +22,17 @@ namespace CPR.Server.Migrations
                     Cliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Contrato = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Urgencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Opcoes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    NumeroSerie = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Modelo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chamados", x => x.Id);
+                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
                 });
         }
 
@@ -37,6 +41,12 @@ namespace CPR.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Chamados");
+
+            migrationBuilder.DropTable(
+                name: "Equipamentos");
+
+            migrationBuilder.DropTable(
+                name: "Nobreaks");
         }
     }
 }

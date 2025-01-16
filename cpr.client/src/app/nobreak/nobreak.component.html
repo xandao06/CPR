@@ -31,7 +31,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let nobreak of nobreaks">
+                <tr *ngFor="let nobreak of nobreaks"
+                    [ngClass]="{'alert-today': (nobreak.dataProximaTroca | date:'yyyy-MM-dd') === today}">
                     <td>{{ nobreak.dataTroca | date:'dd/MM/yyyy' }}</td>
                     <td>{{ nobreak.dataProximaTroca | date:'dd/MM/yyyy'}}</td>
                     <td>{{ nobreak.cliente }}</td>
@@ -50,11 +51,8 @@
                             <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
                         </a>
                         <a (click)="deleteModal.openDeleteModal(nobreak.id)">
-                            <i id="icon_opcoes" class="fa-solid fa-trash" ></i>
+                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
                         </a>
-                        <!-- <a (click)="printNobreak(nobreak)">
-                            Imprimir
-                        </a> -->
                     </td>
                 </tr>
             </tbody>

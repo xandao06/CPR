@@ -9,7 +9,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   padding-top: 60px;
-  font-weight:400;
+  font-weight:700;
 }
 
   .modal.show {
@@ -17,13 +17,11 @@
   }
 
 #sim {
-  margin-left: 58px;
-  margin-top: 7px;
+    margin-left: 52px;
 }
 
 #nao {
-  margin-left: 65px;
-  margin-top: 7px;
+  margin-left: 92px;
 }
 
 #baixa{
@@ -41,8 +39,16 @@
     margin-top: 7px;
 }
 
-#contrato_label, #urgencia_label{
-    margin-left:25px;
+#contrato_label_sim{
+    margin-left:10px;
+    font-size:18px;
+    font-weight:700;
+}
+
+#contrato_label_nao{
+    margin-left:45px;
+    font-size:18px;
+    font-weight:700;
 }
 
 .modal-content {
@@ -73,3 +79,29 @@
   .delete_btn{
       margin-right:4px;
   }
+
+
+.form-check-input {
+  display: inline-block;
+  width: 24px; 
+  height: 24px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+  
+  .form-check-input::after {
+    content: '';
+    width: 12px; 
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; 
+    transition: opacity 0.2s;
+  }
+
+.form-control {
+  font-weight: 500;
+}

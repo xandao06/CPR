@@ -1,23 +1,23 @@
 :host {
-    max-width: 1280px;
-    padding: 2rem;
+  max-width: 1280px;
+  padding: 2rem;
 }
 
-.new_chamado{
-    display:flex;
-    margin-bottom:4px;
+.new_chamado {
+  display: flex;
+  margin-bottom: 4px;
 }
 
-.new_nobreak{
-    display:flex;
-    margin-bottom:4px;
+.new_nobreak {
+  display: flex;
+  margin-bottom: 4px;
 }
 
-.container_chamados{
-    text-align:center;
-    font-weight:700;
-    font-size:15px;
-    white-space:nowrap;
+.container_chamados {
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 .container_consignados {
@@ -27,38 +27,108 @@
   white-space: nowrap;
 }
 
-.container_nobreaks{
-    text-align:center;
-    font-weight:700;
-    margin-left:5px;
-    font-size:17px;
+.container_nobreaks {
+  text-align: center;
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 17px;
 }
 
-.container_historico{
-    text-align:center;
-    font-weight:700;
-    margin-left:5px;
-    font-size:17px;
+.container_historico {
+  text-align: center;
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 17px;
 }
 
-#chamados_btn{
-    margin-left: 20px;
+#chamados_btn {
+  margin-left: 20px;
 }
 
 #historico_btn {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 #nobreaks_btn {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
-#icon_opcoes{
-    margin-left:4px;
-    cursor:pointer;
+#icon_opcoes {
+  margin-left: 4px;
+  cursor: pointer;
 }
 
 .disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.alert-today {
+  background-color: #fff3cd;
+  color: #856404;
+  font-weight: bold;
+}
+
+@media print {
+  #print-layout {
+    font-family: Arial, sans-serif;
+    font-size: 18px; /* Aumente o tamanho da fonte */
+    line-height: 1.8; /* Ajuste o espaçamento entre linhas */
+    margin: 40px; /* Reduza ou aumente as margens conforme necessário */
+  }
+
+  #cabecalho {
+    text-align: center;
+    margin-bottom: 60px; /* Aumente o espaço abaixo do cabeçalho */
+  }
+
+    #cabecalho img {
+      float: left;
+      width: 120px; /* Aumente o tamanho da imagem */
+      margin-bottom: 20px;
+    }
+
+    #cabecalho h2 {
+      font-size: 35px; /* Aumente o tamanho do título */
+      margin: 0;
+      margin-right: 160px;
+    }
+
+    #cabecalho h3 {
+      font-size: 30px; /* Aumente o tamanho do subtítulo */
+      margin-top: 15px;
+      margin-right: 160px;
+    }
+
+  #corpo {
+    margin: 30px 0; /* Aumente o espaçamento entre as seções */
+  }
+
+    #corpo h4 {
+        font-size:28px;
+        margin-bottom:10px;
+    }
+
+    #corpo table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+      #corpo table td {
+        border: 1px solid black;
+        padding: 10px; /* Aumente o espaçamento dentro das células */
+        font-size: 23px; /* Ajuste o tamanho do texto */
+      }
+
+  #rodape {
+    margin-top: 70px; /* Aumente o espaço entre o conteúdo e o rodapé */
+    text-align: center;
+  }
+
+    #rodape p {
+      margin: 10px 0;
+      font-size: 23px;
+      font-weight: bold;
+    }
 }

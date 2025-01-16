@@ -27,18 +27,18 @@
           <div>
             <label>Contrato:</label>
             <input id="sim" formControlName="contrato" value="Sim" type="radio" class="form-check-input" />
-            <label id="contrato_label">Sim</label>
+            <label id="contrato_label_sim">Sim:</label>
             <input id="nao" formControlName="contrato" value="Não" type="radio" class="form-check-input" />
-            <label id="contrato_label">Não:</label>
+            <label id="contrato_label_nao">Não:</label>
           </div>
           <div>
             <label>Urgência</label>
             <input id="baixa" formControlName="urgencia" value="Baixa" type="radio" class="form-check-input" />
-            <label id="urgencia_label">Baixa</label>
+            <label id="urgencia_label_baixa">Baixa:</label>
             <input id="media" formControlName="urgencia" value="Média" type="radio" class="form-check-input" />
-            <label id="urgencia_label">Média</label>
+            <label id="urgencia_label_media">Média:</label>
             <input id="alta" formControlName="urgencia" value="Alta" type="radio" class="form-check-input" />
-            <label id="urgencia_label">Alta</label>
+            <label id="urgencia_label_alta">Alta:</label>
           </div>
           <button type="submit" class="btn btn-dark" [disabled]="chamadoForm.invalid">Salvar</button>
         </form>

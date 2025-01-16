@@ -49,8 +49,8 @@
         public string NumeroSerie { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        public decimal Preco { get; set; }
-        public string Quantidade { get; set; }
+        public string Preco { get; set; }
+        public int Quantidade { get; set; }
         public string Tipo { get; set; }
     }
 }

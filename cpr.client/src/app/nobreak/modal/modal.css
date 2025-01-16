@@ -9,7 +9,11 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   padding-top: 60px;
-  font-weight:400;
+  font-weight:700;
+}
+
+.form-control {
+  font-weight: 500;
 }
 
   .modal.show {
@@ -17,30 +21,30 @@
   }
 
 #voltagem_input_110v {
-  margin-left: 60px;
-  margin-top: 7px;
+  margin-left: 56px;
 }
 
 #voltagem_input_220v {
-  margin-left: 75px;
-  margin-top: 7px;
+  margin-left: 80px;
 }
 
 #voltagem_input_bivolt {
-  margin-left: 85px;
-  margin-top: 7px;
+  margin-left: 91px;
 }
 
 #voltagem_label_110v{
-    margin-left:15px;
+    margin-left:10px;
+    font-weight:700;
 }
 
-#voltagem_label_220v{
-    margin-left:30px;
+#voltagem_label_220v {
+  margin-left: 35px;
+  font-weight: 700;
 }
 
 #voltagem_label_bivolt {
-  margin-left: 32px;
+  margin-left: 38px;
+  font-weight: 700;
 }
 
 .modal-content {
@@ -72,44 +76,24 @@
       margin-right:4px;
   }
 
-/*@media print {
-  body {
-    margin: 0;
-    padding: 0;
-    width: 80mm;
-    height: 42mm;
-    overflow: hidden;
+.form-check-input {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+  .form-check-input::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
   }
-
-  .modal-content {
-    width: 80mm;
-    height: 42mm;
-    border: none;
-    margin: 0;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .modal-header, .modal-footer {
-    display: none;*/ /* Oculta o cabeçalho e rodapé do modal durante a impressão */
-  /*}
-
-  .modal-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  .print-layout {
-    width: 100%;
-    height: 100%;
-  }
-
-  button {
-    display: none;*/ /* Oculta botões na hora da impressão */
-  /*}
-}*/
 

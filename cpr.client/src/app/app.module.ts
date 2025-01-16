@@ -20,6 +20,7 @@ import { ConcluirConsignadoModalComponent } from './consignado/modal/concluir.co
 import { CreateConsignadoModalComponent } from './consignado/modal/create.consignado';
 import { DeleteConsignadoModalComponent } from './consignado/modal/delete.consignado';
 import { EditConsignadoModalComponent } from './consignado/modal/edit.consignado';
+import { PrintLayoutComponent } from './consignado/print_layout';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EditConsignadoModalComponent } from './consignado/modal/edit.consignado
     EditConsignadoModalComponent,
     DeleteConsignadoModalComponent,
     ConcluirConsignadoModalComponent,
+    PrintLayoutComponent
   ],
   imports: [
     BrowserModule,

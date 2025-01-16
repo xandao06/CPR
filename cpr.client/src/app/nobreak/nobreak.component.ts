@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-//import { PrintNobreakModalComponent } from './modal/print-nobreak-modal.component';
 
 
 export interface Nobreak {
@@ -34,6 +33,7 @@ export interface Nobreak {
 export class NobreakComponent implements OnInit {
   public nobreaks: Nobreak[] = [];
   public nobreakForm: FormGroup;
+  public today: string = '';
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.nobreakForm = this.fb.group({
@@ -54,9 +54,19 @@ export class NobreakComponent implements OnInit {
     });
   }
 
+  
+
   async ngOnInit() {
+    this.today = new Date().toISOString().split('T')[0];
     await this.getNobreaks();
+    this.checkProximaTroca();
+
+    setInterval(() => {
+      this.checkProximaTroca();
+    }, 3600000); 
   }
+
+
 
   async getNobreaks() {
     const result = await lastValueFrom(
@@ -65,6 +75,7 @@ export class NobreakComponent implements OnInit {
       )
     );
     this.nobreaks = result;
+    this.checkProximaTroca();
   }
 
   async createNobreak(nobreak: Nobreak) {
@@ -93,14 +104,24 @@ export class NobreakComponent implements OnInit {
       }
   }
 
-  //@ViewChild('printModal') printModal!: PrintNobreakModalComponent;
+  checkProximaTroca() {
+    const today = new Date().setHours(0, 0, 0, 0);
+    const lastAlertTime = localStorage.getItem('lastAlertTime'); 
 
-  //printNobreak(nobreak: Nobreak) {
-  //  this.printModal.openPrintModal(nobreak);
-  //}
+    const now = Date.now();
+    if (lastAlertTime && now - parseInt(lastAlertTime, 10) < 3600000) {
+      return; 
+    }
 
-  //onModalClose() {
-  //  console.log('Modal fechado');
-  //}
+    this.nobreaks.forEach((nobreak) => {
+      const proximaTroca = new Date(nobreak.dataProximaTroca).setHours(0, 0, 0, 0);
+      if (proximaTroca === today) {
+        alert(`O nobreak ${nobreak.modelo} do cliente ${nobreak.cliente} está com a troca agendada para hoje!`);
+        localStorage.setItem('lastAlertTime', now.toString());
+      }
+    });
+  }
+
+  
 }
 

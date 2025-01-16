@@ -93,6 +93,8 @@ export class ConsignadoComponent implements OnInit {
       this.equipamentos = this.equipamentos.filter(c => c.id !== id);
       await this.getConsignados();
       }
-    }
+  }
+
+
 }
 

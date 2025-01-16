@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateConsignadoModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
-  @Output() create = new EventEmitter<any>(); 
+  @Output() create = new EventEmitter<any>();
   public consignadoForm: FormGroup;
   public showModal: boolean = false;
 
@@ -45,8 +45,8 @@ export class CreateConsignadoModalComponent implements OnInit {
 
   async submitConsignado() {
     const consignadoData = this.consignadoForm.value;
-    this.create.emit(consignadoData); 
-      this.closeModal(); 
+    this.create.emit(consignadoData);
+    this.closeModal();
   }
 
   private resetForm() {
@@ -70,5 +70,40 @@ export class CreateConsignadoModalComponent implements OnInit {
     });
   }
 
+  formatCurrency() {
+    let preco = this.consignadoForm.get('preco')?.value;
+
+    if (preco !== null && preco !== undefined) {
+      preco = preco.toString().replace(/\D/g, '');
+      const numericValue = parseFloat(preco) / 100;
+
+      if (!isNaN(numericValue)) {
+        this.consignadoForm.patchValue({
+          preco: numericValue.toFixed(2) 
+        });
+
+        (document.getElementById('preco') as HTMLInputElement).value =
+          numericValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      }
+    }
   }
+
+  onPriceInput() {
+    let preco = this.consignadoForm.get('preco')?.value || '';
+    preco = preco.replace(/\D/g, '');
+
+    const numericValue = parseFloat(preco) / 100;
+
+    if (!isNaN(numericValue)) {
+      const formattedValue = numericValue.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+
+      this.consignadoForm.patchValue({ preco: formattedValue }, { emitEvent: false });
+    }
+  }
+
+
+}
 
