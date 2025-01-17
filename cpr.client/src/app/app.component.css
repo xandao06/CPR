@@ -16,29 +16,33 @@
 .container_chamados {
   text-align: center;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   white-space: nowrap;
+  margin-top:50px;
 }
 
 .container_consignados {
   text-align: center;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   white-space: nowrap;
+  margin-top: 50px;
 }
 
 .container_nobreaks {
   text-align: center;
   font-weight: 700;
   margin-left: 5px;
-  font-size: 17px;
+  font-size: 18px;
+  margin-top: 50px;
 }
 
 .container_historico {
   text-align: center;
   font-weight: 700;
   margin-left: 5px;
-  font-size: 17px;
+  font-size: 18px;
+  margin-top: 50px;
 }
 
 #chamados_btn {
@@ -117,12 +121,12 @@
 
       #corpo table td {
         border: 1px solid black;
-        padding: 10px; /* Aumente o espaçamento dentro das células */
-        font-size: 23px; /* Ajuste o tamanho do texto */
+        padding: 10px; 
+        font-size: 23px;
       }
 
   #rodape {
-    margin-top: 70px; /* Aumente o espaço entre o conteúdo e o rodapé */
+    margin-top: 70px; 
     text-align: center;
   }
 
@@ -131,4 +135,12 @@
       font-size: 23px;
       font-weight: bold;
     }
+}
+
+.navbar-nav {
+  font-size: 24px;
+}
+
+.hidden {
+  display: none; 
 }

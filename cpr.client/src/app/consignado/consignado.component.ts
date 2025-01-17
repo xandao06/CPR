@@ -28,6 +28,7 @@ export interface Equipamento {
 export class ConsignadoComponent implements OnInit {
   public equipamentos: Equipamento[] = [];
   public equipamentoForm: FormGroup;
+  public filteredEquipamentos: Equipamento[] = [];
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.equipamentoForm = this.fb.group({
@@ -48,6 +49,7 @@ export class ConsignadoComponent implements OnInit {
 
   async ngOnInit() {
     await this.getConsignados();
+    this.filteredEquipamentos = [...this.equipamentos];
   }
 
   async getConsignados() {
@@ -57,6 +59,7 @@ export class ConsignadoComponent implements OnInit {
       )
     );
     this.equipamentos = result;
+    this.filteredEquipamentos = [...this.equipamentos];
   }
 
   async createConsignado(equipamento: Equipamento) {
@@ -95,6 +98,27 @@ export class ConsignadoComponent implements OnInit {
       }
   }
 
+  onSearchInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement && inputElement.value !== undefined) {
+      this.filterConsignados(inputElement.value);
+    }
+  }
+
+  filterConsignados(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+    this.filteredEquipamentos = this.equipamentos.filter(equipamentos =>
+      equipamentos.cliente.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.descricao.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.status.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.numeroSerie.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.tipo.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.marca.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.modelo.toLowerCase().includes(lowerCaseSearchTerm) ||
+      equipamentos.contrato.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }
 
 }
 

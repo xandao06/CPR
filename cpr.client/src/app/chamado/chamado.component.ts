@@ -24,6 +24,7 @@ export interface Chamado {
 export class ChamadoComponent implements OnInit {
   public chamados: Chamado[] = [];
   public chamadoForm: FormGroup;
+  public filteredChamados: Chamado[] = [];
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.chamadoForm = this.fb.group({
@@ -40,6 +41,7 @@ export class ChamadoComponent implements OnInit {
 
   async ngOnInit() {
     await this.getChamados();
+    this.filteredChamados = [...this.chamados];
     this.sortChamados('data');
   }
 
@@ -50,6 +52,7 @@ export class ChamadoComponent implements OnInit {
       )
     );
     this.chamados = result;
+    this.filteredChamados = [...this.chamados];
     this.sortChamados(this.sortColumn || 'data');
   }
 
@@ -88,6 +91,7 @@ export class ChamadoComponent implements OnInit {
       );
       if (concludedChamado) {
         this.chamados = this.chamados.filter(c => c.id !== id);
+        this.filteredChamados = [...this.chamados];
       }
     }
 
@@ -102,7 +106,7 @@ export class ChamadoComponent implements OnInit {
       this.sortDirection = 'asc';
     }
 
-    this.chamados.sort((a, b) => {
+    this.filteredChamados.sort((a, b) => {
       if (a.status === 'Pendente' && b.status !== 'Pendente') return -1;
       if (a.status !== 'Pendente' && b.status === 'Pendente') return 1;
 
@@ -132,6 +136,26 @@ export class ChamadoComponent implements OnInit {
 
       return 0;
     });
+  }
+
+  onSearchInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement && inputElement.value !== undefined) {
+      this.filterChamados(inputElement.value); // Chama a filtragem
+    }
+  }
+
+  filterChamados(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase(); // Convertendo o termo para minúsculas
+
+    this.filteredChamados = this.chamados.filter(chamado =>
+      chamado.cliente.toLowerCase().includes(lowerCaseSearchTerm) ||
+      chamado.descricao.toLowerCase().includes(lowerCaseSearchTerm) ||
+      chamado.status.toLowerCase().includes(lowerCaseSearchTerm) ||
+      chamado.urgencia.toLowerCase().includes(lowerCaseSearchTerm) ||
+      chamado.contrato.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+    this.sortChamados(this.sortColumn || 'data');
   }
 
 }

@@ -4,15 +4,20 @@
 <create-nobreak-modal [nobreaks]="nobreaks" (create)="createNobreak($event)" #createModal></create-nobreak-modal>
 <edit-nobreak-modal (edit)="editNobreak($event)" #editModal></edit-nobreak-modal>
 <delete-nobreak-modal (delete)="deleteNobreak($event)" #deleteModal></delete-nobreak-modal>
-<!-- <print-nobreak-modal #printModal (close)="onModalClose()"></print-nobreak-modal>
- -->
 
 <ng-container *ngIf="nobreaks">
     <div class="container_nobreaks">
-        <h1>Nobreaks</h1>
-        <button class="new_nobreak btn btn-dark" (click)="createModal.openCreateModal()">Novo Nobreak</button>
-        <table class="table table-hover table-bordered">
-            <thead>
+        <h1 style="margin-bottom:30px">Nobreaks</h1>
+        
+        <div style="justify-content:space-between; display:flex;">
+            <button class="new_nobreak btn btn-dark" (click)="createModal.openCreateModal()">Novo Nobreak</button>
+            <div class="d-flex">
+                <input (input)="onSearchInput($event)" style="width:250px;" class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
+                <button style="margin-left:5px;margin-bottom:6px;" class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
                 <tr>
                     <th>Data da troca</th>
                     <th>Data da próxima troca</th>
@@ -31,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let nobreak of nobreaks"
+                <tr *ngFor="let nobreak of filteredNobreaks"
                     [ngClass]="{'alert-today': (nobreak.dataProximaTroca | date:'yyyy-MM-dd') === today}">
                     <td>{{ nobreak.dataTroca | date:'dd/MM/yyyy' }}</td>
                     <td>{{ nobreak.dataProximaTroca | date:'dd/MM/yyyy'}}</td>

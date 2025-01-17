@@ -9,10 +9,16 @@
 
 <ng-container *ngIf="chamados">
     <div class="container_chamados">
-        <h1>Chamados</h1>
-        <button class="new_chamado btn btn-dark" (click)="createModal.openCreateModal()">Novo Chamado</button>
-        <table class="table table-hover table-bordered">
-            <thead>
+        <h1 style="margin-bottom:30px">Chamados</h1>
+        <div style="justify-content:space-between; display:flex;">
+            <button class="new_chamado btn btn-dark" (click)="createModal.openCreateModal()">Novo Chamado</button>
+            <div class="d-flex">
+                <input (input)="onSearchInput($event)" style="width:250px;" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                <button style="margin-left:5px; margin-bottom:6px;" class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
                 <tr>
                     <th (click)="sortChamados('data')">Data</th>
                     <th>Hora</th>
@@ -25,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let chamado of chamados">
+                <tr *ngFor="let chamado of filteredChamados">
                     <td>{{ chamado.data | date:'dd/MM/yyyy' }}</td>
                     <td>{{ chamado.hora }}</td>
                     <td>{{ chamado.cliente }}</td>
@@ -51,7 +57,7 @@
                             <i id="icon_opcoes" class="fa-regular fa-square-check"></i>
                         </a>
                         <a (click)="deleteModal.openDeleteModal(chamado.id)">
-                            <i id="icon_opcoes" class="fa-solid fa-trash" ></i>
+                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
                         </a>
                     </td>
                 </tr>

@@ -9,10 +9,16 @@
 
 <ng-container *ngIf="equipamentos">
     <div class="container_consignados">
-        <h1>Consignados</h1>
-        <button class="new_chamado btn btn-dark" (click)="createModal.openCreateModal()">Novo Consignado</button>
-        <table class="table table-hover table-bordered">
-            <thead>
+        <h1 style="margin-bottom:30px">Consignados</h1>
+        <div style="justify-content:space-between; display:flex;">
+            <button class="new_chamado btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Consignado</button>
+            <div class="d-flex" style="position:relative;">
+                <input (input)="onSearchInput($event)" style="width:250px;" class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
+                <button style="margin-left:5px;margin-bottom:6px;" class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
                 <tr>
                     <th>Data</th>
                     <th>Hora</th>
@@ -30,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let equipamento of equipamentos">
+                <tr *ngFor="let equipamento of filteredEquipamentos">
                     <td>{{ equipamento.data | date:'dd/MM/yyyy' }}</td>
                     <td>{{ equipamento.hora }}</td>
                     <td>{{ equipamento.cliente }}</td>
@@ -57,7 +63,7 @@
                         <a (click)="deleteModal.openDeleteModal(equipamento.id)">
                             <i id="icon_opcoes" class="fa-solid fa-trash"></i>
                         </a>
-                        <div style="visibility: hidden; position: absolute;">
+                        <div class="hidden">
                             <app-print-layout [equipamento]="equipamento" #printComponent></app-print-layout>
                         </div>
                         <a (click)="printComponent.printEquipamento(equipamento)">

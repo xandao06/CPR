@@ -53,4 +53,27 @@
         public int Quantidade { get; set; }
         public string Tipo { get; set; }
     }
+
+
+    public class Veiculo
+    {
+        public int Id { get; set; }
+        public DateTime Data { get; set; } = DateTime.Now;
+        public DateTime DataUltimaRevisao { get; set; } = DateTime.Now;
+        public DateTime DataUltimoAbastecimento { get; set; } = DateTime.Now;
+        public DateTime DataUltimaTrocaOleo { get; set; } = DateTime.Now;
+        public DateTime DataUltimaCalibragem { get; set; } = DateTime.Now;
+        public int QuilometrosRodados { get; set; }
+        public int QuilometrosProximaTrocaOleo { get; set; }
+        public DateTime DataUltimoBalanceamento { get; set; } = DateTime.Now;
+        public string PecasJaTrocadas { get; set; }
+        public string PecasParaTrocar { get; set; }
+        public DateTime DataTrocaPeca { get; set; } = DateTime.Now;
+        public string Modelo { get; set; }
+        public decimal PrecoEtanol { get; set; }
+        public decimal PrecoGasolina { get; set; }
+        public string Placa { get; set; }
+        public string Observacao { get; set; }
+        public string ProblemasObservados { get; set; }
+    }
 }

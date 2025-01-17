@@ -34,6 +34,7 @@ export class NobreakComponent implements OnInit {
   public nobreaks: Nobreak[] = [];
   public nobreakForm: FormGroup;
   public today: string = '';
+  public filteredNobreaks: Nobreak[] = [];
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.nobreakForm = this.fb.group({
@@ -59,6 +60,8 @@ export class NobreakComponent implements OnInit {
   async ngOnInit() {
     this.today = new Date().toISOString().split('T')[0];
     await this.getNobreaks();
+    this.filteredNobreaks = [...this.nobreaks];
+
     this.checkProximaTroca();
 
     setInterval(() => {
@@ -75,6 +78,7 @@ export class NobreakComponent implements OnInit {
       )
     );
     this.nobreaks = result;
+    this.filteredNobreaks = [...this.nobreaks];
     this.checkProximaTroca();
   }
 
@@ -122,6 +126,29 @@ export class NobreakComponent implements OnInit {
     });
   }
 
+  onSearchInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement && inputElement.value !== undefined) {
+      this.filterNobreaks(inputElement.value);
+    }
+  }
+
+  filterNobreaks(searchTerm: string) {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+    this.filteredNobreaks = this.nobreaks.filter(nobreaks =>
+      nobreaks.cliente.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.descricao.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.numeroSerie.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.voltagemEntrada.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.voltagemSaida.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.marca.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.modelo.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.capacidade.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.funcao.toLowerCase().includes(lowerCaseSearchTerm) ||
+      nobreaks.ordemServico.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }
   
 }
 
