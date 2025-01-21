@@ -1,0 +1,59 @@
+
+
+
+
+
+<div class="modal fade" [ngClass]="{'show': showModal}" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Criar Novo Registro</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="veiculoForm" (ngSubmit)="submitVeiculo()">
+          <div class="form-group">
+            <input id="dataUltimaRevisao" formControlName="dataUltimaRevisao" placeholder="Data da última revisão" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="combustivel" formControlName="combustivel" placeholder="Combustivel Utilizado" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="mediaPorLitro" formControlName="mediaPorLitro" placeholder="Média por litro" type="number" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataUltimoAbastecimento" formControlName="dataUltimoAbastecimento" placeholder="Data do último abastecimento" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataUltimaTrocaOleo" formControlName="dataUltimaTrocaOleo" placeholder="Data da última troca de óleo" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataUltimaCalibragem" formControlName="dataUltimaCalibragem" placeholder="Data da última calibragem" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataUltimoBalanceamento" formControlName="dataUltimoBalanceamento" placeholder="Data do ultimo balanceamento" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="pecasJaTrocadas" formControlName="pecasJaTrocadas" placeholder="Peças trocadas" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="dataTrocaPeca" formControlName="dataTrocaPeca" placeholder="Data da peça trocada" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="pecasParaTrocar" formControlName="pecasParaTrocar" placeholder="Peça que falta trocar" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="precoEtanol" formControlName="precoEtanol" placeholder="Preço do Etanol" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="precoGasolina" formControlName="precoGasolina" placeholder="Preço da gasolina" type="number" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="problemasObservados" formControlName="problemasObservados" placeholder="Problemas observados" type="text" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-dark" [disabled]="veiculoForm.invalid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

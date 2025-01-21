@@ -1,0 +1,43 @@
+
+
+
+<create-veiculo-modal (create)="createVeiculo($event)" #createModal></create-veiculo-modal>
+<edit-veiculo-modal (edit)="editVeiculo($event)" #editModal></edit-veiculo-modal>
+<delete-veiculo-modal (delete)="deleteVeiculo($event)" #deleteModal></delete-veiculo-modal>
+
+
+<ng-container *ngIf="veiculos">
+    <div class="container_consignados">
+        <h1 style="margin-bottom:30px">Veículos</h1>
+        <div style="justify-content:space-between; display:flex;">
+            <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Veículo</button>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Modelo</th>
+                    <th>Ano</th>
+                    <th>Placa</th>
+                    <th>Renavan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let veiculo of veiculos">
+                    <td>{{ veiculo.modelo }}</td>
+                    <td>{{ veiculo.ano }}</td>
+                    <td>{{ veiculo.modelo }}</td>
+                    <td>{{ veiculo.placa }}</td>
+                    <td>{{ veiculo.renavan }}</td>
+                    <td>
+                        <a (click)="editModal.openEditModal(veiculo)">
+                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a (click)="deleteModal.openDeleteModal(veiculo.id)">
+                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>

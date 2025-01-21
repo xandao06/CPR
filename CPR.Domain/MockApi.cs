@@ -75,5 +75,9 @@
         public string Placa { get; set; }
         public string Observacao { get; set; }
         public string ProblemasObservados { get; set; }
+        public string ano { get; set; }
+        public string renavan { get; set; }
+        public int MediaPorLitro { get; set; }
+        public string Combustivel { get; set; }
     }
 }

@@ -21,6 +21,12 @@ import { CreateConsignadoModalComponent } from './consignado/modal/create.consig
 import { DeleteConsignadoModalComponent } from './consignado/modal/delete.consignado';
 import { EditConsignadoModalComponent } from './consignado/modal/edit.consignado';
 import { PrintLayoutComponent } from './consignado/print_layout';
+import { VeiculoComponent } from './veiculos/veiculo.component';
+import { CreateVeiculoModalComponent } from './veiculos/modal/create.veiculo';
+import { EditVeiculoModalComponent } from './veiculos/modal/edit.veiculo';
+import { DeleteVeiculoModalComponent } from './veiculos/modal/delete.veiculo';
+import { CreateRegistroModalComponent } from './veiculos/modal/create.registro';
+import { EditRegistroModalComponent } from './veiculos/modal/edit.registro';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,13 @@ import { PrintLayoutComponent } from './consignado/print_layout';
     EditConsignadoModalComponent,
     DeleteConsignadoModalComponent,
     ConcluirConsignadoModalComponent,
-    PrintLayoutComponent
+    PrintLayoutComponent,
+    VeiculoComponent,
+    CreateVeiculoModalComponent,
+    DeleteVeiculoModalComponent,
+    EditVeiculoModalComponent,
+    CreateRegistroModalComponent,
+    EditRegistroModalComponent
   ],
   imports: [
     BrowserModule,

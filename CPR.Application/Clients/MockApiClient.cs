@@ -15,6 +15,7 @@ namespace CPR.Application.Clients
             _dbContext = dbContext;
         }
 
+        /// <CHAMADO>
         public async Task<List<Chamado>> GetAsyncChamado()
         {
             return await _dbContext.Chamados
@@ -60,7 +61,7 @@ namespace CPR.Application.Clients
 
 
 
-        /// //////////////
+        /// <NOBREAK>
 
 
         public async Task<List<Nobreak>> GetAsyncNobreak()
@@ -93,7 +94,7 @@ namespace CPR.Application.Clients
         }
 
 
-        /////////////////
+        /// <CONSIGNADO>
 
 
         public async Task<List<Equipamento>> GetAsyncConsignado()
@@ -128,6 +129,44 @@ namespace CPR.Application.Clients
         public async Task<Equipamento> GetByIdAsyncConsignado(int id)
         {
             return await _dbContext.Equipamentos.FindAsync(id);
+        }
+
+
+
+
+        /// <VEICULO>
+
+        public async Task<List<Veiculo>> GetAsyncVeiculo()
+        {
+            return await _dbContext.Veiculos
+            .ToListAsync();
+        }
+        public async Task<Veiculo> CreateAsyncVeiculo(Veiculo veiculo)
+        {
+            _dbContext.Veiculos.Add(veiculo);
+            await _dbContext.SaveChangesAsync();
+            return veiculo;
+        }
+        public async Task<Veiculo> EditAsyncVeiculo(Veiculo veiculo)
+        {
+            _dbContext.Veiculos.Update(veiculo);
+            await _dbContext.SaveChangesAsync();
+            return veiculo;
+        }
+        public async Task<bool> DeleteAsyncVeiculo(int id)
+        {
+            var veiculo = await _dbContext.Veiculos.FindAsync(id);
+            if (veiculo != null)
+            {
+                _dbContext.Veiculos.Remove(veiculo);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+        public async Task<Veiculo> GetByIdAsyncVeiculo(int id)
+        {
+            return await _dbContext.Veiculos.FindAsync(id);
         }
     }
 }

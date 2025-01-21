@@ -1,0 +1,18 @@
+
+
+
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Excluir Consignado</h5>
+        <button type="button" class="close" (click)="closeDeleteModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir este consignado?</p>
+        <button class="btn btn-dark delete_btn" (click)="confirmDelete()">Excluir</button>
+        <button class="btn btn-dark" (click)="closeDeleteModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
