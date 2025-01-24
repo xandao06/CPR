@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Server.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20250116075930_CPR")]
-    partial class CPR
+    [Migration("20250124101210_registro-veiculo")]
+    partial class registroveiculo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,8 +97,8 @@ namespace CPR.Server.Migrations
                     b.Property<string>("NumeroSerie")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Preco")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
@@ -167,6 +167,85 @@ namespace CPR.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Nobreaks");
+                });
+
+            modelBuilder.Entity("CPR.Domain.Veiculo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ano")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Combustivel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataTrocaPeca")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUltimaCalibragem")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUltimaRevisao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUltimaTrocaOleo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUltimoAbastecimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataUltimoBalanceamento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Etanol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LitrosAbastecido")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MediaPorLitro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PecasJaTrocadas")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PecasParaTrocar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Placa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrecoAbastecimento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrecoGasolina")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuilometrosProximaTrocaOleo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuilometrosRodados")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Renavan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Veiculos");
                 });
 #pragma warning restore 612, 618
         }

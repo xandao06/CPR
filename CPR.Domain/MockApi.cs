@@ -70,14 +70,15 @@
         public string PecasParaTrocar { get; set; }
         public DateTime DataTrocaPeca { get; set; } = DateTime.Now;
         public string Modelo { get; set; }
-        public decimal PrecoEtanol { get; set; }
-        public decimal PrecoGasolina { get; set; }
+        public string Etanol { get; set; }
+        public string PrecoGasolina { get; set; }
         public string Placa { get; set; }
         public string Observacao { get; set; }
-        public string ProblemasObservados { get; set; }
-        public string ano { get; set; }
-        public string renavan { get; set; }
-        public int MediaPorLitro { get; set; }
+        public string Ano { get; set; }
+        public string Renavan { get; set; }
+        public string MediaPorLitro { get; set; }
         public string Combustivel { get; set; }
+        public int LitrosAbastecido { get; set; }
+        public string PrecoAbastecimento { get; set; }
     }
 }

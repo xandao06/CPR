@@ -7,7 +7,7 @@
 
 
 <ng-container *ngIf="veiculos">
-    <div class="container_consignados">
+    <div class="container_veiculos">
         <h1 style="margin-bottom:30px">Veículos</h1>
         <div style="justify-content:space-between; display:flex;">
             <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Veículo</button>
@@ -23,9 +23,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let veiculo of veiculos">
+                  <td>
+                    <a [routerLink]="['/veiculos', veiculo.id]">{{ veiculo.modelo }}</a>
+                  </td>
                     <td>{{ veiculo.modelo }}</td>
                     <td>{{ veiculo.ano }}</td>
-                    <td>{{ veiculo.modelo }}</td>
                     <td>{{ veiculo.placa }}</td>
                     <td>{{ veiculo.renavan }}</td>
                     <td>

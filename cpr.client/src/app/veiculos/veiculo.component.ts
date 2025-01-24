@@ -21,11 +21,12 @@ export interface Veiculo {
   precoEtanol: string;
   precoGasolina: string;
   placa: string;
-  observacao: string;
-  problemasObservados: string;
   ano: string;
   renavan: string;
-  mediaPorLitro: number;
+  mediaPorLitro: string;
+  observacao: string;
+  litrosAbastecido: number;
+  precoAbastecimento: string;
   combustivel: string;
 }
 
@@ -57,11 +58,13 @@ export class VeiculoComponent implements OnInit {
       precoGasolina: [''],
       placa: [''],
       observacao: [''],
-      problemasObservados: [''],
       ano: [''],
       renavan: [''],
       mediaPorLitro: [''],
-      combustivel: ['']
+      combustivel: [''],
+      litrosAbastecido: [''],
+      precoAbastecimento: ['']
+
     });
   }
 

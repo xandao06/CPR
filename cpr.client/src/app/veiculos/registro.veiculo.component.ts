@@ -22,12 +22,17 @@ export interface Veiculo {
   precoGasolina: string;
   placa: string;
   observacao: string;
-  problemasObservados: string;
+  litrosAbastecido: number;
+  precoAbastecimento: string;
+  combustivel: string;
+  mediaPorLitro: string;
+  ano: string;
+  renavan: string;
 }
 
 @Component({
   selector: 'app-registro-veiculo',
-  templateUrl: './veiculo.component.html',
+  templateUrl: './registro.veiculo.component.html',
   styleUrls: ['../app.component.css']
 })
 export class RegistroVeiculoComponent implements OnInit {
@@ -53,8 +58,13 @@ export class RegistroVeiculoComponent implements OnInit {
       precoEtanol: [''],
       precoGasolina: [''],
       placa: [''],
+      ano: [''],
+      renavan: [''],
       observacao: [''],
-      problemasObservados: ['']
+      litrosAbastecido: [''],
+      precoAbastecimento: [''],
+      combustivel: [''],
+      mediaPorLitro: ['']
     });
   }
 

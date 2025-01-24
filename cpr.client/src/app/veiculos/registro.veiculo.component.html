@@ -1,33 +1,58 @@
 
 
 
-<create-veiculo-modal (create)="createVeiculo($event)" #createModal></create-veiculo-modal>
-<edit-veiculo-modal (edit)="editVeiculo($event)" #editModal></edit-veiculo-modal>
-<delete-veiculo-modal (delete)="deleteVeiculo($event)" #deleteModal></delete-veiculo-modal>
+<create-registro-modal (create)="createVeiculo($event)" #createModal></create-registro-modal>
+<edit-registro-modal (edit)="editVeiculo($event)" #editModal></edit-registro-modal>
+<delete-registro-modal (delete)="deleteVeiculo($event)" #deleteModal></delete-registro-modal>
 
 
 <ng-container *ngIf="veiculos">
-    <div class="container_consignados">
-        <h1 style="margin-bottom:30px">Veículos</h1>
+    <div class="container_registros_veiculos">
+        <h1 style="margin-bottom:30px">Registros dos veículos</h1>
         <div style="justify-content:space-between; display:flex;">
-            <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Veículo</button>
+            <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Registro</button>
         </div>
         <table class="table table-bordered">
             <thead class="table-dark">
-                <tr>
-                    <th>Modelo</th>
-                    <th>Ano</th>
-                    <th>Placa</th>
-                    <th>Renavan</th>
-                </tr>
+              <tr>
+                <th>Última revisão</th>
+                <th>Último abastecimento</th>
+                <th>Combustivel</th>
+                <th>Preço do abastecimento</th>
+                <th>Litros abastecido</th>
+                <th>Preço do etanol</th>
+                <th>Preço da gasolina</th>
+                <th>Média por litro</th>
+                <th>Última troca de óleo</th>
+                <th>Última calibragem</th>
+                <th>Último balanceamento</th>
+                <th>Quilometros rodados</th>
+                <th>Proxima troca de óleo</th>
+                <th>Peças já trocadas</th>
+                <th>Data da última troca</th>
+                <th>Peças para trocar</th>
+                <th>Observação</th>
+              </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let veiculo of veiculos">
-                    <td>{{ veiculo.modelo }}</td>
-                    <td>{{ veiculo.ano }}</td>
-                    <td>{{ veiculo.modelo }}</td>
-                    <td>{{ veiculo.placa }}</td>
-                    <td>{{ veiculo.renavan }}</td>
+                    <td>{{ veiculo.dataUltimaRevisao }}</td>
+                    <td>{{ veiculo.dataUltimoAbastecimento }}</td>
+                    <td>{{ veiculo.combustivel }}</td>
+                    <td>{{ veiculo.precoAbastecimento }}</td>
+                    <td>{{ veiculo.litrosAbastecido }}</td>
+                    <td>{{ veiculo.precoEtanol }}</td>
+                    <td>{{ veiculo.precoGasolina }}</td>
+                    <td>{{ veiculo.mediaPorLitro }}</td>
+                    <td>{{ veiculo.dataUltimaTrocaOleo }}</td>
+                    <td>{{ veiculo.dataUltimaCalibragem }}</td>
+                    <td>{{ veiculo.dataUltimoBalanceamento }}</td>
+                    <td>{{ veiculo.quilometrosRodados }}</td>
+                    <td>{{ veiculo.quilometrosProximaTrocaOleo }}</td>
+                    <td>{{ veiculo.pecasJaTrocadas }}</td>
+                    <td>{{ veiculo.dataTrocaPeca }}</td>
+                    <td>{{ veiculo.pecasParaTrocar }}</td>
+                    <td>{{ veiculo.observacao }}</td>
                     <td>
                         <a (click)="editModal.openEditModal(veiculo)">
                             <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>

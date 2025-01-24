@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'create-veiculo-modal',
-  templateUrl: './create.veiculo.html',
+  selector: 'create-registro-modal',
+  templateUrl: './create.registro.html',
   styleUrls: ['./modal.css']
 })
 export class CreateRegistroModalComponent implements OnInit {
@@ -27,7 +27,9 @@ export class CreateRegistroModalComponent implements OnInit {
       dataTrocaPeca: [''],
       precoEtanol: [''],
       precoGasolina: [''],
-      problemasObservados: ['']
+      observacao: [''],
+      litrosAbastecido: [''],
+      precoAbastecimento: ['']
     });
   }
 

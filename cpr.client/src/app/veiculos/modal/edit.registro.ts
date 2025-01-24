@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Veiculo } from '../veiculo.component';
 
 @Component({
-  selector: 'edit-veiculo-modal',
-  templateUrl: './edit.veiculo.html',
+  selector: 'edit-registro-modal',
+  templateUrl: './edit.registro.html',
   styleUrls: ['./modal.css']
 })
 export class EditRegistroModalComponent implements OnInit {
@@ -30,9 +30,11 @@ export class EditRegistroModalComponent implements OnInit {
       dataTrocaPeca: [''],
       precoEtanol: [''],
       precoGasolina: [''],
-      problemasObservados: [''],
+      observacao: [''],
       mediaPorLitro: [''],
-      combustivel: ['']
+      combustivel: [''],
+      litrosAbastecido: [''],
+      precoAbastecimento: ['']
     });
   }
 

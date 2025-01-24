@@ -27,6 +27,8 @@ import { EditVeiculoModalComponent } from './veiculos/modal/edit.veiculo';
 import { DeleteVeiculoModalComponent } from './veiculos/modal/delete.veiculo';
 import { CreateRegistroModalComponent } from './veiculos/modal/create.registro';
 import { EditRegistroModalComponent } from './veiculos/modal/edit.registro';
+import { DeleteRegistroModalComponent } from './veiculos/modal/delete.registro';
+import { RegistroVeiculoComponent } from './veiculos/registro.veiculo.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { EditRegistroModalComponent } from './veiculos/modal/edit.registro';
     DeleteVeiculoModalComponent,
     EditVeiculoModalComponent,
     CreateRegistroModalComponent,
-    EditRegistroModalComponent
+    EditRegistroModalComponent,
+    DeleteRegistroModalComponent,
+    RegistroVeiculoComponent
   ],
   imports: [
     BrowserModule,
