@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 
 export interface Veiculo {
@@ -40,7 +41,7 @@ export class RegistroVeiculoComponent implements OnInit {
   public veiculoForm: FormGroup;
   public filteredVeiculos: Veiculo[] = [];
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.veiculoForm = this.fb.group({
       data: [''],
       id: [''],
@@ -74,15 +75,20 @@ export class RegistroVeiculoComponent implements OnInit {
 
   async getVeiculos() {
     const result = await lastValueFrom(
-      this.http.get<{ syncedVeiculos: number; veiculos: Veiculo[] }>('https://192.168.10.230:7048/veiculos/sync/getVeiculos').pipe(
-        map(response => response.veiculos)
-      )
+      this.http.get<{ syncedVeiculos: number; veiculos: Veiculo[] }>(
+        this.apiConfig.getApiUrl('veiculos/sync/getVeiculos')
+      ).pipe(map(response => response.veiculos))
     );
     this.veiculos = result;
   }
 
   async createVeiculo(veiculo: Veiculo) {
-    const newVeiculo = await lastValueFrom(this.http.post<Veiculo>('https://192.168.10.230:7048/veiculos/sync/createVeiculos', veiculo));
+    const newVeiculo = await lastValueFrom(
+      this.http.post<Veiculo>(
+        this.apiConfig.getApiUrl('veiculos/sync/createVeiculos'),
+        veiculo
+      )
+    );
     if (newVeiculo) {
       this.veiculos.push(newVeiculo);
       await this.getVeiculos();
@@ -91,7 +97,7 @@ export class RegistroVeiculoComponent implements OnInit {
 
   async editVeiculo(veiculo: Veiculo) {
     const updatedVeiculo = await lastValueFrom(
-      this.http.put<Veiculo>('https://192.168.10.230:7048/veiculos/sync/editVeiculo', veiculo)
+      this.http.put<Veiculo>(this.apiConfig.getApiUrl('veiculos/sync/editVeiculos'), veiculo)
     );
     if (updatedVeiculo) {
       await this.getVeiculos();
@@ -100,7 +106,7 @@ export class RegistroVeiculoComponent implements OnInit {
 
   async deleteVeiculo(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(`https://192.168.10.230:7048/veiculos/sync/deleteVeiculo/${id}`)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl('veiculos/sync/deleteVeiculos/${id}'),)
       );
       if (deleted) {
         await this.getVeiculos();
