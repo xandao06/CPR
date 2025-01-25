@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 
 export interface Equipamento {
@@ -30,7 +31,7 @@ export class ConsignadoComponent implements OnInit {
   public equipamentoForm: FormGroup;
   public filteredEquipamentos: Equipamento[] = [];
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.equipamentoForm = this.fb.group({
       data: [''],
       hora: [''],
@@ -54,7 +55,7 @@ export class ConsignadoComponent implements OnInit {
 
   async getConsignados() {
     const result = await lastValueFrom(
-      this.http.get<{ syncedConsignados: number; equipamentos: Equipamento[] }>('https://192.168.10.230:7048/consignados/sync/getConsignados').pipe(
+      this.http.get<{ syncedConsignados: number; equipamentos: Equipamento[] }>(this.apiConfig.getApiUrl('consignados/sync/getConsignados')).pipe(
         map(response => response.equipamentos)
       )
     );
@@ -63,7 +64,7 @@ export class ConsignadoComponent implements OnInit {
   }
 
   async createConsignado(equipamento: Equipamento) {
-    const newConsignado = await lastValueFrom(this.http.post<Equipamento>('https://192.168.10.230:7048/consignados/sync/createConsignados', equipamento));
+    const newConsignado = await lastValueFrom(this.http.post<Equipamento>(this.apiConfig.getApiUrl('consignados/sync/createConsignados'), equipamento));
     if (newConsignado) {
       this.equipamentos.push(newConsignado);
       await this.getConsignados();
@@ -72,7 +73,7 @@ export class ConsignadoComponent implements OnInit {
 
   async editConsignado(equipamento: Equipamento) {
     const updatedConsignado = await lastValueFrom(
-      this.http.put<Equipamento>('https://192.168.10.230:7048/consignados/sync/editConsignado', equipamento)
+      this.http.put<Equipamento>(this.apiConfig.getApiUrl('consignados/sync/editConsignado'), equipamento)
     );
     if (updatedConsignado) {
       await this.getConsignados();
@@ -81,7 +82,7 @@ export class ConsignadoComponent implements OnInit {
 
   async deleteConsignado(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(`https://192.168.10.230:7048/consignados/sync/deleteConsignado/${id}`)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl('consignados/sync/deleteConsignado/${id}',))
       );
       if (deleted) {
         await this.getConsignados();
@@ -90,7 +91,7 @@ export class ConsignadoComponent implements OnInit {
 
   async concluirConsignado(id: number) {
       const concludedConsignado = await lastValueFrom(
-        this.http.put<Equipamento>(`https://192.168.10.230:7048/consignados/sync/concluirConsignado/${id}`, {})
+        this.http.put<Equipamento>(this.apiConfig.getApiUrl('consignados/sync/concluirConsignado/${id}',), {})
       );
     if (concludedConsignado) {
       this.equipamentos = this.equipamentos.filter(c => c.id !== id);

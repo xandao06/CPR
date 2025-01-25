@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 
 export interface Chamado {
@@ -26,7 +27,7 @@ export class ChamadoComponent implements OnInit {
   public chamadoForm: FormGroup;
   public filteredChamados: Chamado[] = [];
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.chamadoForm = this.fb.group({
       data: [''],
       hora: [''],
@@ -47,7 +48,7 @@ export class ChamadoComponent implements OnInit {
 
   async getChamados() {
     const result = await lastValueFrom(
-      this.http.get<{ syncedChamados: number; chamados: Chamado[] }>('https://192.168.10.230:7048/chamados/sync/getChamados').pipe(
+      this.http.get<{ syncedChamados: number; chamados: Chamado[] }>(this.apiConfig.getApiUrl('chamados/sync/getChamados')).pipe(
         map(response => response.chamados)
       )
     );
@@ -57,7 +58,7 @@ export class ChamadoComponent implements OnInit {
   }
 
   async createChamado(chamado: Chamado) {
-    const newChamado = await lastValueFrom(this.http.post<Chamado>('https://192.168.10.230:7048/chamados/sync/createChamados', chamado));
+    const newChamado = await lastValueFrom(this.http.post<Chamado>(this.apiConfig.getApiUrl('chamados/sync/createChamados'), chamado));
     if (newChamado) {
       this.chamados.push(newChamado);
       await this.getChamados();
@@ -67,7 +68,7 @@ export class ChamadoComponent implements OnInit {
 
   async editChamado(chamado: Chamado) {
     const updatedChamado = await lastValueFrom(
-      this.http.put<Chamado>('https://192.168.10.230:7048/chamados/sync/editChamado', chamado)
+      this.http.put<Chamado>(this.apiConfig.getApiUrl('chamados/sync/editChamado'), chamado)
     );
     if (updatedChamado) {
       await this.getChamados();
@@ -77,7 +78,7 @@ export class ChamadoComponent implements OnInit {
 
   async deleteChamado(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(`https://192.168.10.230:7048/chamados/sync/deleteChamado/${id}`)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl('chamados/sync/deleteChamado/${id}'))
       );
       if (deleted) {
         await this.getChamados();
@@ -87,7 +88,7 @@ export class ChamadoComponent implements OnInit {
 
   async concluirChamado(id: number) {
       const concludedChamado = await lastValueFrom(
-        this.http.put<Chamado>(`https://192.168.10.230:7048/chamados/sync/concluirChamado/${id}`, {})
+        this.http.put<Chamado>(this.apiConfig.getApiUrl('chamados/sync/concluirChamado/${id}'), {})
       );
       if (concludedChamado) {
         this.chamados = this.chamados.filter(c => c.id !== id);

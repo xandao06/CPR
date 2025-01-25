@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 
 export interface Nobreak {
@@ -36,7 +37,7 @@ export class NobreakComponent implements OnInit {
   public today: string = '';
   public filteredNobreaks: Nobreak[] = [];
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.nobreakForm = this.fb.group({
       dataTroca: [''],
       dataProximaTroca: [''],
@@ -73,7 +74,7 @@ export class NobreakComponent implements OnInit {
 
   async getNobreaks() {
     const result = await lastValueFrom(
-      this.http.get<{ syncedNobreaks: number; nobreaks: Nobreak[] }>('https://192.168.10.230:7048/nobreaks/sync/getNobreaks').pipe(
+      this.http.get < { syncedNobreaks: number; nobreaks: Nobreak[] } > (this.apiConfig.getApiUrl('nobreaks/sync/getNobreaks')).pipe(
         map(response => response.nobreaks)
       )
     );
@@ -83,7 +84,7 @@ export class NobreakComponent implements OnInit {
   }
 
   async createNobreak(nobreak: Nobreak) {
-    const newNobreak = await lastValueFrom(this.http.post<Nobreak>('https://192.168.10.230:7048/nobreaks/sync/createNobreaks', nobreak));
+    const newNobreak = await lastValueFrom(this.http.post<Nobreak>(this.apiConfig.getApiUrl('nobreaks/sync/createNobreaks'), nobreak));
     if (newNobreak) {
       this.nobreaks.push(newNobreak);
       await this.getNobreaks();
@@ -92,7 +93,7 @@ export class NobreakComponent implements OnInit {
 
   async editNobreak(nobreak: Nobreak) {
     const updatedNobreak = await lastValueFrom(
-      this.http.put<Nobreak>('https://192.168.10.230:7048/nobreaks/sync/editNobreak', nobreak)
+      this.http.put<Nobreak>(this.apiConfig.getApiUrl('nobreaks/sync/editNobreak'), nobreak)
     );
     if (updatedNobreak) {
       await this.getNobreaks();
@@ -101,7 +102,7 @@ export class NobreakComponent implements OnInit {
 
   async deleteNobreak(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(`https://192.168.10.230:7048/nobreaks/sync/deleteNobreak/${id}`)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl('nobreaks/sync/editNobreak/${id}'),)
       );
       if (deleted) {
         await this.getNobreaks();

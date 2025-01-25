@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { AppComponent } from '../app.component';
 
 export interface Chamado {
   id: number;
@@ -22,7 +23,7 @@ export class HistoricoComponent implements OnInit {
   public chamadosConcluidos: Chamado[] = [];
   public filteredChamados: Chamado[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiConfig: AppComponent) { }
 
   async ngOnInit() {
     await this.getChamadosConcluidos();
@@ -31,14 +32,14 @@ export class HistoricoComponent implements OnInit {
 
   async getChamadosConcluidos() {
     this.chamadosConcluidos = await lastValueFrom(
-      this.http.get<Chamado[]>('https://192.168.10.230:7048/chamados/sync/getChamadosConcluidos')
+      this.http.get<Chamado[]>(this.apiConfig.getApiUrl('chamados/sync/getChamadosConcluidos'),)
     );
     this.filteredChamados = [...this.chamadosConcluidos];
   }
 
   async deleteChamado(id: number) {
     const deleted = await lastValueFrom(
-      this.http.delete<boolean>(`https://192.168.10.230:7048/chamados/sync/deleteChamado/${id}`)
+      this.http.delete<boolean>(this.apiConfig.getApiUrl('chamados/sync/getChamadosConcluidos/${id}'),)
     );
     if (deleted) {
       await this.getChamadosConcluidos();

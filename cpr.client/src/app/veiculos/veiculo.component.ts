@@ -40,7 +40,7 @@ export class VeiculoComponent implements OnInit {
   public veiculos: Veiculo[] = [];
   public veiculoForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.veiculoForm = this.fb.group({
       data: [''],
       id: [''],
