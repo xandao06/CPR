@@ -102,7 +102,7 @@ export class NobreakComponent implements OnInit {
 
   async deleteNobreak(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(this.apiConfig.getApiUrl('nobreaks/sync/editNobreak/${id}'),)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl(`nobreaks/sync/editNobreak/${id}`),)
       );
       if (deleted) {
         await this.getNobreaks();

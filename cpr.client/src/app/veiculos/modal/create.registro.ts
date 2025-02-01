@@ -9,12 +9,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CreateRegistroModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<any>();
-  public veiculoForm: FormGroup;
+  public registroVeiculoForm: FormGroup;
   public showModal: boolean = false;
 
   constructor(private fb: FormBuilder) {
-    this.veiculoForm = this.fb.group({
-      data: [''],
+    this.registroVeiculoForm = this.fb.group({
+      id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
       dataUltimaTrocaOleo: [''],
@@ -47,9 +47,9 @@ export class CreateRegistroModalComponent implements OnInit {
     this.close.emit();
   }
 
-  async submitVeiculo() {
-    const veiculoData = this.veiculoForm.value;
-    this.create.emit(veiculoData);
+  async submitRegistroVeiculo() {
+    const registroVeiculoData = this.registroVeiculoForm.value;
+    this.create.emit(registroVeiculoData);
     this.closeModal();
   }
 
@@ -60,8 +60,8 @@ export class CreateRegistroModalComponent implements OnInit {
 
   private resetForm()
   {
-    this.veiculoForm.reset({
-      data: [''],
+    this.registroVeiculoForm.reset({
+      id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
       dataUltimaTrocaOleo: [''],
@@ -74,7 +74,6 @@ export class CreateRegistroModalComponent implements OnInit {
       dataTrocaPeca: [''],
       precoEtanol: [''],
       precoGasolina: [''],
-      problemasObservados: [''],
       mediaPorLitro: [''],
       combustivel: ['']
     });

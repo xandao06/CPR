@@ -78,7 +78,7 @@ export class ChamadoComponent implements OnInit {
 
   async deleteChamado(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(this.apiConfig.getApiUrl('chamados/sync/deleteChamado/${id}'))
+        this.http.delete<boolean>(this.apiConfig.getApiUrl(`chamados/sync/deleteChamado/${id}`))
       );
       if (deleted) {
         await this.getChamados();
@@ -88,7 +88,7 @@ export class ChamadoComponent implements OnInit {
 
   async concluirChamado(id: number) {
       const concludedChamado = await lastValueFrom(
-        this.http.put<Chamado>(this.apiConfig.getApiUrl('chamados/sync/concluirChamado/${id}'), {})
+        this.http.put<Chamado>(this.apiConfig.getApiUrl(`chamados/sync/concluirChamado/${id}`), {})
       );
       if (concludedChamado) {
         this.chamados = this.chamados.filter(c => c.id !== id);

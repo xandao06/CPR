@@ -13,6 +13,16 @@
   margin-bottom: 4px;
 }
 
+.new_veiculo {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.new_registro_veiculo {
+  display: flex;
+  margin-bottom: 4px;
+}
+
 .container_chamados {
   text-align: center;
   font-weight: 700;
@@ -38,6 +48,22 @@
 }
 
 .container_historico {
+  text-align: center;
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.container_veiculos {
+  text-align: center;
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.container_registros_veiculos {
   text-align: center;
   font-weight: 700;
   margin-left: 5px;

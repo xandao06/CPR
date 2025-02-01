@@ -82,7 +82,7 @@ export class ConsignadoComponent implements OnInit {
 
   async deleteConsignado(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(this.apiConfig.getApiUrl('consignados/sync/deleteConsignado/${id}',))
+        this.http.delete<boolean>(this.apiConfig.getApiUrl(`consignados/sync/deleteConsignado/${id}`,))
       );
       if (deleted) {
         await this.getConsignados();
@@ -91,7 +91,7 @@ export class ConsignadoComponent implements OnInit {
 
   async concluirConsignado(id: number) {
       const concludedConsignado = await lastValueFrom(
-        this.http.put<Equipamento>(this.apiConfig.getApiUrl('consignados/sync/concluirConsignado/${id}',), {})
+        this.http.put<Equipamento>(this.apiConfig.getApiUrl(`consignados/sync/concluirConsignado/${id}`,), {})
       );
     if (concludedConsignado) {
       this.equipamentos = this.equipamentos.filter(c => c.id !== id);

@@ -14,6 +14,7 @@ export class CreateVeiculoModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.veiculoForm = this.fb.group({
+      id: [''],
       modelo: [''],
       placa: [''],
       ano: [''],
@@ -49,6 +50,7 @@ export class CreateVeiculoModalComponent implements OnInit {
   private resetForm()
   {
     this.veiculoForm.reset({
+      id: [''],
       modelo: [''],
       placa: [''],
       ano: [''],

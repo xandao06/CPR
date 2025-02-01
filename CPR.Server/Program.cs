@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using CPR.Domain.Persistence;
 using CPR.Application.Features.NobreakSync.Handlers;
 using CPR.Application.Features.ConsignadoSync.Handlers;
+using CPR.Application.Features.VeiculoSync.Handlers;
+using CPR.Application.Features.RegistroVeiculoSync.Handlers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +32,8 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiChamadosRequestHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiNobreaksRequestHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiConsignadosRequestHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiVeiculosRequestHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SyncMockApiRegistroVeiculoRequestHandler).Assembly));
 builder.Services.AddScoped<IMockApiClient, MockApiClient>();
 
 builder.Services.AddDbContext<CPRDbContext>(options =>

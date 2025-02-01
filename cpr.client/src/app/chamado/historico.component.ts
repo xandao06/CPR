@@ -39,7 +39,7 @@ export class HistoricoComponent implements OnInit {
 
   async deleteChamado(id: number) {
     const deleted = await lastValueFrom(
-      this.http.delete<boolean>(this.apiConfig.getApiUrl('chamados/sync/getChamadosConcluidos/${id}'),)
+      this.http.delete<boolean>(this.apiConfig.getApiUrl(`chamados/sync/getChamadosConcluidos/${id}`),)
     );
     if (deleted) {
       await this.getChamadosConcluidos();

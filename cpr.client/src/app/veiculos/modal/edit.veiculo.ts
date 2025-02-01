@@ -17,18 +17,19 @@ export class EditVeiculoModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.editForm = this.fb.group({
+      id: [''],
       modelo: [''],
       placa: [''],
       ano: [''],
-      renavan: ['']
+      renavan: [''],
     });
   }
 
-  private formatDate(date: Date | string): string {
-    if (!date) return '';
-    const d = new Date(date);
-    return d.toISOString().split('T')[0];
-  }
+  //private formatDate(date: Date | string): string {
+  //  if (!date) return '';
+  //  const d = new Date(date);
+  //  return d.toISOString().split('T')[0];
+  //}
 
 
   ngOnInit(): void {
@@ -37,13 +38,7 @@ export class EditVeiculoModalComponent implements OnInit {
 
   openEditModal(veiculo: Veiculo) {
     this.veiculo = veiculo;
-
-    const formattedVeiculo = {
-      ...veiculo,
-      data: this.formatDate(veiculo.data),
-    };
-
-    this.editForm.patchValue(formattedVeiculo);
+    this.editForm.patchValue(veiculo);
     this.showModal = true;
   }
 
@@ -54,8 +49,13 @@ export class EditVeiculoModalComponent implements OnInit {
 
   submitEdit() {
     if (this.editForm.valid) {
+      // Mescla os valores do formulário com o restante do objeto original
       const updatedVeiculo = { ...this.veiculo, ...this.editForm.value };
-      this.edit.emit(updatedVeiculo); 
+
+      // Log do objeto que será enviado
+      console.log('Objeto enviado para o backend:', updatedVeiculo);
+
+      this.edit.emit(updatedVeiculo);
       this.closeEditModal();
     }
   }

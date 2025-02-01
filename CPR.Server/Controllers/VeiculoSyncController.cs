@@ -1,5 +1,4 @@
-﻿using CPR.Application.Features.ConsignadoSync.Queries;
-using CPR.Application.Features.VeiculoSync.Queries;
+﻿using CPR.Application.Features.VeiculoSync.Queries;
 using CPR.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +42,16 @@ namespace CPR.Server.Controllers
             return NotFound();
         }
 
+        [HttpGet("getVeiculoById/{id}")]
+        public async Task<IActionResult> GetVeiculoById(int id)
+        {
+            var veiculo = await _mediator.Send(new SyncGetByIdMockApiVeiculosRequest(id));
+            if (veiculo != null)
+            {
+                return Ok(veiculo);
+            }
+            return NotFound();
+        }
     }
 }
 

@@ -7,28 +7,10 @@ import { AppComponent } from '../app.component';
 
 export interface Veiculo {
   id: number;
-  data: Date;
-  dataUltimaRevisao: Date;
-  dataUltimoAbastecimento: Date;
-  dataUltimaTrocaOleo: Date;
-  dataUltimaCalibragem: Date;
-  quilometrosRodados: number;
-  quilometrosProximaTrocaOleo: number;
-  dataUltimoBalanceamento: Date;
-  pecasJaTrocadas: string;
-  pecasParaTrocar: string;
-  dataTrocaPeca: Date;
   modelo: string;
-  precoEtanol: string;
-  precoGasolina: string;
   placa: string;
   ano: string;
   renavan: string;
-  mediaPorLitro: string;
-  observacao: string;
-  litrosAbastecido: number;
-  precoAbastecimento: string;
-  combustivel: string;
 }
 
 @Component({
@@ -42,29 +24,11 @@ export class VeiculoComponent implements OnInit {
 
   constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
     this.veiculoForm = this.fb.group({
-      data: [''],
       id: [''],
-      dataUltimaRevisao: [''],
-      dataUltimoAbastecimento: [''],
-      dataUltimaTrocaOleo: [''],
-      dataUltimaCalibragem: [''],
-      quilometrosRodados: [''],
-      quilometrosProximaTrocaOleo: [''],
-      dataUltimoBalanceamento: [''],
-      pecasJaTrocadas: [''],
-      pecasParaTrocar: [''],
-      dataTrocaPeca: [''],
       modelo: [''],
-      precoEtanol: [''],
-      precoGasolina: [''],
       placa: [''],
-      observacao: [''],
       ano: [''],
       renavan: [''],
-      mediaPorLitro: [''],
-      combustivel: [''],
-      litrosAbastecido: [''],
-      precoAbastecimento: ['']
 
     });
   }
@@ -106,7 +70,7 @@ export class VeiculoComponent implements OnInit {
 
   async deleteVeiculo(id: number) {
     const deleted = await lastValueFrom(
-      this.http.delete<boolean>(this.apiConfig.getApiUrl('veiculos/sync/deleteVeiculos/${id}'),)
+      this.http.delete<boolean>(this.apiConfig.getApiUrl(`veiculos/sync/deleteVeiculos/${id}`),)
     );
     if (deleted) {
       await this.getVeiculos();

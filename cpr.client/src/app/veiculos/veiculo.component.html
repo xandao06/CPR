@@ -7,39 +7,39 @@
 
 
 <ng-container *ngIf="veiculos">
-    <div class="container_veiculos">
-        <h1 style="margin-bottom:30px">Veículos</h1>
-        <div style="justify-content:space-between; display:flex;">
-            <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Veículo</button>
-        </div>
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>Modelo</th>
-                    <th>Ano</th>
-                    <th>Placa</th>
-                    <th>Renavan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let veiculo of veiculos">
-                  <td>
-                    <a [routerLink]="['/veiculos', veiculo.id]">{{ veiculo.modelo }}</a>
-                  </td>
-                    <td>{{ veiculo.modelo }}</td>
-                    <td>{{ veiculo.ano }}</td>
-                    <td>{{ veiculo.placa }}</td>
-                    <td>{{ veiculo.renavan }}</td>
-                    <td>
-                        <a (click)="editModal.openEditModal(veiculo)">
-                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
-                        </a>
-                        <a (click)="deleteModal.openDeleteModal(veiculo.id)">
-                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  <div class="container_veiculos">
+    <h1 style="margin-bottom:30px">Veículos</h1>
+    <div style="justify-content:space-between; display:flex;">
+      <button class="new_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Veículo</button>
     </div>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Modelo</th>
+          <th>Ano</th>
+          <th>Placa</th>
+          <th>Renavan</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let veiculo of veiculos">
+          <td>
+            <a [routerLink]="['/veiculosRegistros', veiculo.id]">{{ veiculo.modelo }}</a>
+          </td>
+          <td>{{ veiculo.ano }}</td>
+          <td>{{ veiculo.placa }}</td>
+          <td>{{ veiculo.renavan }}</td>
+          <td>
+            <a (click)="editModal.openEditModal(veiculo)">
+              <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+            </a>
+            <a (click)="deleteModal.openDeleteModal(veiculo.id)">
+              <i id="icon_opcoes" class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ng-container>
