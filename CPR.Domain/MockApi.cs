@@ -58,15 +58,6 @@
     public class Veiculo
     {
         public int Id { get; set; }
-        public string Modelo { get; set; }
-        public string Placa { get; set; }
-        public string Ano { get; set; }
-        public string Renavan { get; set; }
-    }
-
-    public class RegistroVeiculo
-    {
-        public int Id { get; set; }
         public DateTime DataUltimaRevisao { get; set; } = DateTime.Now;
         public DateTime DataUltimoAbastecimento { get; set; } = DateTime.Now;
         public DateTime DataUltimaTrocaOleo { get; set; } = DateTime.Now;
@@ -84,5 +75,9 @@
         public string Combustivel { get; set; }
         public int LitrosAbastecido { get; set; }
         public string PrecoAbastecimento { get; set; }
+        public string Modelo { get; set; }
+        public string Placa { get; set; }
+        public string Ano { get; set; }
+        public string Renavan { get; set; }
     }
 }

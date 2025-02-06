@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Nobreak } from '../nobreak.component';
 
 @Component({
@@ -16,20 +16,21 @@ export class CreateNobreakModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.nobreakForm = this.fb.group({
-      dataTroca: [''],
-      dataProximaTroca: [''],
-      marca: [''],
+      id: [''],
+      dataTroca: ['', Validators.required],
+      dataProximaTroca: ['', Validators.required],
+      marca: ['', Validators.required],
       modelo: [''],
-      numeroSerie: [''],
-      cliente: [''],
+      numeroSerie: ['', Validators.required],
+      cliente: ['', Validators.required],
       descricao: [''],
-      bateria: [''],
-      quantidadeBateria: [''],
-      voltagemEntrada: [''],
-      voltagemSaida: [''],
+      bateria: ['', Validators.required],
+      quantidadeBateria: ['', Validators.required],
+      voltagemEntrada: ['', Validators.required],
+      voltagemSaida: ['', Validators.required],
       capacidade: [''],
       funcao: [''],
-      ordemServico: ['']
+      ordemServico: ['', Validators.required]
     });
   }
 
@@ -55,7 +56,41 @@ export class CreateNobreakModalComponent implements OnInit {
   }
 
   async submitNobreak() {
-    const nobreakData = this.nobreakForm.value;
+
+    this.nobreakForm.markAllAsTouched();
+
+    if (this.nobreakForm.invalid) {
+      return;
+    }
+
+    const nobreakData: any = {
+      id: this.nobreakForm.value.id ? Number(this.nobreakForm.value.id) : 0,
+      dataTroca: this.nobreakForm.value.dataTroca || '',
+      dataProximaTroca: this.nobreakForm.value.dataProximaTroca || '',
+      marca: this.nobreakForm.value.marca || '',
+      modelo: '',
+      numeroSerie: this.nobreakForm.value.numeroSerie || '',
+      cliente: this.nobreakForm.value.cliente || '',
+      descricao: '',
+      bateria: this.nobreakForm.value.bateria || '',
+      quantidadeBateria: this.nobreakForm.value.quantidadeBateria || '',
+      voltagemEntrada: this.nobreakForm.value.voltagemEntrada || '',
+      voltagemSaida: this.nobreakForm.value.voltagemSaida || '',
+      capacidade: '',
+      funcao: '',
+      ordemServico: this.nobreakForm.value.ordemServico || '',
+    }
+
+    const addDateIfValid = (key: string, value: any) => {
+      const date = new Date(value);
+      if (value && !isNaN(date.getTime())) {
+        nobreakData[key] = date.toISOString();
+      }
+    };
+
+    addDateIfValid('dataTroca', this.nobreakForm.value.dataTroca);
+    addDateIfValid('dataProximaTroca', this.nobreakForm.value.dataProximaTroca);
+
     this.create.emit(nobreakData);
     this.closeModal();
   }
@@ -69,18 +104,18 @@ export class CreateNobreakModalComponent implements OnInit {
     this.nobreakForm.reset({
       dataTroca: formattedDate,
       dataProximaTroca: formattedNextDate,
-      marca: [''],
-      modelo: [''],
-      numeroSerie: [''],
-      cliente: [''],
-      descricao: [''],
-      bateria: [''],
-      quantidadeBateria: [''],
-      voltagemEntrada: [''],
-      voltagemSaida: [''],
-      capacidade: [''],
-      funcao: [''],
-      ordemServico: ['']
+      marca: '',
+      modelo: '',
+      numeroSerie: '',
+      cliente: '',
+      descricao: '',
+      bateria: '',
+      quantidadeBateria: '',
+      voltagemEntrada: '',
+      voltagemSaida: '',
+      capacidade: '',
+      funcao: '',
+      ordemServico: ''
     });
   }
 

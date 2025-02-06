@@ -1,17 +1,17 @@
 
 
 
-<create-registro-modal (create)="createRegistroVeiculo($event)" #createModal></create-registro-modal>
-<edit-registro-modal (edit)="editRegistroVeiculo($event)" #editModal></edit-registro-modal>
-<delete-registro-modal (delete)="deleteRegistroVeiculo($event)" #deleteModal></delete-registro-modal>
+<create-registro-modal (create)="createVeiculo($event)" #createModal></create-registro-modal>
+<edit-registro-modal (edit)="editVeiculo($event)" #editModal></edit-registro-modal>
+<delete-registro-modal (delete)="deleteVeiculo($event)" #deleteModal></delete-registro-modal>
 
 
-<ng-container *ngIf="registroVeiculo">
+<ng-container *ngIf="veiculos">
     <div class="container_registros_veiculos">
         <h1 style="margin-bottom:30px">Registros dos veículos</h1>
-        <div style="justify-content:space-between; display:flex;">
+        <!--<div style="justify-content:space-between; display:flex;">
             <button class="new_registro_veiculo btn btn-dark" style="" (click)="createModal.openCreateModal()">Novo Registro</button>
-        </div>
+        </div>-->
         <table class="table table-bordered">
             <thead class="table-dark">
               <tr>
@@ -36,29 +36,29 @@
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let registroVeiculo of registroVeiculo">
-                  <td>{{ registroVeiculo.dataUltimaRevisao }}</td>
-                  <td>{{ registroVeiculo.dataUltimoAbastecimento }}</td>
-                  <td>{{ registroVeiculo.combustivel }}</td>
-                  <td>{{ registroVeiculo.precoAbastecimento }}</td>
-                  <td>{{ registroVeiculo.litrosAbastecido }}</td>
-                  <td>{{ registroVeiculo.precoEtanol }}</td>
-                  <td>{{ registroVeiculo.precoGasolina }}</td>
-                  <td>{{ registroVeiculo.mediaPorLitro }}</td>
-                  <td>{{ registroVeiculo.dataUltimaTrocaOleo }}</td>
-                  <td>{{ registroVeiculo.dataUltimaCalibragem }}</td>
-                  <td>{{ registroVeiculo.dataUltimoBalanceamento }}</td>
-                  <td>{{ registroVeiculo.quilometrosRodados }}</td>
-                  <td>{{ registroVeiculo.quilometrosProximaTrocaOleo }}</td>
-                  <td>{{ registroVeiculo.pecasJaTrocadas }}</td>
-                  <td>{{ registroVeiculo.dataTrocaPeca }}</td>
-                  <td>{{ registroVeiculo.pecasParaTrocar }}</td>
-                  <td>{{ registroVeiculo.observacao }}</td>
+                <tr *ngFor="let veiculo of veiculos">
+                  <td>{{ veiculo.dataUltimaRevisao }}</td>
+                  <td>{{ veiculo.dataUltimoAbastecimento }}</td>
+                  <td>{{ veiculo.combustivel }}</td>
+                  <td>{{ veiculo.precoAbastecimento }}</td>
+                  <td>{{ veiculo.litrosAbastecido }}</td>
+                  <td>{{ veiculo.precoEtanol }}</td>
+                  <td>{{ veiculo.precoGasolina }}</td>
+                  <td>{{ veiculo.mediaPorLitro }}</td>
+                  <td>{{ veiculo.dataUltimaTrocaOleo }}</td>
+                  <td>{{ veiculo.dataUltimaCalibragem }}</td>
+                  <td>{{ veiculo.dataUltimoBalanceamento }}</td>
+                  <td>{{ veiculo.quilometrosRodados }}</td>
+                  <td>{{ veiculo.quilometrosProximaTrocaOleo }}</td>
+                  <td>{{ veiculo.pecasJaTrocadas }}</td>
+                  <td>{{ veiculo.dataTrocaPeca }}</td>
+                  <td>{{ veiculo.pecasParaTrocar }}</td>
+                  <td>{{ veiculo.observacao }}</td>
                     <td>
-                        <a (click)="editModal.openEditModal(registroVeiculo)">
+                        <a (click)="editModal.openEditModal(veiculo)">
                             <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
                         </a>
-                        <a (click)="deleteModal.openDeleteModal(registroVeiculo.id)">
+                        <a (click)="deleteModal.openDeleteModal(veiculo.id)">
                             <i id="icon_opcoes" class="fa-solid fa-trash"></i>
                         </a>
                     </td>

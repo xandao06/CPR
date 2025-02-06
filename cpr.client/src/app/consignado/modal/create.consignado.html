@@ -20,6 +20,9 @@
           </div>
           <div class="form-group">
             <input id="cliente" formControlName="cliente" placeholder="Cliente" type="text" class="form-control" />
+            <small *ngIf="consignadoForm.get('cliente')?.invalid && consignadoForm.get('cliente')?.touched" class="text-danger">
+              Cliente é obrigatório.
+            </small>
           </div>
           <div>
             <label>Contrato:</label>
@@ -27,21 +30,36 @@
             <label id="contrato_label_sim">Sim:</label>
             <input id="nao" formControlName="contrato" value="Não" type="radio" class="form-check-input" />
             <label id="contrato_label_nao">Não:</label>
+            <small *ngIf="consignadoForm.get('contrato')?.touched && consignadoForm.get('contrato')?.invalid" class="text-danger">
+              Contrato é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="numeroSerie" formControlName="numeroSerie" placeholder="Numero de Série" type="text" class="form-control" />
+            <small *ngIf="consignadoForm.get('numeroSerie')?.touched && consignadoForm.get('numeroSerie')?.invalid" class="text-danger">
+              Número de Série é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="tipo" formControlName="tipo" placeholder="Tipo" type="text" class="form-control" />
+            <small *ngIf="consignadoForm.get('tipo')?.touched && consignadoForm.get('tipo')?.invalid" class="text-danger">
+              Tipo é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="marca" formControlName="marca" placeholder="Marca" type="text" class="form-control" />
+            <small *ngIf="consignadoForm.get('marca')?.touched && consignadoForm.get('marca')?.invalid" class="text-danger">
+              Marca é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="modelo" formControlName="modelo" placeholder="Modelo" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <input id="quantidade" formControlName="quantidade" placeholder="Quantidade" type="number" class="form-control" />
+            <small *ngIf="consignadoForm.get('quantidade')?.touched && consignadoForm.get('quantidade')?.invalid" class="text-danger">
+              Quantidade é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="preco" formControlName="preco" placeholder="Preço" type="text" class="form-control" (blur)="formatCurrency()" 

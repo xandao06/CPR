@@ -39,10 +39,10 @@ namespace CPR.Domain.Contracts.Client
 
 
         // REGISTRO VEICULO
-        Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo();
-        Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
-        Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
-        Task<bool> DeleteAsyncRegistroVeiculo(int id);
+        //Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo();
+        //Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
+        //Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
+        //Task<bool> DeleteAsyncRegistroVeiculo(int id);
 
 
     }

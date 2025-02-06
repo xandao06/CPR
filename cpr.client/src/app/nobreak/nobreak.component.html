@@ -31,7 +31,6 @@
                     <th>Quantidade de baterias</th>
                     <th>Função</th>
                     <th>Ordem de serviço</th>
-                    <th>Descrição</th>
                     <th>Opções</th>
                 </tr>
             </thead>
@@ -39,7 +38,7 @@
                 <tr *ngFor="let nobreak of filteredNobreaks"
                     [ngClass]="{'alert-today': (nobreak.dataProximaTroca | date:'yyyy-MM-dd') === today}">
                     <td>{{ nobreak.dataTroca | date:'dd/MM/yyyy' }}</td>
-                    <td>{{ nobreak.dataProximaTroca | date:'dd/MM/yyyy'}}</td>
+                    <td [ngClass]="{'text-danger': (nobreak.dataProximaTroca | date:'dd/MM/yyyy')}"> {{ nobreak.dataProximaTroca | date:'dd/MM/yyyy' }}</td>
                     <td>{{ nobreak.cliente }}</td>
                     <td>{{ nobreak.marca }}</td>
                     <td>{{ nobreak.modelo }}</td>
@@ -50,7 +49,6 @@
                     <td>{{ nobreak.quantidadeBateria }}</td>
                     <td>{{ nobreak.funcao }}</td>
                     <td>{{ nobreak.ordemServico }}</td>
-                    <td>{{ nobreak.descricao }}</td>
                     <td>
                         <a (click)="editModal.openEditModal(nobreak)">
                             <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>

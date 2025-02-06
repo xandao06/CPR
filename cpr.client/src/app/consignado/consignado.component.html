@@ -54,21 +54,21 @@
                         {{ equipamento.status }}
                     </td>
                     <td>
-                        <a (click)="editModal.openEditModal(equipamento)">
-                            <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
-                        </a>
-                        <a (click)="equipamento.status !== 'Concluido' && concluirModal.openConcluirModal(equipamento.id)">
-                            <i id="icon_opcoes" class="fa-regular fa-square-check" [ngClass]="{'disabled': equipamento.status === 'Concluido'}"></i>
-                        </a>
-                        <a (click)="deleteModal.openDeleteModal(equipamento.id)">
-                            <i id="icon_opcoes" class="fa-solid fa-trash"></i>
-                        </a>
-                        <div class="hidden">
-                            <app-print-layout [equipamento]="equipamento" #printComponent></app-print-layout>
-                        </div>
-                        <a (click)="printComponent.printEquipamento(equipamento)">
-                            <i id="icon_opcoes" class="fa-solid fa-print"></i>
-                        </a>
+                      <a (click)="editModal.openEditModal(equipamento)">
+                        <i id="icon_opcoes" class="fa-regular fa-pen-to-square"></i>
+                      </a>
+                      <a (click)="equipamento.status !== 'Concluido' && concluirModal.openConcluirModal(equipamento.id)">
+                        <i id="icon_opcoes" class="fa-regular fa-square-check" [ngClass]="{'disabled': equipamento.status === 'Concluido'}"></i>
+                      </a>
+                      <a (click)="deleteModal.openDeleteModal(equipamento.id)">
+                        <i id="icon_opcoes" class="fa-solid fa-trash"></i>
+                      </a>
+                      <!--<div class="hidden">
+                        <app-print-layout [equipamento]="equipamento" [attr.id]="'print-layout-' + equipamento.id"></app-print-layout>
+                      </div>-->
+                      <a (click)="printEquipamento(equipamento.id)">
+                        <i id="icon_opcoes" class="fa-solid fa-print"></i>
+                      </a>
                     </td>
                 </tr>
             </tbody>

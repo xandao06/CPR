@@ -20,7 +20,6 @@ import { ConcluirConsignadoModalComponent } from './consignado/modal/concluir.co
 import { CreateConsignadoModalComponent } from './consignado/modal/create.consignado';
 import { DeleteConsignadoModalComponent } from './consignado/modal/delete.consignado';
 import { EditConsignadoModalComponent } from './consignado/modal/edit.consignado';
-import { PrintLayoutComponent } from './consignado/print_layout';
 import { VeiculoComponent } from './veiculos/veiculo.component';
 import { CreateVeiculoModalComponent } from './veiculos/modal/create.veiculo';
 import { EditVeiculoModalComponent } from './veiculos/modal/edit.veiculo';
@@ -49,7 +48,6 @@ import { RegistroVeiculoComponent } from './veiculos/registro.veiculo.component'
     EditConsignadoModalComponent,
     DeleteConsignadoModalComponent,
     ConcluirConsignadoModalComponent,
-    PrintLayoutComponent,
     VeiculoComponent,
     CreateVeiculoModalComponent,
     DeleteVeiculoModalComponent,

@@ -11,6 +11,23 @@ export interface Veiculo {
   placa: string;
   ano: string;
   renavan: string;
+  dataUltimaRevisao: Date;
+  dataUltimoAbastecimento: Date;
+  dataUltimaTrocaOleo: Date;
+  dataUltimaCalibragem: Date;
+  quilometrosRodados: number;
+  quilometrosProximaTrocaOleo: number;
+  dataUltimoBalanceamento: Date;
+  pecasJaTrocadas: string;
+  pecasParaTrocar: string;
+  dataTrocaPeca: Date;
+  precoEtanol: string;
+  precoGasolina: string;
+  observacao: string;
+  litrosAbastecido: number;
+  precoAbastecimento: string;
+  combustivel: string;
+  mediaPorLitro: string;
 }
 
 @Component({
@@ -29,6 +46,23 @@ export class VeiculoComponent implements OnInit {
       placa: [''],
       ano: [''],
       renavan: [''],
+      dataUltimaRevisao: [''],
+      dataUltimoAbastecimento: [''],
+      dataUltimaTrocaOleo: [''],
+      dataUltimaCalibragem: [''],
+      quilometrosRodados: [''],
+      quilometrosProximaTrocaOleo: [''],
+      dataUltimoBalanceamento: [''],
+      pecasJaTrocadas: [''],
+      pecasParaTrocar: [''],
+      dataTrocaPeca: [''],
+      precoEtanol: [''],
+      precoGasolina: [''],
+      observacao: [''],
+      litrosAbastecido: [''],
+      precoAbastecimento: [''],
+      combustivel: [''],
+      mediaPorLitro: ['']
 
     });
   }
@@ -47,17 +81,24 @@ export class VeiculoComponent implements OnInit {
   }
 
   async createVeiculo(veiculo: Veiculo) {
+    const headers = { 'Content-Type': 'application/json' };
+
+    console.log('Enviando JSON para API:', JSON.stringify(veiculo));
+
     const newVeiculo = await lastValueFrom(
       this.http.post<Veiculo>(
         this.apiConfig.getApiUrl('veiculos/sync/createVeiculos'),
-        veiculo
+        JSON.stringify(veiculo), // Garante que os dados sejam enviados como JSON válido
+        { headers }
       )
     );
+
     if (newVeiculo) {
       this.veiculos.push(newVeiculo);
       await this.getVeiculos();
     }
   }
+
 
   async editVeiculo(veiculo: Veiculo) {
     const updatedVeiculo = await lastValueFrom(

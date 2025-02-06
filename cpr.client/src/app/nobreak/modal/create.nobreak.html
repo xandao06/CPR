@@ -20,24 +20,39 @@
           </div>
           <div class="form-group">
             <input id="numeroSerie" formControlName="numeroSerie" placeholder="Número de Série" type="text" class="form-control" />
+            <small *ngIf="nobreakForm.get('numeroSerie')?.invalid && nobreakForm.get('numeroSerie')?.touched" class="text-danger">
+              Numero de série é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="marca" formControlName="marca" placeholder="Marca" type="text" class="form-control" />
+            <small *ngIf="nobreakForm.get('marca')?.invalid && nobreakForm.get('marca')?.touched" class="text-danger">
+              Marca é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="modelo" formControlName="modelo" placeholder="Modelo" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <input id="cliente" formControlName="cliente" placeholder="Cliente" type="text" class="form-control" />
+            <small *ngIf="nobreakForm.get('cliente')?.invalid && nobreakForm.get('cliente')?.touched" class="text-danger">
+              Cliente é obrigatório.
+            </small>
           </div>
-          <div class="form-group">
+          <!--<div class="form-group">
             <input id="descricao" formControlName="descricao" placeholder="Descrição" type="text" class="form-control" />
-          </div>
+          </div>-->
           <div class="form-group">
             <input id="bateria" formControlName="bateria" placeholder="Bateria" type="text" class="form-control" />
+            <small *ngIf="nobreakForm.get('cliente')?.invalid && nobreakForm.get('cliente')?.touched" class="text-danger">
+              Bateria é obrigatório.
+            </small>
           </div>
           <div class="form-group">
             <input id="quantidadeBateria" formControlName="quantidadeBateria" placeholder="Quantidade de Baterias" type="number" class="form-control" />
+            <small *ngIf="nobreakForm.get('cliente')?.invalid && nobreakForm.get('cliente')?.touched" class="text-danger">
+              Quantidade de baterias é obrigatório.
+            </small>
           </div>
           <div>
             <label>Voltagem Entrada:</label>
@@ -65,6 +80,9 @@
           </div>
           <div class="form-group">
             <input id="ordemServico" formControlName="ordemServico" placeholder="Ordem de Serviço" type="text" class="form-control" />
+            <small *ngIf="nobreakForm.get('cliente')?.invalid && nobreakForm.get('cliente')?.touched" class="text-danger">
+              Ordem de serviço é obrigatório.
+            </small>
           </div>
           <button type="submit" class="btn btn-dark" [disabled]="nobreakForm.invalid">Salvar</button>
         </form>

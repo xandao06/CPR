@@ -11,21 +11,39 @@
         <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="registroVeiculoForm" (ngSubmit)="submitRegistroVeiculo()">
+        <form [formGroup]="veiculoForm" (ngSubmit)="submitVeiculo()">
           <div class="form-group">
             <input id="dataUltimaRevisao" formControlName="dataUltimaRevisao" placeholder="Data da última revisão" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="precoEtanol" formControlName="precoEtanol" placeholder="Preço do Etanol" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="precoGasolina" formControlName="precoGasolina" placeholder="Preço da gasolina" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <input id="combustivel" formControlName="combustivel" placeholder="Combustivel Utilizado" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <input id="mediaPorLitro" formControlName="mediaPorLitro" placeholder="Média por litro" type="number" class="form-control" />
+            <input id="precoAbastecimento" formControlName="precoAbastecimento" placeholder="Preço do Abastecimento" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="litrosAbastecido" formControlName="litrosAbastecido" placeholder="Litros Abastecidos" type="number" class="form-control" />
           </div>
           <div class="form-group">
             <input id="dataUltimoAbastecimento" formControlName="dataUltimoAbastecimento" placeholder="Data do último abastecimento" type="date" class="form-control" />
           </div>
           <div class="form-group">
+            <input id="mediaPorLitro" formControlName="mediaPorLitro" placeholder="Média por litro" type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="quilometrosRodados" formControlName="quilometrosRodados" placeholder="Quilometros Rodados" type="number" class="form-control" />
+          </div>
+          <div class="form-group">
             <input id="dataUltimaTrocaOleo" formControlName="dataUltimaTrocaOleo" placeholder="Data da última troca de óleo" type="date" class="form-control" />
+          </div>
+          <div class="form-group">
+            <input id="quilometrosProximaTrocaOleo" formControlName="quilometrosProximaTrocaOleo" placeholder="Quilometros para próxima troca" type="number" class="form-control" />
           </div>
           <div class="form-group">
             <input id="dataUltimaCalibragem" formControlName="dataUltimaCalibragem" placeholder="Data da última calibragem" type="date" class="form-control" />
@@ -43,12 +61,10 @@
             <input id="pecasParaTrocar" formControlName="pecasParaTrocar" placeholder="Peça que falta trocar" type="text" class="form-control" />
           </div>
           <div class="form-group">
-            <input id="precoEtanol" formControlName="precoEtanol" placeholder="Preço do Etanol" type="text" class="form-control" />
+            <input id="observacao" formControlName="observacao" placeholder="Observação" type="text" class="form-control" />
           </div>
-          <div class="form-group">
-            <input id="precoGasolina" formControlName="precoGasolina" placeholder="Preço da gasolina" type="number" class="form-control" />
-          </div>
-          <button type="submit" class="btn btn-dark" [disabled]="registroVeiculoForm.invalid">Salvar</button>
+
+          <button type="submit" class="btn btn-dark" [disabled]="veiculoForm.invalid">Salvar</button>
         </form>
       </div>
     </div>

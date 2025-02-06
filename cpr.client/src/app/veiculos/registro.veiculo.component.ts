@@ -5,8 +5,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppComponent } from '../app.component';
 
 
-export interface RegistroVeiculo {
+export interface Veiculo {
   id: number;
+  modelo: string;
+  placa: string;
+  ano: string;
+  renavan: string;
   dataUltimaRevisao: Date;
   dataUltimoAbastecimento: Date;
   dataUltimaTrocaOleo: Date;
@@ -32,14 +36,18 @@ export interface RegistroVeiculo {
   styleUrls: ['../app.component.css']
 })
 export class RegistroVeiculoComponent implements OnInit {
-  public registroVeiculo: RegistroVeiculo[] = [];
-  public registroVeiculoForm: FormGroup;
+  public veiculos: Veiculo[] = [];
+  public VeiculoForm: FormGroup;
   public veiculoId: number | null = null;
-  public filteredRegistrosVeiculos: RegistroVeiculo[] = [];
+  public filteredVeiculos: Veiculo[] = [];
 
   constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
-    this.registroVeiculoForm = this.fb.group({
+    this.VeiculoForm = this.fb.group({
       id: [''],
+      modelo: [''],
+      placa: [''],
+      ano: [''],
+      renavan: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
       dataUltimaTrocaOleo: [''],
@@ -61,55 +69,55 @@ export class RegistroVeiculoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.getRegistroVeiculos();
+    await this.getVeiculos();
   }
 
-  async getRegistroVeiculos() {
+  async getVeiculos() {
     const result = await lastValueFrom(
-      this.http.get<{ syncedRegistroVeiculos: number; registroVeiculos: RegistroVeiculo[] }>(
-        this.apiConfig.getApiUrl('registroVeiculos/sync/getRegistroVeiculos')
-      ).pipe(map(response => response.registroVeiculos))
+      this.http.get<{ syncedVeiculos: number; veiculos: Veiculo[] }>(
+        this.apiConfig.getApiUrl('veiculos/sync/getVeiculos')
+      ).pipe(map(response => response.veiculos))
     );
-    this.registroVeiculo = result;
+    this.veiculos = result;
   }
 
-  async createRegistroVeiculo(veiculo: RegistroVeiculo) {
+  async createVeiculo(veiculo: Veiculo) {
     const newVeiculo = await lastValueFrom(
-      this.http.post<RegistroVeiculo>(
-        this.apiConfig.getApiUrl('registroVeiculos/sync/createRegistroVeiculos'),
+      this.http.post<Veiculo>(
+        this.apiConfig.getApiUrl('veiculos/sync/createVeiculos'),
         veiculo
       )
     );
     if (newVeiculo) {
-      this.registroVeiculo.push(newVeiculo);
-      await this.getRegistroVeiculos();
+      this.veiculos.push(newVeiculo);
+      await this.getVeiculos();
     }
   }
 
-  async editRegistroVeiculo(registroVeiculo: RegistroVeiculo) {
-    const updatedRegistroVeiculo = await lastValueFrom(
-      this.http.put<RegistroVeiculo>(this.apiConfig.getApiUrl('registroVeiculos/sync/editRegistroVeiculo'), registroVeiculo)
+  async editVeiculo(veiculo: Veiculo) {
+    const updatedVeiculo = await lastValueFrom(
+      this.http.put<Veiculo>(this.apiConfig.getApiUrl('veiculos/sync/editVeiculo'), veiculo)
     );
-    if (updatedRegistroVeiculo) {
-      await this.getRegistroVeiculos();
+    if (updatedVeiculo) {
+      await this.getVeiculos();
     }
   }
 
-  async deleteRegistroVeiculo(id: number) {
+  async deleteVeiculo(id: number) {
       const deleted = await lastValueFrom(
-        this.http.delete<boolean>(this.apiConfig.getApiUrl(`registroVeiculos/sync/deleteRegistroVeiculo/${id}`),)
+        this.http.delete<boolean>(this.apiConfig.getApiUrl(`veiculos/sync/deleteVeiculo/${id}`),)
       );
       if (deleted) {
-        await this.getRegistroVeiculos();
+        await this.getVeiculos();
       }
   }
 
   async getVeiculoById(id: number) {
-    const registroVeiculo = await lastValueFrom(
-      this.http.get<RegistroVeiculo>(this.apiConfig.getApiUrl(`registroVeiculos/sync/getVeiculoById/${id}`))
+    const veiculo = await lastValueFrom(
+      this.http.get<Veiculo>(this.apiConfig.getApiUrl(`veiculos/sync/getVeiculoById/${id}`))
     );
-    if (registroVeiculo) {
-      this.registroVeiculo = [registroVeiculo];
+    if (veiculo) {
+      this.veiculos = [veiculo];
     }
   }
 

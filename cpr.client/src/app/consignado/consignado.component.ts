@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppComponent } from '../app.component';
@@ -119,6 +119,23 @@ export class ConsignadoComponent implements OnInit {
       equipamentos.modelo.toLowerCase().includes(lowerCaseSearchTerm) ||
       equipamentos.contrato.toLowerCase().includes(lowerCaseSearchTerm)
     );
+  }
+
+  printEquipamento(equipamentoId: number) {
+    const printContent = document.getElementById(`print-layout-${equipamentoId}`);
+
+    if (!printContent) {
+      console.error(`Elemento "print-layout-${equipamentoId}" não encontrado.`);
+      return;
+    }
+
+    const originalContent = document.body.innerHTML; 
+
+    document.body.innerHTML = printContent.outerHTML; 
+    window.print(); 
+
+    document.body.innerHTML = originalContent; 
+    window.location.reload(); 
   }
 
 }

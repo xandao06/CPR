@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'create-consignado-modal',
@@ -14,18 +14,19 @@ export class CreateConsignadoModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.consignadoForm = this.fb.group({
-      data: [''],
-      hora: [''],
-      cliente: [''],
+      id: [''],
+      data: ['', Validators.required],
+      hora: ['', Validators.required],
+      cliente: ['', Validators.required],
       descricao: [''],
-      contrato: [''],
-      numeroSerie: [''],
+      contrato: ['', Validators.required],
+      numeroSerie: ['', Validators.required],
       status: 'Emprestado',
-      marca: [''],
+      marca: ['', Validators.required],
       modelo: [''],
       preco: [''],
-      quantidade: [''],
-      tipo: ['']
+      quantidade: ['', Validators.required],
+      tipo: ['', Validators.required]
     });
   }
 
@@ -44,10 +45,43 @@ export class CreateConsignadoModalComponent implements OnInit {
   }
 
   async submitConsignado() {
-    const consignadoData = this.consignadoForm.value;
+
+    this.consignadoForm.markAllAsTouched();
+
+    if (this.consignadoForm.invalid) {
+      return;
+    }
+
+    const consignadoData: any = {
+      id: this.consignadoForm.value.id ? Number(this.consignadoForm.value.id) : 0,
+      data: this.consignadoForm.value.data || '',
+      hora: this.consignadoForm.value.hora || '',
+      cliente: this.consignadoForm.value.cliente || '',
+      descricao: '',
+      contrato: this.consignadoForm.value.contrato || '',
+      numeroSerie: this.consignadoForm.value.numeroSerie || '',
+      status: this.consignadoForm.value.status || 'Emprestado', // Valor padrão
+      marca: this.consignadoForm.value.marca || '',
+      modelo: '',
+      preco: '',
+      quantidade: 0,
+      tipo: this.consignadoForm.value.tipo || ''
+    };
+
+    const addDateIfValid = (key: string, value: any) => {
+      const date = new Date(value);
+      if (value && !isNaN(date.getTime())) {
+        consignadoData[key] = date.toISOString();
+      }
+    };
+
+    addDateIfValid('data', this.consignadoForm.value.data);
+
     this.create.emit(consignadoData);
     this.closeModal();
   }
+
+
 
   private resetForm() {
     const now = new Date();
@@ -57,16 +91,16 @@ export class CreateConsignadoModalComponent implements OnInit {
     this.consignadoForm.reset({
       data: formattedDate,
       hora: formattedTime,
-      cliente: [''],
-      descricao: [''],
-      contrato: [''],
-      numeroSerie: [''],
+      cliente: '',
+      descricao: '',
+      contrato: '',
+      numeroSerie: '',
       status: 'Emprestado',
-      marca: [''],
-      modelo: [''],
-      preco: [''],
-      quantidade: [''],
-      tipo: ['']
+      marca: '',
+      modelo: '',
+      preco: '',
+      quantidade: '',
+      tipo: ''
     });
   }
 

@@ -9,11 +9,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CreateRegistroModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<any>();
-  public registroVeiculoForm: FormGroup;
+  public veiculoForm: FormGroup;
   public showModal: boolean = false;
+  public veiculoId: number | null = null;
 
   constructor(private fb: FormBuilder) {
-    this.registroVeiculoForm = this.fb.group({
+    this.veiculoForm = this.fb.group({
       id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
@@ -29,7 +30,9 @@ export class CreateRegistroModalComponent implements OnInit {
       precoGasolina: [''],
       observacao: [''],
       litrosAbastecido: [''],
-      precoAbastecimento: ['']
+      precoAbastecimento: [''],
+      combustivel: [''],
+      mediaPorLitro: ['']
     });
   }
 
@@ -37,8 +40,10 @@ export class CreateRegistroModalComponent implements OnInit {
     this.resetForm();
   }
 
-  openCreateModal() {
+  openCreateModal(veiculoId: number) {
+    this.veiculoId = veiculoId; // Armazena o ID do veículo selecionado
     this.resetForm();
+    this.veiculoForm.patchValue({ id: veiculoId }); // Define o ID no formulário
     this.showModal = true;
   }
 
@@ -47,20 +52,37 @@ export class CreateRegistroModalComponent implements OnInit {
     this.close.emit();
   }
 
-  async submitRegistroVeiculo() {
-    const registroVeiculoData = this.registroVeiculoForm.value;
-    this.create.emit(registroVeiculoData);
-    this.closeModal();
+  async submitVeiculo() {
+    const veiculoData = {
+      id: this.veiculoId || 0, // Garante que o ID seja enviado corretamente
+      dataUltimaRevisao: this.veiculoForm.value.dataUltimaRevisao || '',
+      dataUltimoAbastecimento: this.veiculoForm.value.dataUltimoAbastecimento || '',
+      dataUltimaTrocaOleo: this.veiculoForm.value.dataUltimaTrocaOleo || '',
+      dataUltimaCalibragem: this.veiculoForm.value.dataUltimaCalibragem || '',
+      quilometrosRodados: this.veiculoForm.value.quilometrosRodados || '',
+      quilometrosProximaTrocaOleo: this.veiculoForm.value.quilometrosProximaTrocaOleo || '',
+      dataUltimoBalanceamento: this.veiculoForm.value.dataUltimoBalanceamento || '',
+      pecasJaTrocadas: this.veiculoForm.value.pecasJaTrocadas || '',
+      pecasParaTrocar: this.veiculoForm.value.pecasParaTrocar || '',
+      dataTrocaPeca: this.veiculoForm.value.dataTrocaPeca || '',
+      precoEtanol: this.veiculoForm.value.precoEtanol || '',
+      precoGasolina: this.veiculoForm.value.precoGasolina || '',
+      observacao: this.veiculoForm.value.observacao || '',
+      litrosAbastecido: this.veiculoForm.value.litrosAbastecido || '',
+      precoAbastecimento: this.veiculoForm.value.precoAbastecimento || '',
+      combustivel: this.veiculoForm.value.combustivel || '',
+      mediaPorLitro: this.veiculoForm.value.mediaPorLitro || ''
+    };
+
+    console.log('Enviando JSON para API:', JSON.stringify(veiculoData));
+
+    this.create.emit(veiculoData);
   }
 
-  //private resetForm() {
-  //  const now = new Date();
-  //  const formattedDate = now.toISOString().split('T')[0];
-  //  const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
   private resetForm()
   {
-    this.registroVeiculoForm.reset({
+    this.veiculoForm.reset({
       id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
@@ -74,46 +96,14 @@ export class CreateRegistroModalComponent implements OnInit {
       dataTrocaPeca: [''],
       precoEtanol: [''],
       precoGasolina: [''],
-      mediaPorLitro: [''],
-      combustivel: ['']
+      observacao: [''],
+      litrosAbastecido: [''],
+      precoAbastecimento: [''],
+      combustivel: [''],
+      mediaPorLitro: ['']
     });
   }
     
-
-  //formatCurrency() {
-  //  let preco = this.veiculoForm.get('preco')?.value;
-
-  //  if (preco !== null && preco !== undefined) {
-  //    preco = preco.toString().replace(/\D/g, '');
-  //    const numericValue = parseFloat(preco) / 100;
-
-  //    if (!isNaN(numericValue)) {
-  //      this.veiculoForm.patchValue({
-  //        preco: numericValue.toFixed(2) 
-  //      });
-
-  //      (document.getElementById('preco') as HTMLInputElement).value =
-  //        numericValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  //    }
-  //  }
-  //}
-
-  //onPriceInput() {
-  //  let preco = this.consignadoForm.get('preco')?.value || '';
-  //  preco = preco.replace(/\D/g, '');
-
-  //  const numericValue = parseFloat(preco) / 100;
-
-  //  if (!isNaN(numericValue)) {
-  //    const formattedValue = numericValue.toLocaleString('pt-BR', {
-  //      style: 'currency',
-  //      currency: 'BRL'
-  //    });
-
-  //    this.consignadoForm.patchValue({ preco: formattedValue }, { emitEvent: false });
-  //  }
-  //}
-
 
 }
 

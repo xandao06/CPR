@@ -37,10 +37,47 @@ export class CreateVeiculoModalComponent implements OnInit {
   }
 
   async submitVeiculo() {
-    const veiculoData = this.veiculoForm.value;
+    const veiculoData: any = {
+      id: this.veiculoForm.value.id ? Number(this.veiculoForm.value.id) : 0,
+      modelo: this.veiculoForm.value.modelo || '',
+      placa: this.veiculoForm.value.placa || '',
+      ano: this.veiculoForm.value.ano || '',
+      renavan: this.veiculoForm.value.renavan || '',
+      quilometrosRodados: 0,
+      quilometrosProximaTrocaOleo: 0,
+      pecasJaTrocadas: '',
+      pecasParaTrocar: '',
+      precoEtanol: '',
+      precoGasolina: '',
+      observacao: '',
+      litrosAbastecido: 0,
+      precoAbastecimento: '',
+      combustivel: '',
+      mediaPorLitro: ''
+    };
+
+    const addDateIfValid = (key: string, value: any) => {
+      const date = new Date(value);
+      if (value && !isNaN(date.getTime())) {
+        veiculoData[key] = date.toISOString();
+      }
+    };
+
+    addDateIfValid('dataUltimaRevisao', this.veiculoForm.value.dataUltimaRevisao);
+    addDateIfValid('dataUltimoAbastecimento', this.veiculoForm.value.dataUltimoAbastecimento);
+    addDateIfValid('dataUltimaTrocaOleo', this.veiculoForm.value.dataUltimaTrocaOleo);
+    addDateIfValid('dataUltimaCalibragem', this.veiculoForm.value.dataUltimaCalibragem);
+    addDateIfValid('dataUltimoBalanceamento', this.veiculoForm.value.dataUltimoBalanceamento);
+    addDateIfValid('dataTrocaPeca', this.veiculoForm.value.dataTrocaPeca);
+
+    console.log('Enviando JSON para API:', JSON.stringify(veiculoData));
+
     this.create.emit(veiculoData);
     this.closeModal();
   }
+
+
+
 
   //private resetForm() {
   //  const now = new Date();
@@ -58,41 +95,6 @@ export class CreateVeiculoModalComponent implements OnInit {
     });
   }
     
-
-  //formatCurrency() {
-  //  let preco = this.veiculoForm.get('preco')?.value;
-
-  //  if (preco !== null && preco !== undefined) {
-  //    preco = preco.toString().replace(/\D/g, '');
-  //    const numericValue = parseFloat(preco) / 100;
-
-  //    if (!isNaN(numericValue)) {
-  //      this.veiculoForm.patchValue({
-  //        preco: numericValue.toFixed(2) 
-  //      });
-
-  //      (document.getElementById('preco') as HTMLInputElement).value =
-  //        numericValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  //    }
-  //  }
-  //}
-
-  //onPriceInput() {
-  //  let preco = this.consignadoForm.get('preco')?.value || '';
-  //  preco = preco.replace(/\D/g, '');
-
-  //  const numericValue = parseFloat(preco) / 100;
-
-  //  if (!isNaN(numericValue)) {
-  //    const formattedValue = numericValue.toLocaleString('pt-BR', {
-  //      style: 'currency',
-  //      currency: 'BRL'
-  //    });
-
-  //    this.consignadoForm.patchValue({ preco: formattedValue }, { emitEvent: false });
-  //  }
-  //}
-
 
 }
 

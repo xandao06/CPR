@@ -1,6 +1,6 @@
-﻿using CPR.Domain;
-using MediatR;
+﻿//using CPR.Domain;
+//using MediatR;
 
-public class GetMockApiRegistroVeiculoRequest : IRequest<List<RegistroVeiculo>>
-{
-}
+//public class GetMockApiRegistroVeiculoRequest : IRequest<List<RegistroVeiculo>>
+//{
+//}

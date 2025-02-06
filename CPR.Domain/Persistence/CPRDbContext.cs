@@ -22,7 +22,7 @@ namespace CPR.Domain.Persistence
         public DbSet<Nobreak> Nobreaks { get; set; }
         public DbSet<Equipamento> Equipamentos { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
-        public DbSet<RegistroVeiculo> Registros { get; set; }
+        //public DbSet<RegistroVeiculo> Registros { get; set; }
     }
 }
 
