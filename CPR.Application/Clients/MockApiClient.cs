@@ -173,33 +173,41 @@ namespace CPR.Application.Clients
         //////// REGISTRO VEICULO /////
 
 
-        //public async Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo()
-        //{
-        //    return await _dbContext.Registros
-        //    .ToListAsync();
-        //}
-        //public async Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo)
-        //{
-        //    _dbContext.Registros.Add(registroVeiculo);
-        //    await _dbContext.SaveChangesAsync();
-        //    return registroVeiculo;
-        //}
-        //public async Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo)
-        //{
-        //    _dbContext.Registros.Update(registroVeiculo);
-        //    await _dbContext.SaveChangesAsync();
-        //    return registroVeiculo;
-        //}
-        //public async Task<bool> DeleteAsyncRegistroVeiculo(int id)
-        //{
-        //    var registroVeiculo = await _dbContext.Registros.FindAsync(id);
-        //    if (registroVeiculo != null)
-        //    {
-        //        _dbContext.Registros.Remove(registroVeiculo);
-        //        await _dbContext.SaveChangesAsync();
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public async Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo(int? veiculoId = null)
+        {
+            var query = _dbContext.Registros.AsQueryable();
+
+            // Se VeiculoId for passado, filtramos os registros
+            if (veiculoId.HasValue)
+            {
+                query = query.Where(r => r.VeiculoId == veiculoId.Value);
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo)
+        {
+            _dbContext.Registros.Add(registroVeiculo);
+            await _dbContext.SaveChangesAsync();
+            return registroVeiculo;
+        }
+        public async Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo)
+        {
+            _dbContext.Registros.Update(registroVeiculo);
+            await _dbContext.SaveChangesAsync();
+            return registroVeiculo;
+        }
+        public async Task<bool> DeleteAsyncRegistroVeiculo(int id)
+        {
+            var registroVeiculo = await _dbContext.Registros.FindAsync(id);
+            if (registroVeiculo != null)
+            {
+                _dbContext.Registros.Remove(registroVeiculo);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }

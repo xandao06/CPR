@@ -11,23 +11,6 @@ export interface Veiculo {
   placa: string;
   ano: string;
   renavan: string;
-  dataUltimaRevisao: Date;
-  dataUltimoAbastecimento: Date;
-  dataUltimaTrocaOleo: Date;
-  dataUltimaCalibragem: Date;
-  quilometrosRodados: number;
-  quilometrosProximaTrocaOleo: number;
-  dataUltimoBalanceamento: Date;
-  pecasJaTrocadas: string;
-  pecasParaTrocar: string;
-  dataTrocaPeca: Date;
-  precoEtanol: string;
-  precoGasolina: string;
-  observacao: string;
-  litrosAbastecido: number;
-  precoAbastecimento: string;
-  combustivel: string;
-  mediaPorLitro: string;
 }
 
 @Component({
@@ -46,24 +29,6 @@ export class VeiculoComponent implements OnInit {
       placa: [''],
       ano: [''],
       renavan: [''],
-      dataUltimaRevisao: [''],
-      dataUltimoAbastecimento: [''],
-      dataUltimaTrocaOleo: [''],
-      dataUltimaCalibragem: [''],
-      quilometrosRodados: [''],
-      quilometrosProximaTrocaOleo: [''],
-      dataUltimoBalanceamento: [''],
-      pecasJaTrocadas: [''],
-      pecasParaTrocar: [''],
-      dataTrocaPeca: [''],
-      precoEtanol: [''],
-      precoGasolina: [''],
-      observacao: [''],
-      litrosAbastecido: [''],
-      precoAbastecimento: [''],
-      combustivel: [''],
-      mediaPorLitro: ['']
-
     });
   }
 
@@ -88,7 +53,7 @@ export class VeiculoComponent implements OnInit {
     const newVeiculo = await lastValueFrom(
       this.http.post<Veiculo>(
         this.apiConfig.getApiUrl('veiculos/sync/createVeiculos'),
-        JSON.stringify(veiculo), // Garante que os dados sejam enviados como JSON válido
+        JSON.stringify(veiculo), 
         { headers }
       )
     );
@@ -102,7 +67,7 @@ export class VeiculoComponent implements OnInit {
 
   async editVeiculo(veiculo: Veiculo) {
     const updatedVeiculo = await lastValueFrom(
-      this.http.put<Veiculo>(this.apiConfig.getApiUrl('veiculos/sync/editVeiculos'), veiculo)
+      this.http.put<Veiculo>(this.apiConfig.getApiUrl('veiculos/sync/editVeiculo'), veiculo)
     );
     if (updatedVeiculo) {
       await this.getVeiculos();
@@ -111,7 +76,7 @@ export class VeiculoComponent implements OnInit {
 
   async deleteVeiculo(id: number) {
     const deleted = await lastValueFrom(
-      this.http.delete<boolean>(this.apiConfig.getApiUrl(`veiculos/sync/deleteVeiculos/${id}`),)
+      this.http.delete<boolean>(this.apiConfig.getApiUrl(`veiculos/sync/deleteVeiculo/${id}`),)
     );
     if (deleted) {
       await this.getVeiculos();

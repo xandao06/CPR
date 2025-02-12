@@ -1,12 +1,12 @@
-﻿//using CPR.Domain;
-//using MediatR;
+﻿using CPR.Domain;
+using MediatR;
 
-//public class EditMockApiRegistroVeiculoRequest : IRequest<RegistroVeiculo>
-//{
-//    public RegistroVeiculo RegistroVeiculo { get; set; }
+public class EditMockApiRegistroVeiculoRequest : IRequest<RegistroVeiculo>
+{
+    public RegistroVeiculo RegistroVeiculo { get; set; }
 
-//    public EditMockApiRegistroVeiculoRequest(RegistroVeiculo registroVeiculo)
-//    {
-//        RegistroVeiculo = registroVeiculo;
-//    }
-//}
+    public EditMockApiRegistroVeiculoRequest(RegistroVeiculo registroVeiculo)
+    {
+        RegistroVeiculo = registroVeiculo;
+    }
+}

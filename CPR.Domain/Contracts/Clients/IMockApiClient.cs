@@ -1,6 +1,5 @@
-﻿
+﻿namespace CPR.Domain.Contracts.Client
 
-namespace CPR.Domain.Contracts.Client
 {
     public interface IMockApiClient
     {
@@ -38,11 +37,11 @@ namespace CPR.Domain.Contracts.Client
         Task<Veiculo> GetByIdAsyncVeiculo(int id);
 
 
-        // REGISTRO VEICULO
-        //Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo();
-        //Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
-        //Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
-        //Task<bool> DeleteAsyncRegistroVeiculo(int id);
+        /// REGISTRO VEICULO
+        Task<List<RegistroVeiculo>> GetAsyncRegistroVeiculo(int? veiculoId = null);
+        Task<RegistroVeiculo> CreateAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
+        Task<RegistroVeiculo> EditAsyncRegistroVeiculo(RegistroVeiculo registroVeiculo);
+        Task<bool> DeleteAsyncRegistroVeiculo(int id);
 
 
     }

@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { lastValueFrom, map } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import { ActivatedRoute } from '@angular/router';
+import { Veiculo } from './veiculo.component';
 
 
-export interface Veiculo {
+
+export interface RegistroVeiculo {
   id: number;
-  modelo: string;
-  placa: string;
-  ano: string;
-  renavan: string;
+  veiculoId: number;
   dataUltimaRevisao: Date;
   dataUltimoAbastecimento: Date;
   dataUltimaTrocaOleo: Date;
@@ -37,17 +37,14 @@ export interface Veiculo {
 })
 export class RegistroVeiculoComponent implements OnInit {
   public veiculos: Veiculo[] = [];
-  public VeiculoForm: FormGroup;
-  public veiculoId: number | null = null;
-  public filteredVeiculos: Veiculo[] = [];
+  public registrosVeiculo: RegistroVeiculo[] = [];
+  public registrosForm: FormGroup;
+  public registroId: number | null = null;
+  public filteredRegistros: RegistroVeiculo[] = [];
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent) {
-    this.VeiculoForm = this.fb.group({
+  constructor(private http: HttpClient, private fb: FormBuilder, private apiConfig: AppComponent, private route: ActivatedRoute) {
+    this.registrosForm = this.fb.group({
       id: [''],
-      modelo: [''],
-      placa: [''],
-      ano: [''],
-      renavan: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
       dataUltimaTrocaOleo: [''],
@@ -69,57 +66,77 @@ export class RegistroVeiculoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.getVeiculos();
+    this.route.paramMap.subscribe(async params => {
+      const veiculoId = Number(params.get('id')); // Captura o ID da URL
+      if (veiculoId && !isNaN(veiculoId)) {
+        this.registroId = veiculoId;
+        await this.getRegistroVeiculos(veiculoId);
+      }
+    });
   }
 
-  async getVeiculos() {
+  async getRegistroVeiculos(veiculoId: number) {
     const result = await lastValueFrom(
-      this.http.get<{ syncedVeiculos: number; veiculos: Veiculo[] }>(
-        this.apiConfig.getApiUrl('veiculos/sync/getVeiculos')
-      ).pipe(map(response => response.veiculos))
+      this.http.get<{ syncedRegistros: number; registros: RegistroVeiculo[] }>(
+        this.apiConfig.getApiUrl(`registroVeiculos/sync/getRegistroVeiculos/${veiculoId}`)
+      ).pipe(map(response => response.registros))
     );
-    this.veiculos = result;
+    this.registrosVeiculo = result;
   }
 
-  async createVeiculo(veiculo: Veiculo) {
-    const newVeiculo = await lastValueFrom(
-      this.http.post<Veiculo>(
-        this.apiConfig.getApiUrl('veiculos/sync/createVeiculos'),
-        veiculo
+  async createRegistroVeiculo(registro: RegistroVeiculo) {
+    registro.veiculoId = this.registroId!; // Garante que o ID do veículo seja passado
+
+    const newRegistro = await lastValueFrom(
+      this.http.post<RegistroVeiculo>(
+        this.apiConfig.getApiUrl('registroVeiculos/sync/createRegistroVeiculos'),
+        registro
       )
     );
-    if (newVeiculo) {
-      this.veiculos.push(newVeiculo);
-      await this.getVeiculos();
+
+    if (newRegistro) {
+      this.registrosVeiculo.push(newRegistro);
+      await this.getRegistroVeiculos(this.registroId!);
     }
   }
 
-  async editVeiculo(veiculo: Veiculo) {
-    const updatedVeiculo = await lastValueFrom(
-      this.http.put<Veiculo>(this.apiConfig.getApiUrl('veiculos/sync/editVeiculo'), veiculo)
+
+
+  async editRegistroVeiculo(registros: RegistroVeiculo) {
+    registros.id = this.registroId!; // Mantém o vínculo do registro com o veículo
+
+    const updatedRegistro = await lastValueFrom(
+      this.http.put<RegistroVeiculo>(
+        this.apiConfig.getApiUrl('registroVeiculos/sync/editRegistroVeiculo'),
+        registros
+      )
     );
-    if (updatedVeiculo) {
-      await this.getVeiculos();
+
+    if (updatedRegistro) {
+      await this.getRegistroVeiculos(this.registroId!); // Atualiza os registros
     }
   }
 
-  async deleteVeiculo(id: number) {
-      const deleted = await lastValueFrom(
-        this.http.delete<boolean>(this.apiConfig.getApiUrl(`veiculos/sync/deleteVeiculo/${id}`),)
-      );
-      if (deleted) {
-        await this.getVeiculos();
-      }
-  }
 
-  async getVeiculoById(id: number) {
-    const veiculo = await lastValueFrom(
-      this.http.get<Veiculo>(this.apiConfig.getApiUrl(`veiculos/sync/getVeiculoById/${id}`))
+  async deleteRegistroVeiculo(id: number) {
+    const deleted = await lastValueFrom(
+      this.http.delete<boolean>(this.apiConfig.getApiUrl(`registroVeiculos/sync/deleteRegistroVeiculo/${id}`))
     );
-    if (veiculo) {
-      this.veiculos = [veiculo];
+
+    if (deleted) {
+      await this.getRegistroVeiculos(this.registroId!); // Atualiza a lista
     }
   }
+
+
+  //async getVeiculoById(id: number) {
+  //  const veiculo = await lastValueFrom(
+  //    this.http.get<Veiculo>(this.apiConfig.getApiUrl(`veiculos/sync/getVeiculoById/${id}`))
+  //  );
+  //  if (veiculo) {
+  //    this.veiculos = [veiculo];
+  //  }
+  //}
 
 }
 

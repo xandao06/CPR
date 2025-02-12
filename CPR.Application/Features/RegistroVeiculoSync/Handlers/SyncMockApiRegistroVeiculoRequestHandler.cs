@@ -1,21 +1,28 @@
-﻿//using AutoMapper;
-//using CPR.Domain.Contracts.Client;
-//using CPR.Domain;
-//using MediatR;
-//using CPR.Application.Features.RegistroVeiculoSync.Queries;
+﻿using AutoMapper;
+using CPR.Domain.Contracts.Client;
+using CPR.Domain;
+using MediatR;
+using CPR.Application.Features.RegistroVeiculoSync.Queries;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-//namespace CPR.Application.Features.RegistroVeiculoSync.Handlers
-//{
-//    public class SyncMockApiRegistroVeiculoRequestHandler(IMediator mediator, IMapper mapper, IMockApiClient mockApiClient) : IRequestHandler<SyncMockApiRegistroVeiculoRequest, RegistroVeiculoSyncResult>
-//    {
-//        private readonly IMediator _mediator = mediator;
-//        private readonly IMapper _mapper = mapper;
-//        private readonly IMockApiClient _mockApiClient = mockApiClient;
+namespace CPR.Application.Features.RegistroVeiculoSync.Handlers
+{
+    public class SyncMockApiRegistroVeiculoRequestHandler : IRequestHandler<SyncMockApiRegistroVeiculoRequest, List<RegistroVeiculo>>
+    {
+        private readonly IMockApiClient _mockApiClient;
 
-//        public async Task<RegistroVeiculoSyncResult> Handle(SyncMockApiRegistroVeiculoRequest request, CancellationToken cancellationToken)
-//        {
-//            var registroVeiculo = await _mockApiClient.GetAsyncRegistroVeiculo();
-//            return new RegistroVeiculoSyncResult(registroVeiculo.Count, registroVeiculo);
-//        }
-//    }
-//}
+        public SyncMockApiRegistroVeiculoRequestHandler(IMockApiClient mockApiClient)
+        {
+            _mockApiClient = mockApiClient;
+        }
+
+        public async Task<List<RegistroVeiculo>> Handle(SyncMockApiRegistroVeiculoRequest request, CancellationToken cancellationToken)
+        {
+            // Obtém registros do veículo específico (se VeiculoId for passado)
+            return await _mockApiClient.GetAsyncRegistroVeiculo(request.VeiculoId);
+        }
+    }
+}

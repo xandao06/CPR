@@ -91,8 +91,8 @@ export class ChamadoComponent implements OnInit {
         this.http.put<Chamado>(this.apiConfig.getApiUrl(`chamados/sync/concluirChamado/${id}`), {})
       );
       if (concludedChamado) {
-        this.chamados = this.chamados.filter(c => c.id !== id);
-        this.filteredChamados = [...this.chamados];
+        await this.getChamados();
+        this.sortChamados(this.sortColumn || 'data');
       }
     }
 

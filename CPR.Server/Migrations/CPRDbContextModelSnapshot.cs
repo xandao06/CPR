@@ -166,16 +166,13 @@ namespace CPR.Server.Migrations
                     b.ToTable("Nobreaks");
                 });
 
-            modelBuilder.Entity("CPR.Domain.Veiculo", b =>
+            modelBuilder.Entity("CPR.Domain.RegistroVeiculo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Ano")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Combustivel")
                         .HasColumnType("nvarchar(max)");
@@ -207,9 +204,6 @@ namespace CPR.Server.Migrations
                     b.Property<string>("MediaPorLitro")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Modelo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
@@ -217,9 +211,6 @@ namespace CPR.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PecasParaTrocar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Placa")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PrecoAbastecimento")
@@ -233,6 +224,31 @@ namespace CPR.Server.Migrations
 
                     b.Property<int>("QuilometrosRodados")
                         .HasColumnType("int");
+
+                    b.Property<int>("VeiculoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Registros");
+                });
+
+            modelBuilder.Entity("CPR.Domain.Veiculo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ano")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Placa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Renavan")
                         .HasColumnType("nvarchar(max)");

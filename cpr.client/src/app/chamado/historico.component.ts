@@ -28,6 +28,7 @@ export class HistoricoComponent implements OnInit {
   async ngOnInit() {
     await this.getChamadosConcluidos();
     this.filteredChamados = [...this.chamadosConcluidos];
+    this.sortChamados('data');
   }
 
   async getChamadosConcluidos() {
@@ -35,15 +36,44 @@ export class HistoricoComponent implements OnInit {
       this.http.get<Chamado[]>(this.apiConfig.getApiUrl('chamados/sync/getChamadosConcluidos'),)
     );
     this.filteredChamados = [...this.chamadosConcluidos];
+    this.sortChamados('data');
   }
 
   async deleteChamado(id: number) {
     const deleted = await lastValueFrom(
-      this.http.delete<boolean>(this.apiConfig.getApiUrl(`chamados/sync/getChamadosConcluidos/${id}`),)
+      this.http.delete<boolean>(this.apiConfig.getApiUrl(`chamados/sync/deleteChamado/${id}`),)
     );
     if (deleted) {
       await this.getChamadosConcluidos();
     }
+  }
+
+  sortColumn: keyof Chamado | '' = ''; 
+  sortDirection: 'asc' | 'desc' = 'asc'; 
+
+  sortChamados(column: keyof Chamado) {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.filteredChamados.sort((a, b) => {
+      let valueA = a[column];
+      let valueB = b[column];
+
+      if (column === 'data') {
+        valueA = new Date(valueA).getTime();
+        valueB = new Date(valueB).getTime();
+      }
+
+      if (typeof valueA === 'number' && typeof valueB === 'number') {
+        return this.sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
+      }
+
+      return 0;
+    });
   }
 
   onSearchInput(event: Event) {

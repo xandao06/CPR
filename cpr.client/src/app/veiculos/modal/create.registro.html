@@ -11,7 +11,7 @@
         <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="veiculoForm" (ngSubmit)="submitVeiculo()">
+        <form [formGroup]="registrosForm" (ngSubmit)="submitRegistroVeiculo()">
           <div class="form-group">
             <input id="dataUltimaRevisao" formControlName="dataUltimaRevisao" placeholder="Data da última revisão" type="date" class="form-control" />
           </div>
@@ -64,7 +64,7 @@
             <input id="observacao" formControlName="observacao" placeholder="Observação" type="text" class="form-control" />
           </div>
 
-          <button type="submit" class="btn btn-dark" [disabled]="veiculoForm.invalid">Salvar</button>
+          <button type="submit" class="btn btn-dark" [disabled]="registrosForm.invalid">Salvar</button>
         </form>
       </div>
     </div>

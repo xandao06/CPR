@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Veiculo } from '../veiculo.component';
+import { RegistroVeiculo } from '../registro.veiculo.component';
 
 @Component({
   selector: 'edit-registro-modal',
@@ -8,9 +8,9 @@ import { Veiculo } from '../veiculo.component';
   styleUrls: ['./modal.css']
 })
 export class EditRegistroModalComponent implements OnInit {
-  @Input() veiculos: Veiculo = {} as Veiculo;
+  @Input() registrosVeiculo: RegistroVeiculo = {} as RegistroVeiculo;
   @Output() close = new EventEmitter<void>();
-  @Output() edit = new EventEmitter<Veiculo>();
+  @Output() edit = new EventEmitter<RegistroVeiculo>();
 
   public editForm: FormGroup;
   public showModal: boolean = false;
@@ -46,18 +46,18 @@ export class EditRegistroModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.editForm.patchValue(this.veiculos);
+    this.editForm.patchValue(this.registrosVeiculo);
   }
 
-  openEditModal(veiculos: Veiculo) {
-    this.veiculos = veiculos;
+  openEditModal(registros: RegistroVeiculo) {
+    this.registrosVeiculo = registros;
 
     //const formattedVeiculo = {
     //  ...registroVeiculo,
     //  dataUltimaRevisao: this.formatDate(registroVeiculo.dataUltimaRevisao),
     //};
 
-    this.editForm.patchValue(veiculos);
+    this.editForm.patchValue(registros);
     this.showModal = true;
   }
 
@@ -68,8 +68,8 @@ export class EditRegistroModalComponent implements OnInit {
 
   submitEdit() {
     if (this.editForm.valid) {
-      const updatedVeiculo = { ...this.veiculos, ...this.editForm.value };
-      this.edit.emit(updatedVeiculo); 
+      const updatedRegistro = { ...this.registrosVeiculo, ...this.editForm.value };
+      this.edit.emit(updatedRegistro); 
       this.closeEditModal();
     }
   }

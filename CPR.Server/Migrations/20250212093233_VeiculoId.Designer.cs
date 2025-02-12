@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CPR.Server.Migrations
 {
     [DbContext(typeof(CPRDbContext))]
-    [Migration("20250124101210_registro-veiculo")]
-    partial class registroveiculo
+    [Migration("20250212093233_VeiculoId")]
+    partial class VeiculoId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,7 +169,7 @@ namespace CPR.Server.Migrations
                     b.ToTable("Nobreaks");
                 });
 
-            modelBuilder.Entity("CPR.Domain.Veiculo", b =>
+            modelBuilder.Entity("CPR.Domain.RegistroVeiculo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,14 +177,8 @@ namespace CPR.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ano")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Combustivel")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataTrocaPeca")
                         .HasColumnType("datetime2");
@@ -213,9 +207,6 @@ namespace CPR.Server.Migrations
                     b.Property<string>("MediaPorLitro")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Modelo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
@@ -223,9 +214,6 @@ namespace CPR.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PecasParaTrocar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Placa")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PrecoAbastecimento")
@@ -239,6 +227,31 @@ namespace CPR.Server.Migrations
 
                     b.Property<int>("QuilometrosRodados")
                         .HasColumnType("int");
+
+                    b.Property<int>("VeiculoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Registros");
+                });
+
+            modelBuilder.Entity("CPR.Domain.Veiculo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ano")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Placa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Renavan")
                         .HasColumnType("nvarchar(max)");

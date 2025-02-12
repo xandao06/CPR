@@ -6,14 +6,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./modal.css']
 })
 export class DeleteRegistroModalComponent {
-  @Input() veiculoId!: number;
+  @Input() registroVeiculoId!: number;
   @Output() close = new EventEmitter<void>();
   @Output() delete = new EventEmitter<number>();
 
   public showModal: boolean = false;
 
   openDeleteModal(id: number) {
-    this.veiculoId = id;
+    this.registroVeiculoId = id;
     this.showModal = true;
   }
 
@@ -23,7 +23,7 @@ export class DeleteRegistroModalComponent {
   }
 
   confirmDelete() {
-    this.delete.emit(this.veiculoId);
+    this.delete.emit(this.registroVeiculoId);
     this.closeDeleteModal();
   }
 }

@@ -9,12 +9,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CreateRegistroModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<any>();
-  public veiculoForm: FormGroup;
+  public registrosForm: FormGroup;
   public showModal: boolean = false;
-  public veiculoId: number | null = null;
+  public registroVeiculoId: number | null = null;
 
   constructor(private fb: FormBuilder) {
-    this.veiculoForm = this.fb.group({
+    this.registrosForm = this.fb.group({
       id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],
@@ -40,10 +40,10 @@ export class CreateRegistroModalComponent implements OnInit {
     this.resetForm();
   }
 
-  openCreateModal(veiculoId: number) {
-    this.veiculoId = veiculoId; // Armazena o ID do veículo selecionado
+  openCreateModal(registroVeiculoId: number) {
+    this.registroVeiculoId = registroVeiculoId; // Armazena o ID do veículo selecionado
     this.resetForm();
-    this.veiculoForm.patchValue({ id: veiculoId }); // Define o ID no formulário
+    this.registrosForm.patchValue({ id: registroVeiculoId }); // Define o ID no formulário
     this.showModal = true;
   }
 
@@ -52,37 +52,37 @@ export class CreateRegistroModalComponent implements OnInit {
     this.close.emit();
   }
 
-  async submitVeiculo() {
-    const veiculoData = {
-      id: this.veiculoId || 0, // Garante que o ID seja enviado corretamente
-      dataUltimaRevisao: this.veiculoForm.value.dataUltimaRevisao || '',
-      dataUltimoAbastecimento: this.veiculoForm.value.dataUltimoAbastecimento || '',
-      dataUltimaTrocaOleo: this.veiculoForm.value.dataUltimaTrocaOleo || '',
-      dataUltimaCalibragem: this.veiculoForm.value.dataUltimaCalibragem || '',
-      quilometrosRodados: this.veiculoForm.value.quilometrosRodados || '',
-      quilometrosProximaTrocaOleo: this.veiculoForm.value.quilometrosProximaTrocaOleo || '',
-      dataUltimoBalanceamento: this.veiculoForm.value.dataUltimoBalanceamento || '',
-      pecasJaTrocadas: this.veiculoForm.value.pecasJaTrocadas || '',
-      pecasParaTrocar: this.veiculoForm.value.pecasParaTrocar || '',
-      dataTrocaPeca: this.veiculoForm.value.dataTrocaPeca || '',
-      precoEtanol: this.veiculoForm.value.precoEtanol || '',
-      precoGasolina: this.veiculoForm.value.precoGasolina || '',
-      observacao: this.veiculoForm.value.observacao || '',
-      litrosAbastecido: this.veiculoForm.value.litrosAbastecido || '',
-      precoAbastecimento: this.veiculoForm.value.precoAbastecimento || '',
-      combustivel: this.veiculoForm.value.combustivel || '',
-      mediaPorLitro: this.veiculoForm.value.mediaPorLitro || ''
+  async submitRegistroVeiculo() {
+    const registrosData = {
+      id: this.registroVeiculoId || 0, // Garante que o ID seja enviado corretamente
+      dataUltimaRevisao: this.registrosForm.value.dataUltimaRevisao || '',
+      dataUltimoAbastecimento: this.registrosForm.value.dataUltimoAbastecimento || '',
+      dataUltimaTrocaOleo: this.registrosForm.value.dataUltimaTrocaOleo || '',
+      dataUltimaCalibragem: this.registrosForm.value.dataUltimaCalibragem || '',
+      quilometrosRodados: this.registrosForm.value.quilometrosRodados || '',
+      quilometrosProximaTrocaOleo: this.registrosForm.value.quilometrosProximaTrocaOleo || '',
+      dataUltimoBalanceamento: this.registrosForm.value.dataUltimoBalanceamento || '',
+      pecasJaTrocadas: this.registrosForm.value.pecasJaTrocadas || '',
+      pecasParaTrocar: this.registrosForm.value.pecasParaTrocar || '',
+      dataTrocaPeca: this.registrosForm.value.dataTrocaPeca || '',
+      precoEtanol: this.registrosForm.value.precoEtanol || '',
+      precoGasolina: this.registrosForm.value.precoGasolina || '',
+      observacao: this.registrosForm.value.observacao || '',
+      litrosAbastecido: this.registrosForm.value.litrosAbastecido || '',
+      precoAbastecimento: this.registrosForm.value.precoAbastecimento || '',
+      combustivel: this.registrosForm.value.combustivel || '',
+      mediaPorLitro: this.registrosForm.value.mediaPorLitro || ''
     };
 
-    console.log('Enviando JSON para API:', JSON.stringify(veiculoData));
+    console.log('Enviando JSON para API:', JSON.stringify(registrosData));
 
-    this.create.emit(veiculoData);
+    this.create.emit(registrosData);
   }
 
 
   private resetForm()
   {
-    this.veiculoForm.reset({
+    this.registrosForm.reset({
       id: [''],
       dataUltimaRevisao: [''],
       dataUltimoAbastecimento: [''],

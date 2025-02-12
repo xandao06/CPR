@@ -43,17 +43,6 @@ export class CreateVeiculoModalComponent implements OnInit {
       placa: this.veiculoForm.value.placa || '',
       ano: this.veiculoForm.value.ano || '',
       renavan: this.veiculoForm.value.renavan || '',
-      quilometrosRodados: 0,
-      quilometrosProximaTrocaOleo: 0,
-      pecasJaTrocadas: '',
-      pecasParaTrocar: '',
-      precoEtanol: '',
-      precoGasolina: '',
-      observacao: '',
-      litrosAbastecido: 0,
-      precoAbastecimento: '',
-      combustivel: '',
-      mediaPorLitro: ''
     };
 
     const addDateIfValid = (key: string, value: any) => {
