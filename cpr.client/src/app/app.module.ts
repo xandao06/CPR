@@ -28,6 +28,7 @@ import { CreateRegistroModalComponent } from './veiculos/modal/create.registro';
 import { EditRegistroModalComponent } from './veiculos/modal/edit.registro';
 import { DeleteRegistroModalComponent } from './veiculos/modal/delete.registro';
 import { RegistroVeiculoComponent } from './veiculos/registro.veiculo.component';
+import { PrintLayoutComponent } from './consignado/print_layout';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RegistroVeiculoComponent } from './veiculos/registro.veiculo.component'
     CreateRegistroModalComponent,
     EditRegistroModalComponent,
     DeleteRegistroModalComponent,
-    RegistroVeiculoComponent
+    RegistroVeiculoComponent,
+    PrintLayoutComponent
   ],
   imports: [
     BrowserModule,

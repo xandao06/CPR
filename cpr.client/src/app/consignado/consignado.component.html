@@ -63,9 +63,12 @@
                       <a (click)="deleteModal.openDeleteModal(equipamento.id)">
                         <i id="icon_opcoes" class="fa-solid fa-trash"></i>
                       </a>
-                      <!--<div class="hidden">
-                        <app-print-layout [equipamento]="equipamento" [attr.id]="'print-layout-' + equipamento.id"></app-print-layout>
-                      </div>-->
+                      <div style="display: none;">
+                        <app-print-layout 
+                                          [equipamento]="equipamento"
+                                          [attr.id]="'print-layout-' + equipamento.id">
+                        </app-print-layout>
+                      </div>
                       <a (click)="printEquipamento(equipamento.id)">
                         <i id="icon_opcoes" class="fa-solid fa-print"></i>
                       </a>
